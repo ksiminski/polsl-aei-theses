@@ -1,0 +1,546 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                        %
+% Szablon pracy dyplomowej inzynierskiej % 
+%                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\documentclass[a4paper,twoside,12pt]{book}
+\usepackage[utf8]{inputenc}                                      
+\usepackage[T1]{fontenc}  
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[british,polish]{babel} 
+\usepackage{indentfirst}
+\usepackage{lmodern}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+\usepackage{booktabs}
+%\usepackage{tikz}
+%\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage[page]{appendix} % toc,
+\renewcommand{\appendixtocname}{Dodatki}
+\renewcommand{\appendixpagename}{Dodatki}
+\renewcommand{\appendixname}{Dodatek}
+
+\usepackage{setspace}
+\onehalfspacing
+
+
+\frenchspacing
+
+\usepackage{listings}
+%\lstset{
+%	language={},
+%	basicstyle=\ttfamily,
+%	keywordstyle=\lst@ifdisplaystyle\color{blue}\fi,
+%	commentstyle=\color{gray}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% listingi 
+\usepackage{listings}
+\lstset{%
+language=C++,%
+commentstyle=\textit,%
+identifierstyle=\textsf,%
+keywordstyle=\sffamily\bfseries, %\texttt, %
+%captionpos=b,%
+tabsize=3,%
+frame=lines,%
+numbers=left,%
+numberstyle=\tiny,%
+numbersep=5pt,%
+breaklines=true,%
+morekeywords={descriptor_gaussian,descriptor,partition,fcm_possibilistic,dataset,my_exception,exception,std,vector},%
+escapeinside={@*}{*@},%
+%texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%
+
+%%%% TODO LIST GENERATOR %%%%%%%%%
+
+%\usepackage{tikz}
+%\usepackage{manfnt}   % dangerous sign 
+\usepackage{color}
+\definecolor{brickred}      {cmyk}{0   , 0.89, 0.94, 0.28}
+
+\makeatletter \newcommand \kslistofremarks{\section*{Uwagi} \@starttoc{rks}}
+  \newcommand\l@uwagas[2]
+    {\par\noindent \textbf{#2:} %\parbox{10cm}
+{#1}\par} \makeatother
+
+
+\newcommand{\ksremark}[1]{%
+{%\marginpar{\textdbend}
+{\color{brickred}{[#1]}}}%
+\addcontentsline{rks}{uwagas}{\protect{#1}}%
+}
+
+\newcommand{\comma}{\ksremark{przecinek}}
+\newcommand{\nocomma}{\ksremark{bez przecinka}}
+\newcommand{\styl}{\ksremark{styl}}
+\newcommand{\ortografia}{\ksremark{ortografia}}
+\newcommand{\fleksja}{\ksremark{fleksja}}
+\newcommand{\pauza}{\ksremark{pauza `--', nie dywiz `-'}}
+\newcommand{\kolokwializm}{\ksremark{kolokwializm}}
+
+%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
+
+%%%%%%%%%%%% ZYWA PAGINA %%%%%%%%%%%%%%%
+% brak kapitalizacji zywej paginy
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\nouppercase{\it\rightmark}}
+\fancyhead[RE]{\nouppercase{\it\leftmark}}
+\fancyhead[LE,RO]{\it\thepage}
+
+
+\fancypagestyle{tylkoNumeryStron}{%
+   \fancyhf{} 
+   \fancyhead[LE,RO]{\it\thepage}
+}
+
+\fancypagestyle{NumeryStronNazwyRozdzialow}{%
+   \fancyhf{} 
+   \fancyhead[LO]{\nouppercase{\it\rightmark}}
+   \fancyhead[RE]{\nouppercase{\it\leftmark}}
+   \fancyhead[LE,RO]{\it\thepage}
+}
+
+
+%%%%%%%%%%%%% OBCE WTRETY  
+\newcommand{\obcy}[1]{\emph{#1}}
+\newcommand{\ang}[1]{{\selectlanguage{british}\obcy{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% polskie oznaczenia funkcji matematycznych
+\renewcommand{\tan}{\operatorname {tg}}
+\renewcommand{\log}{\operatorname {lg}}
+
+% jeszcze jakies drobiazgi
+
+\newcounter{stronyPozaNumeracja}
+
+\newcommand{\hcancel}[1]{%
+    \tikz[baseline=(tocancel.base)]{
+        \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
+        \draw[red] (tocancel.south west) -- (tocancel.north east);
+    }%
+}%
+
+\newcommand{\miesiac}{%
+  \ifcase\the\month
+  \or styczeń% 1
+  \or luty% 2
+  \or marzec% 3
+  \or kwiecień% 4
+  \or maj% 5
+  \or czerwiec% 6
+  \or lipiec% 7
+  \or sierpień% 8
+  \or wrzesień% 9
+  \or październik% 10
+  \or listopad% 11
+  \or grudzień% 12
+  \fi}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Helvetica font macros for the title page:
+\newcommand{\headerfont}{\fontfamily{phv}\fontsize{18}{18}\bfseries\scshape\selectfont}
+\newcommand{\titlefont}{\fontfamily{phv}\fontsize{18}{18}\selectfont}
+\newcommand{\otherfont}{\fontfamily{phv}\fontsize{14}{14}\selectfont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\autor}{Imię Nazwisko}
+\newcommand{\promotor}{dr inż. Imię Nazwisko}
+\newcommand{\konsultant}{dr inż. Imię Nazwisko}
+\newcommand{\tytul}{Tytuł pracy dyplomowej inżynierskiej}
+\newcommand{\polsl}{Politechnika Śląska}
+\newcommand{\wydzial}{Wydział Automatyki, Elektroniki i Informatyki}
+\newcommand{\kierunek}{Kierunek: [wpisać właściwy]}
+
+
+\begin{document}
+%\kslistofremarks 
+	
+%%%%%%%%%%%%%%%%%%  STRONA TYTULOWA %%%%%%%%%%%%%%%%%%%
+\pagestyle{empty}
+{
+	\newgeometry{top=2.5cm,%
+	             bottom=2.5cm,%
+	             left=3cm,
+	             right=2.5cm}
+	\sffamily
+	\rule{0cm}{0cm}
+	
+	\begin{center}
+	\includegraphics[width=29mm]{logo_pl.jpg}
+	\end{center} 
+	\vspace{1cm}
+	\begin{center}
+	\headerfont \polsl
+	\end{center}
+	\begin{center}
+	\headerfont \wydzial
+	\end{center}
+	\begin{center}
+	\headerfont \kierunek
+	\end{center}
+	\vfill
+	\begin{center}
+	\titlefont Praca dyplomowa inżynierska
+	\end{center}
+	\vfill
+	
+	\begin{center}
+	\otherfont \tytul\par
+	\end{center}
+	
+	\vfill
+	
+	\vfill
+	 
+	\noindent\vbox
+	{
+		\hbox{\otherfont autor: \autor}
+		\vspace{12pt}
+		\hbox{\otherfont kierujący pracą: \promotor}
+		\vspace{12pt}  % zakomentuj, jezeli nie ma konsultanta
+		\hbox{\otherfont konsultant: \konsultant} % zakomentuj, jezeli nie ma konsultanta
+	}
+	\vfill 
+ 
+   \begin{center}
+   \otherfont Gliwice,  \miesiac\ \the\year
+   \end{center}	
+	\restoregeometry
+}
+  
+
+\cleardoublepage
+ 
+
+\rmfamily
+\normalfont
+
+
+%%%%%%%%%%%%%%%%%% SPIS TRESCI %%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{Roman}
+\pagestyle{tylkoNumeryStron}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{stronyPozaNumeracja}{\value{page}}
+\mainmatter
+\pagestyle{empty}
+
+\chapter*{Streszczenie}
+\addcontentsline{toc}{chapter}{Streszczenie}
+
+Odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia. Streszczenie wraz ze słowami kluczowymi nie powinno przekroczyć jednej strony.
+
+\paragraph{Słowa kluczowe:} 2-5 slow (fraz) kluczowych, oddzielonych przecinkami
+
+
+
+\cleardoublepage
+
+\pagestyle{NumeryStronNazwyRozdzialow}
+
+%%%%%%%%%%%%%% wlasciwa tresc pracy %%%%%%%%%%%%%%%%%
+
+\chapter{Wstęp}
+
+\begin{itemize}
+\item wprowadzenie w problem/zagadnienie
+\item osadzenie problemu w dziedzinie
+\item cel pracy
+\item zakres pracy
+\item zwięzła charakterystyka rozdziałów
+\item jednoznaczne określenie wkładu autora, w przypadku prac wieloosobowych – tabela z autorstwem poszczególnych elementów pracy
+\end{itemize}
+
+
+\chapter{[Analiza tematu]}
+
+\begin{itemize}
+\item sformułowanie problemu
+\item osadzenie tematu w kontekście aktualnego stanu wiedzy (\ang{state of the art}) o poruszanym problemie
+\item  studia literaturowe \cite{bib:artykul,bib:ksiazka,bib:konferencja,bib:url} -  opis znanych rozwiązań (także opisanych naukowo, jeżeli problem jest poruszany w publikacjach naukowych), algorytmów, 
+\end{itemize}
+
+
+
+
+\chapter{Wymagania i narzędzia}
+
+\begin{itemize}
+\item wymagania funkcjonalne i niefunkcjonalne
+\item przypadki użycia (diagramy UML) - dla prac, w których mają zastosowanie
+\item opis narzędzi, metod eksperymentalnych, metod modelowania itp.
+\item metodyka pracy nad projektowaniem i implementacją - dla prac, w których ma to zastosowanie
+\end{itemize}
+
+\chapter{[Właściwy dla kierunku -- np. Specyfikacja zewnętrzna]}
+Jeśli to Specyfikacja zewnętrzna:
+\begin{itemize}
+\item  wymagania sprzętowe i programowe
+\item  sposób instalacji
+\item  sposób aktywacji
+\item  kategorie użytkowników
+\item  sposób obsługi
+\item  administracja systemem
+\item  kwestie bezpieczeństwa
+\item  przykład działania
+\item  scenariusze korzystania z systemu (ilustrowane zrzutami z ekranu lub generowanymi dokumentami)
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=3cm]{logo_pl.jpg}
+\caption{Podpis rysunku po rysunkiem.}
+\label{fig:2}
+\end{figure}
+
+
+\chapter{[Właściwy dla kierunku -- np. Specyfikacja wewnętrzna]}
+Jeśli to Specyfikacja wewnętrzna:
+\begin{itemize}
+\item przedstawienie idei
+\item architektura systemu
+\item opis struktur danych (i organizacji baz danych)
+\item komponenty, moduły, biblioteki, przegląd ważniejszych klas (jeśli występują)
+\item przegląd ważniejszych algorytmów (jeśli występują)
+\item szczegóły implementacji wybranych fragmentów, zastosowane wzorce projektowe
+\item diagramy UML
+\end{itemize}
+
+
+
+Krótka wstawka kodu w linii tekstu jest możliwa, np. \lstinline|descriptor|, a nawet \lstinline|descriptor_gaussian|. 
+Dłuższe fragmenty lepiej jest umieszczać jako rysunek, np. kod na rysunku \ref{fig:pseudokod}, a naprawdę długie fragmenty – w załączniku.
+
+\begin{figure}
+\centering
+\begin{lstlisting}
+class descriptor_gaussian : virtual public descriptor
+{
+   protected:
+      /** core of the gaussian fuzzy set */
+      double _mean;
+      /** fuzzyfication of the gaussian fuzzy set */
+      double _stddev;
+      
+   public:
+      /** @param mean core of the set
+          @param stddev standard deviation */
+      descriptor_gaussian (double mean, double stddev);
+      descriptor_gaussian (const descriptor_gaussian & w);
+      virtual ~descriptor_gaussian();
+      virtual descriptor * clone () const;
+      
+      /** The method elaborates membership to the gaussian fuzzy set. */
+      virtual double getMembership (double x) const;
+     
+};
+\end{lstlisting}
+\caption{Klasa \lstinline|descriptor_gaussian|.}
+\label{fig:pseudokod}
+\end{figure}
+
+
+\chapter{Weryfikacja i walidacja}
+\begin{itemize}
+\item sposób testowania w ramach pracy (np. odniesienie do modelu V)
+\item organizacja eksperymentów
+\item przypadki testowe zakres testowania (pełny/niepełny)
+\item wykryte i usunięte błędy
+\item opcjonalnie wyniki badań eksperymentalnych
+\end{itemize}
+
+\begin{table}
+\centering
+\caption{Opis tabeli nad nią.}
+\label{id:tab:wyniki}
+\begin{tabular}{rrrrrrrr}
+\toprule
+	         &                                     \multicolumn{7}{c}{metoda}                                      \\
+	         \cmidrule{2-8}
+	         &         &         &        \multicolumn{3}{c}{alg. 3}        & \multicolumn{2}{c}{alg. 4, $\gamma = 2$} \\
+	         \cmidrule(r){4-6}\cmidrule(r){7-8}
+	$\zeta$ &     alg. 1 &   alg. 2 & $\alpha= 1.5$ & $\alpha= 2$ & $\alpha= 3$ &   $\beta = 0.1$  &   $\beta = -0.1$ \\
+\midrule
+	       0 &  8.3250 & 1.45305 &       7.5791 &    14.8517 &    20.0028 & 1.16396 &                       1.1365 \\
+	       5 &  0.6111 & 2.27126 &       6.9952 &    13.8560 &    18.6064 & 1.18659 &                       1.1630 \\
+	      10 & 11.6126 & 2.69218 &       6.2520 &    12.5202 &    16.8278 & 1.23180 &                       1.2045 \\
+	      15 &  0.5665 & 2.95046 &       5.7753 &    11.4588 &    15.4837 & 1.25131 &                       1.2614 \\
+	      20 & 15.8728 & 3.07225 &       5.3071 &    10.3935 &    13.8738 & 1.25307 &                       1.2217 \\
+	      25 &  0.9791 & 3.19034 &       5.4575 &     9.9533 &    13.0721 & 1.27104 &                       1.2640 \\
+	      30 &  2.0228 & 3.27474 &       5.7461 &     9.7164 &    12.2637 & 1.33404 &                       1.3209 \\
+	      35 & 13.4210 & 3.36086 &       6.6735 &    10.0442 &    12.0270 & 1.35385 &                       1.3059 \\
+	      40 & 13.2226 & 3.36420 &       7.7248 &    10.4495 &    12.0379 & 1.34919 &                       1.2768 \\
+	      45 & 12.8445 & 3.47436 &       8.5539 &    10.8552 &    12.2773 & 1.42303 &                       1.4362 \\
+	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
+\bottomrule
+\end{tabular}
+\end{table}  
+ 
+
+\chapter{Podsumowanie i wnioski}
+\begin{itemize}
+\item uzyskane wyniki w świetle postawionych celów i zdefiniowanych wyżej wymagań
+\item kierunki ewentualnych danych prac (rozbudowa funkcjonalna …)
+\item problemy napotkane w trakcie pracy
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter 
+\stepcounter{stronyPozaNumeracja}
+\pagenumbering{Roman}
+\setcounter{page}{\value{stronyPozaNumeracja}}
+\pagestyle{tylkoNumeryStron}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{plplain}
+\bibliography{bibliografia}
+\addcontentsline{toc}{chapter}{Bibliografia}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{appendices}
+ 
+
+\chapter*{Spis skrótów i symboli}
+\addcontentsline{toc}{chapter}{Spis skrótów i symboli}
+
+\begin{itemize}
+\item[DNA] kwas deoksyrybonukleinowy (ang. \ang{deoxyribonucleic acid})
+\item[MVC] model -- widok -- kontroler (ang. \ang{model--view--controller}) 
+\item[$N$] liczebność zbioru danych
+\item[$\mu$] stopnień przyleżności do zbioru
+\item[$\mathbb{E}$] zbiór krawędzi grafu
+\item[$\mathcal{L}$] transformata Laplace'a 
+\end{itemize}
+
+
+\chapter*{Źródła}
+\addcontentsline{toc}{chapter}{Źródła}
+
+Jeżeli w pracy konieczne jest umieszczenie długich fragmentów kodu źródłowego, należy je przenieść do załącznika.
+
+\begin{lstlisting}
+partition fcm_possibilistic::doPartition
+                             (const dataset & ds)
+{
+   try
+   {
+      if (_nClusters < 1)
+         throw std::string ("unknown number of clusters");
+      if (_nIterations < 1 and _epsilon < 0)
+         throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
+      if (_nIterations > 0 and _epsilon > 0)
+         throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
+   
+      auto mX = ds.getMatrix();
+      std::size_t nAttr = ds.getNumberOfAttributes();
+      std::size_t nX    = ds.getNumberOfData();
+      std::vector<std::vector<double>> mV;
+      mU = std::vector<std::vector<double>> (_nClusters);
+      for (auto & u : mU)
+         u = std::vector<double> (nX);
+      randomise(mU);
+      normaliseByColumns(mU);
+      calculateEtas(_nClusters, nX, ds);
+      if (_nIterations > 0)
+      {
+         for (int iter = 0; iter < _nIterations; iter++)
+         {
+            mV = calculateClusterCentres(mU, mX);
+            mU = modifyPartitionMatrix (mV, mX);
+         }
+      }
+      else if (_epsilon > 0)
+      {
+         double frob;
+         do 
+         {
+            mV = calculateClusterCentres(mU, mX);
+            auto mUnew = modifyPartitionMatrix (mV, mX);
+            
+            frob = Frobenius_norm_of_difference (mU, mUnew);
+            mU = mUnew;
+         } while (frob > _epsilon);
+      }
+      mV = calculateClusterCentres(mU, mX);
+      std::vector<std::vector<double>> mS = calculateClusterFuzzification(mU, mV, mX);
+      
+      partition part;
+      for (int c = 0; c < _nClusters; c++)
+      {
+         cluster cl; 
+         for (std::size_t a = 0; a < nAttr; a++)
+         {
+            descriptor_gaussian d (mV[c][a], mS[c][a]);
+            cl.addDescriptor(d);
+         }
+         part.addCluster(cl);
+      }
+      return part;
+   }
+   catch (my_exception & ex)                                  
+   {                                                       
+      throw my_exception (__FILE__, __FUNCTION__, __LINE__, ex.what()); 
+   }                                                          
+   catch (std::exception & ex)                                 
+   {                                                            
+      throw my_exceptionn (__FILE__, __FUNCTION__, __LINE__, ex.what()); 
+   }                                                            
+   catch (std::string & ex)                                     
+   {                                                            
+      throw my_exception (__FILE__, __FUNCTION__, __LINE__, ex);        
+   }                                                             
+   catch (...)                                                   
+   {                                                             
+      throw my_exception (__FILE__, __FUNCTION__, __LINE__, "unknown expection");       
+   }  
+}
+\end{lstlisting}
+ 
+
+\chapter*{Zawartość dołączonej płyty}
+\addcontentsline{toc}{chapter}{Zawartość dołączonej płyty}
+
+Do pracy dołączona jest płyta CD z~następującą zawartością:
+\begin{itemize}
+\item praca (źródła \LaTeX owe i końcowa wersja w \texttt{pdf}),
+\item źródła programu,
+\item dane testowe.
+\end{itemize}
+
+\listoffigures
+\listoftables
+	
+\end{appendices}
+
+
+\end{document}
+
+
+%% Finis coronat opus.
