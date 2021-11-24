@@ -1,10 +1,18 @@
-% !TeX spellcheck = en_GB
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
-%    Engineer thesis LaTeX template      % 
+% Szablon pracy dyplomowej inzynierskiej % 
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  (c) Krzysztof Simiński, 2018-2021     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% kompilacja:
+
+% pdflatex praca
+% biber    praca
+% pdflatex praca
+% pdflatex praca 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -13,7 +21,7 @@
 \usepackage[utf8]{inputenc}                                      
 \usepackage[T1]{fontenc}  
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage[polish,british]{babel} 
+\usepackage[british,polish]{babel} 
 \usepackage{indentfirst}
 \usepackage{lmodern}
 \usepackage{graphicx} 
@@ -23,7 +31,16 @@
 %\usepackage{pgfplots}
 \usepackage{mathtools}
 \usepackage{geometry}
-\usepackage[page]{appendix} 
+\usepackage[page]{appendix} % toc,
+\renewcommand{\appendixtocname}{Dodatki}
+\renewcommand{\appendixpagename}{Dodatki}
+\renewcommand{\appendixname}{Dodatek}
+
+\usepackage{csquotes}
+\usepackage[natbib=true]{biblatex}
+\bibliography{bibliografia}
+
+
 
 \usepackage{setspace}
 \onehalfspacing
@@ -32,42 +49,15 @@
 \frenchspacing
 
 \usepackage{listings}
-\lstset{
-	language={},
-	basicstyle=\ttfamily,
-	keywordstyle=\lst@ifdisplaystyle\color{blue}\fi,
-	commentstyle=\color{gray}
-}
-
-%%%%%%%%%
-
- 
-
-%%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[LO]{\nouppercase{\it\rightmark}}
-\fancyhead[RE]{\nouppercase{\it\leftmark}}
-\fancyhead[LE,RO]{\it\thepage}
-
-
-\fancypagestyle{onlyPageNumbers}{%
-   \fancyhf{} 
-   \fancyhead[LE,RO]{\it\thepage}
-}
-
-\fancypagestyle{PageNumbersChapterTitles}{%
-   \fancyhf{} 
-   \fancyhead[LO]{\nouppercase{\it\rightmark}}
-   \fancyhead[RE]{\nouppercase{\it\leftmark}}
-   \fancyhead[LE,RO]{\it\thepage}
-}
-
+%\lstset{
+%	language={},
+%	basicstyle=\ttfamily,
+%	keywordstyle=\lst@ifdisplaystyle\color{blue}\fi,
+%	commentstyle=\color{gray}
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-% listings 
+% listingi 
 \usepackage{listings}
 \lstset{%
 language=C++,%
@@ -87,28 +77,73 @@ escapeinside={@*}{*@},%
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%
+
 %%%% TODO LIST GENERATOR %%%%%%%%%
 
+%\usepackage{tikz}
+%\usepackage{manfnt}   % dangerous sign 
 \usepackage{color}
 \definecolor{brickred}      {cmyk}{0   , 0.89, 0.94, 0.28}
 
-\makeatletter \newcommand \kslistofremarks{\section*{Remarks} \@starttoc{rks}}
+\makeatletter \newcommand \kslistofremarks{\section*{Uwagi} \@starttoc{rks}}
   \newcommand\l@uwagas[2]
     {\par\noindent \textbf{#2:} %\parbox{10cm}
 {#1}\par} \makeatother
 
 
-\newcommand{\remark}[1]{%
+\newcommand{\ksremark}[1]{%
 {%\marginpar{\textdbend}
 {\color{brickred}{[#1]}}}%
 \addcontentsline{rks}{uwagas}{\protect{#1}}%
 }
 
-%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%% 
+\newcommand{\comma}{\ksremark{przecinek}}
+\newcommand{\nocomma}{\ksremark{bez przecinka}}
+\newcommand{\styl}{\ksremark{styl}}
+\newcommand{\ortografia}{\ksremark{ortografia}}
+\newcommand{\fleksja}{\ksremark{fleksja}}
+\newcommand{\pauza}{\ksremark{pauza `--', nie dywiz `-'}}
+\newcommand{\kolokwializm}{\ksremark{kolokwializm}}
 
-% some issues...
+%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
 
-\newcounter{PagesWithoutNumbers}
+%%%%%%%%%%%% ZYWA PAGINA %%%%%%%%%%%%%%%
+% brak kapitalizacji zywej paginy
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\nouppercase{\it\rightmark}}
+\fancyhead[RE]{\nouppercase{\it\leftmark}}
+\fancyhead[LE,RO]{\it\thepage}
+
+
+\fancypagestyle{tylkoNumeryStron}{%
+   \fancyhf{} 
+   \fancyhead[LE,RO]{\it\thepage}
+}
+
+\fancypagestyle{NumeryStronNazwyRozdzialow}{%
+   \fancyhf{} 
+   \fancyhead[LO]{\nouppercase{\it\rightmark}}
+   \fancyhead[RE]{\nouppercase{\it\leftmark}}
+   \fancyhead[LE,RO]{\it\thepage}
+}
+
+
+%%%%%%%%%%%%% OBCE WTRETY  
+\newcommand{\obcy}[1]{\emph{#1}}
+\newcommand{\ang}[1]{{\selectlanguage{british}\obcy{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% polskie oznaczenia funkcji matematycznych
+\renewcommand{\tan}{\operatorname {tg}}
+\renewcommand{\log}{\operatorname {lg}}
+
+% jeszcze jakies drobiazgi
+
+\newcounter{stronyPozaNumeracja}
 
 \newcommand{\hcancel}[1]{%
     \tikz[baseline=(tocancel.base)]{
@@ -117,20 +152,20 @@ escapeinside={@*}{*@},%
     }%
 }%
 
-\newcommand{\MonthName}{%
+\newcommand{\miesiac}{%
   \ifcase\the\month
-  \or January% 1
-  \or February% 2
-  \or March% 3
-  \or April% 4
-  \or May% 5
-  \or June% 6
-  \or July% 7
-  \or August% 8
-  \or September% 9
-  \or October% 10
-  \or November% 11
-  \or December% 12
+  \or styczeń% 1
+  \or luty% 2
+  \or marzec% 3
+  \or kwiecień% 4
+  \or maj% 5
+  \or czerwiec% 6
+  \or lipiec% 7
+  \or sierpień% 8
+  \or wrzesień% 9
+  \or październik% 10
+  \or listopad% 11
+  \or grudzień% 12
   \fi}
 
 
@@ -149,18 +184,19 @@ escapeinside={@*}{*@},%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\newcommand{\Author}{Name Surname}
-\newcommand{\Supervisor}{Name Surname, DSc PhD}
-\newcommand{\Consultant}{Name Surname, PhD}
-\newcommand{\Title}{Title of engineer thesis}
-\newcommand{\Polsl}{Silesian University of Technology}
-\newcommand{\Faculty}{Faculty of Automatic Control, Electronics and Computer Science}
-\newcommand{\Programme}{Programme: Informatics}
+\newcommand{\autor}{Imię Nazwisko}
+\newcommand{\promotor}{dr inż. Imię Nazwisko}
+\newcommand{\konsultant}{dr inż. Imię Nazwisko}
+\newcommand{\tytul}{Tytuł pracy dyplomowej inżynierskiej}
+\newcommand{\polsl}{Politechnika Śląska}
+\newcommand{\wydzial}{Wydział Automatyki, Elektroniki i Informatyki}
+\newcommand{\kierunek}{Kierunek: [wpisać właściwy]}
 
 
-\begin{document} 
+\begin{document}
+%\kslistofremarks 
 	
-%%%%%%%%%%%%%%%%%%  Title page %%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%  STRONA TYTULOWA %%%%%%%%%%%%%%%%%%%
 \pagestyle{empty}
 {
 	\newgeometry{top=2.5cm,%
@@ -171,27 +207,26 @@ escapeinside={@*}{*@},%
 	\rule{0cm}{0cm}
 	
 	\begin{center}
-	\includegraphics[width=45mm]{logo_eng.jpg}
+	\includegraphics[width=29mm]{logo_pl.jpg}
 	\end{center} 
 	\vspace{1cm}
 	\begin{center}
-	\headerfont \Polsl
+	\headerfont \polsl
 	\end{center}
 	\begin{center}
-	\headerfont \Faculty
+	\headerfont \wydzial
+	\end{center}
+	\begin{center}
+	\headerfont \kierunek
 	\end{center}
 	\vfill
 	\begin{center}
-   \headerfont \Programme
-	\end{center}
-	\vfill
-	\begin{center}
-	\titlefont Final Project
+	\titlefont Praca dyplomowa inżynierska
 	\end{center}
 	\vfill
 	
 	\begin{center}
-	\otherfont \Title\par
+	\otherfont \tytul\par
 	\end{center}
 	
 	\vfill
@@ -200,16 +235,16 @@ escapeinside={@*}{*@},%
 	 
 	\noindent\vbox
 	{
-		\hbox{\otherfont author: \Author}
+		\hbox{\otherfont autor: \autor}
 		\vspace{12pt}
-		\hbox{\otherfont supervisor: \Supervisor}
-		\vspace{12pt} % only if applicable; otherwise delete the line
-		\hbox{\otherfont consultant: \Consultant % only if applicable; otherwise delete the line
+		\hbox{\otherfont kierujący pracą: \promotor}
+		\vspace{12pt}  % zakomentuj, jezeli nie ma konsultanta
+		\hbox{\otherfont konsultant: \konsultant} % zakomentuj, jezeli nie ma konsultanta
 	}
 	\vfill 
  
    \begin{center}
-   \otherfont Gliwice,  \MonthName\ \the\year
+   \otherfont Gliwice,  \miesiac\ \the\year
    \end{center}	
 	\restoregeometry
 }
@@ -222,104 +257,101 @@ escapeinside={@*}{*@},%
 \normalfont
 
 
-
-%%%%%%%%%%%%%%%%%% Table of contents %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%% SPIS TRESCI %%%%%%%%%%%%%%%%%%%%%%
 \pagenumbering{Roman}
-\pagestyle{onlyPageNumbers}
+\pagestyle{tylkoNumeryStron}
 \tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setcounter{PagesWithoutNumbers}{\value{page}}
+\setcounter{stronyPozaNumeracja}{\value{page}}
 \mainmatter
 \pagestyle{empty}
 
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
+\chapter*{Streszczenie}
+\addcontentsline{toc}{chapter}{Streszczenie}
 
-The text of the abstract should be copied into a respective field in the APD system. The Abstract with keywords should not exceed one page.
+Odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia. Streszczenie wraz ze słowami kluczowymi nie powinno przekroczyć jednej strony.
 
-\paragraph{Keywords:} 2-5 keywords, separated by commas
+\paragraph{Słowa kluczowe:} 2-5 slow (fraz) kluczowych, oddzielonych przecinkami
 
 
 
 \cleardoublepage
 
+\pagestyle{NumeryStronNazwyRozdzialow}
 
-\pagestyle{PageNumbersChapterTitles}
+%%%%%%%%%%%%%% wlasciwa tresc pracy %%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%% body of the thesis %%%%%%%%%%%%%%%%%
-
-
-\chapter{Introduction}
+\chapter{Wstęp}
 
 \begin{itemize}
-\item introduction into the problem domain
-\item settling of the problem in the domain
-\item objective of the thesis 
-\item scope of the thesis
-\item short description of chapters
-\item clear description of contribution of the thesis's author – in case of more authors table with enumeration of contribution of authors
-\end{itemize}
-
-\chapter{[Problem analysis]}
-
-\begin{itemize}
-\item  problem analysis
-\item state of the art, problem statement
-\item  literature research (all sources in the thesis have to be referenced \cite{bib:article,bib:book,bib:conference,bib:internet})
-\item description of existing solutions (also scientific ones, if the problem is scientifically researched), algorithms,  location of the thesis in the scientific domain
+\item wprowadzenie w problem/zagadnienie
+\item osadzenie problemu w dziedzinie
+\item cel pracy
+\item zakres pracy
+\item zwięzła charakterystyka rozdziałów
+\item jednoznaczne określenie wkładu autora, w przypadku prac wieloosobowych – tabela z autorstwem poszczególnych elementów pracy
 \end{itemize}
 
 
-
-
-\chapter{Requirements and tools}
+\chapter{[Analiza tematu]}
 
 \begin{itemize}
-\item functional and nonfunctional requirements
-\item use cases (UML diagrams)
-\item description of tools
-\item methodology of design and implementation
-\end{itemize} 
+\item sformułowanie problemu
+\item osadzenie tematu w kontekście aktualnego stanu wiedzy (\ang{state of the art}) o poruszanym problemie
+\item  studia literaturowe \cite{bib:artykul,bib:ksiazka,bib:konferencja,bib:internet} -  opis znanych rozwiązań (także opisanych naukowo, jeżeli problem jest poruszany w publikacjach naukowych), algorytmów, 
+\end{itemize}
 
 
-\chapter{External specification}
+
+
+\chapter{Wymagania i narzędzia}
+
 \begin{itemize}
-\item hardware and software requirements
-\item installation procedure
-\item activation procedure
-\item types of users
-\item user manual
-\item system administration
-\item security issues
-\item example of usage
-\item working scenarios (with screenshots or output files)
+\item wymagania funkcjonalne i niefunkcjonalne
+\item przypadki użycia (diagramy UML) -- dla prac, w których mają zastosowanie
+\item opis narzędzi, metod eksperymentalnych, metod modelowania itp.
+\item metodyka pracy nad projektowaniem i implementacją -- dla prac, w których ma to zastosowanie
+\end{itemize}
+
+\chapter{[Właściwy dla kierunku -- np. Specyfikacja zewnętrzna]}
+Jeśli „Specyfikacja zewnętrzna”:
+\begin{itemize}
+\item  wymagania sprzętowe i programowe
+\item  sposób instalacji
+\item  sposób aktywacji
+\item  kategorie użytkowników
+\item  sposób obsługi
+\item  administracja systemem
+\item  kwestie bezpieczeństwa
+\item  przykład działania
+\item  scenariusze korzystania z systemu (ilustrowane zrzutami z ekranu lub generowanymi dokumentami)
 \end{itemize}
 
 \begin{figure}
 \centering
-\includegraphics[width=2cm]{logo_eng.jpg}
-\caption{Figure caption (below the figure).}
+\includegraphics[width=10cm]{logo_pl.jpg}
+\caption{Podpis rysunku po rysunkiem.}
 \label{fig:2}
 \end{figure}
 
 
-\chapter{Internal specification}
-
+\chapter{[Właściwy dla kierunku -- np. Specyfikacja wewnętrzna]}
+Jeśli „Specyfikacja wewnętrzna”:
 \begin{itemize}
-\item concept of the system
-\item system architecture
-\item description of data structures (and data bases)
-\item components, modules, libraries, resume of important classes (if used)
-\item resume of important algorithms (if used)
-\item details of implementation of selected parts
-\item applied design patterns
-\item UML diagrams
+\item przedstawienie idei
+\item architektura systemu
+\item opis struktur danych (i organizacji baz danych)
+\item komponenty, moduły, biblioteki, przegląd ważniejszych klas (jeśli występują)
+\item przegląd ważniejszych algorytmów (jeśli występują)
+\item szczegóły implementacji wybranych fragmentów, zastosowane wzorce projektowe
+\item diagramy UML
 \end{itemize}
 
 
-Use special environment for inline code, eg \lstinline|descriptor| or \lstinline|descriptor_gaussian|. 
-Longer parts of code put in the figure environment, eg. code in Fig. \ref{fig:pseudokod}. Very long listings–move to an appendix.
+
+Krótka wstawka kodu w linii tekstu jest możliwa, np. \lstinline|descriptor|, a nawet \lstinline|descriptor_gaussian|. 
+Dłuższe fragmenty lepiej jest umieszczać jako rysunek, np. kod na rysunku \ref{fig:pseudokod}, a naprawdę długie fragmenty – w załączniku.
 
 \begin{figure}
 \centering
@@ -345,37 +377,27 @@ class descriptor_gaussian : virtual public descriptor
      
 };
 \end{lstlisting}
-\caption{The \lstinline|descriptor_gaussian| class.}
+\caption{Klasa \lstinline|descriptor_gaussian|.}
 \label{fig:pseudokod}
 \end{figure}
 
 
-\chapter{Verification and validation}
+\chapter{Weryfikacja i walidacja}
 \begin{itemize}
-\item testing paradigm (eg V model)
-\item test cases, testing scope (full / partial)
-\item detected and fixed bugs
-\item results of experiments (optional)
+\item sposób testowania w ramach pracy (np. odniesienie do modelu V)
+\item organizacja eksperymentów
+\item przypadki testowe zakres testowania (pełny/niepełny)
+\item wykryte i usunięte błędy
+\item opcjonalnie wyniki badań eksperymentalnych
 \end{itemize}
 
- 
- 
-
-\chapter{Conclusions}
-\begin{itemize}
-\item achieved results with regard to objectives of the thesis and requirements
-\item path of further development (eg functional extension …)
-\item encountered difficulties and problems
-\end{itemize}
-
- 
 \begin{table}
 \centering
-\caption{A caption of a table is \textbf{above} it.}
+\caption{Opis tabeli nad nią.}
 \label{id:tab:wyniki}
 \begin{tabular}{rrrrrrrr}
 \toprule
-	         &                                     \multicolumn{7}{c}{method}                                      \\
+	         &                                     \multicolumn{7}{c}{metoda}                                      \\
 	         \cmidrule{2-8}
 	         &         &         &        \multicolumn{3}{c}{alg. 3}        & \multicolumn{2}{c}{alg. 4, $\gamma = 2$} \\
 	         \cmidrule(r){4-6}\cmidrule(r){7-8}
@@ -395,50 +417,51 @@ class descriptor_gaussian : virtual public descriptor
 \bottomrule
 \end{tabular}
 \end{table}  
-
  
 
- 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\backmatter
-\pagenumbering{Roman}
-\stepcounter{PagesWithoutNumbers}
-\setcounter{page}{\value{PagesWithoutNumbers}}
-
-\pagestyle{onlyPageNumbers}
-
-%%%%%%%%%%% bibliography %%%%%%%%%%%%
-\bibliographystyle{plain}
-\bibliography{bibliography}
-
-\addcontentsline{toc}{chapter}{Bibliography}
-
-%%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
-
-\begin{appendices} 
-
-
- 
-
-\chapter*{Index of abbreviations and symbols}
-\addcontentsline{toc}{chapter}{Index of abbreviations and symbols}
-
+\chapter{Podsumowanie i wnioski}
 \begin{itemize}
-\item[DNA] deoxyribonucleic acid
-\item[MVC] model--view--controller 
-\item[$N$] cardinality of data set
-\item[$\mu$] membership function of a fuzzy set
-\item[$\mathbb{E}$] set of edges of a graph
-\item[$\mathcal{L}$] Laplace transformation
+\item uzyskane wyniki w świetle postawionych celów i zdefiniowanych wyżej wymagań
+\item kierunki ewentualnych danych prac (rozbudowa funkcjonalna …)
+\item problemy napotkane w trakcie pracy
 \end{itemize}
 
 
-\chapter*{Listings}
-\addcontentsline{toc}{chapter}{Listings}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter 
+\stepcounter{stronyPozaNumeracja}
+\pagenumbering{Roman}
+\setcounter{page}{\value{stronyPozaNumeracja}}
+\pagestyle{tylkoNumeryStron}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\bibliographystyle{plplain} % bibtex
+%\bibliography{bibliografia} % bibtex
+\printbibliography           % biblatex 
+\addcontentsline{toc}{chapter}{Bibliografia}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-(Put long listings in the appendix.)
+
+
+\begin{appendices}
+ 
+
+\chapter*{Spis skrótów i symboli}
+\addcontentsline{toc}{chapter}{Spis skrótów i symboli}
+
+\begin{itemize}
+\item[DNA] kwas deoksyrybonukleinowy (ang. \ang{deoxyribonucleic acid})
+\item[MVC] model -- widok -- kontroler (ang. \ang{model--view--controller}) 
+\item[$N$] liczebność zbioru danych
+\item[$\mu$] stopnień przyleżności do zbioru
+\item[$\mathbb{E}$] zbiór krawędzi grafu
+\item[$\mathcal{L}$] transformata Laplace'a 
+\end{itemize}
+
+
+\chapter*{Źródła}
+\addcontentsline{toc}{chapter}{Źródła}
+
+Jeżeli w pracy konieczne jest umieszczenie długich fragmentów kodu źródłowego, należy je przenieść do załącznika.
 
 \begin{lstlisting}
 partition fcm_possibilistic::doPartition
@@ -516,24 +539,25 @@ partition fcm_possibilistic::doPartition
       throw my_exception (__FILE__, __FUNCTION__, __LINE__, "unknown expection");       
    }  
 }
-\end{lstlisting} 
-
-\chapter*{CD/DVD content}
-\addcontentsline{toc}{chapter}{CD/DVD content}
-
-The thesis is accompanied by a CD containing:
-\begin{itemize}
-\item thesis (\LaTeX\ source files and final \texttt{pdf} file),
-\item source code of the application,
-\item test data.
-\end{itemize}
+\end{lstlisting}
  
-\listoffigures
-\addcontentsline{toc}{chapter}{List of figures}
-\listoftables
-\addcontentsline{toc}{chapter}{List of tables}
-	
 
+\chapter*{Lista plików dodatkowych, uzupełniających tekst pracy}
+\addcontentsline{toc}{chapter}{Lista plików dodatkowych}
+
+W systemie do pracy dołączono dodatkowe pliki zawierające:
+\begin{itemize}
+\item źródła programu,
+\item dane testowe,
+\item film pokazujący działanie opracowanego oprogramowania lub zaprojektowanego i wykonanego urządzenia,
+\item itp.
+\end{itemize}
+
+\listoffigures
+\addcontentsline{toc}{chapter}{Spis rysunków}
+\listoftables
+\addcontentsline{toc}{chapter}{Spis tabel}
+	
 \end{appendices}
 
 

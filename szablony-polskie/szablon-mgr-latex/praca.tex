@@ -6,6 +6,14 @@
 %  (c) Krzysztof Simiński, 2018-2021     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% kompilacja:
+
+% pdflatex thesis
+% biber    thesis
+% pdflatex thesis
+% pdflatex thesis 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \documentclass[a4paper,twoside,12pt]{book}
@@ -26,6 +34,10 @@
 \renewcommand{\appendixtocname}{Dodatki}
 \renewcommand{\appendixpagename}{Dodatki}
 \renewcommand{\appendixname}{Dodatek}
+
+\usepackage{csquotes}
+\usepackage[natbib=true]{biblatex}
+\bibliography{bibliografia}
 
 \usepackage{setspace}
 \onehalfspacing
@@ -267,7 +279,7 @@ Odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia. Stre
 \item opis znanych rozwiązań, algorytmów, osadzenie pracy w kontekście
 \item Tytuł rozdziału jest często zbliżony do tematu pracy. 
 \item Rozdział jest wysycony cytowaniami do literatury \cite{bib:artykul,bib:ksiazka,bib:konferencja}. 
-Cytowanie książki \cite{bib:ksiazka}, artykułu w czasopiśmie \cite{bib:artykul}, artykułu konferencyjnego \cite{bib:konferencja} lub strony internetowej \cite{bib:url}.
+Cytowanie książki \cite{bib:ksiazka}, artykułu w czasopiśmie \cite{bib:artykul}, artykułu konferencyjnego \cite{bib:konferencja} lub strony internetowej \cite{bib:internet}.
 \end{itemize}
 
 
@@ -312,7 +324,7 @@ Badania i analizę wyników należy przeprowadzić, tak jak jest przyjęte w śr
 
 \begin{figure}
 \centering
-\includegraphics[width=3cm]{logo_pl.jpg}
+\includegraphics[width=6cm]{logo_pl.jpg}
 \caption{Podpis rysunku po rysunkiem.}
 \label{fig:2}
 \end{figure}
@@ -364,10 +376,11 @@ Badania i analizę wyników należy przeprowadzić, tak jak jest przyjęte w śr
 \pagestyle{tylkoNumeryStron}
 
 %%%%%%%%%%% bibliografia %%%%%%%%%%%%
-\bibliographystyle{plplain}
-\bibliography{bibliografia}
+%\bibliographystyle{plplain} % bibtex
+%\bibliography{bibliografia} % bibtex
+\printbibliography           % biblatex 
 \addcontentsline{toc}{chapter}{Bibliografia}
-%%%%%%%%%  DODATKI %%%%%%%%%%%%%%%%%%% 
+%%%%%%%%  DODATKI %%%%%%%%%%%%%%%%%%% 
 
 \begin{appendices} 
 
@@ -382,7 +395,7 @@ Badania i analizę wyników należy przeprowadzić, tak jak jest przyjęte w śr
 \item[DNA] kwas deoksyrybonukleinowy (ang. \ang{deoxyribonucleic acid})
 \item[MVC] model -- widok -- kontroler (ang. \ang{model--view--controller}) 
 \item[$N$] liczebność zbioru danych
-\item[$\mu$] stopnień przyleżności do zbioru
+\item[$\mu$] stopnień przynależności do zbioru
 \item[$\mathbb{E}$] zbiór krawędzi grafu
 \item[$\mathcal{L}$] transformata Laplace'a 
 \end{itemize}
@@ -390,14 +403,16 @@ Badania i analizę wyników należy przeprowadzić, tak jak jest przyjęte w śr
 
  
 
-\chapter*{Zawartość dołączonej płyty}
-\addcontentsline{toc}{chapter}{Zawartość dołączonej płyty}
+\chapter*{Lista dodatkowych plików,
+uzupełniających tekst pracy} 
+\addcontentsline{toc}{chapter}{Lista dodatkowych plików}
 
-Do pracy dołączona jest płyta CD z~następującą zawartością:
+W systemie do pracy dołączono dodatkowe pliki zawierające:
 \begin{itemize}
-\item praca w~formacie \texttt{pdf},
 \item źródła programu,
-\item zbiory danych użyte w~eksperymentach.
+\item zbiory danych użyte w~eksperymentach,
+%\item film pokazujący działanie opracowanego oprogramowania lub zaprojektowanego i wykonanego urządzenia,
+\item itp.
 \end{itemize}
 
 \listoffigures

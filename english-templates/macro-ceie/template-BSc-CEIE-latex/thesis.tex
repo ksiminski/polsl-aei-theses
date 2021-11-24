@@ -1,0 +1,556 @@
+% !TeX spellcheck = en_GB
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                        %
+%    Engineer thesis LaTeX template      % 
+%                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  (c) Krzysztof Simiński, 2018-2021     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% compilation:
+
+% pdflatex thesis
+% biber    thesis
+% pdflatex thesis
+% pdflatex thesis 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,twoside,12pt]{book}
+\usepackage[utf8]{inputenc}                                      
+\usepackage[T1]{fontenc}  
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[polish,british]{babel} 
+\usepackage{indentfirst}
+\usepackage{lmodern}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+\usepackage{booktabs}
+%\usepackage{tikz}
+%\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage[page]{appendix} 
+
+\usepackage{csquotes}
+\usepackage[natbib=true]{biblatex}
+\bibliography{bibliography}
+
+\usepackage{setspace}
+\onehalfspacing
+
+
+\frenchspacing
+
+\usepackage{listings}
+\lstset{
+	language={},
+	basicstyle=\ttfamily,
+	keywordstyle=\lst@ifdisplaystyle\color{blue}\fi,
+	commentstyle=\color{gray}
+}
+
+%%%%%%%%%
+
+ 
+
+%%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\nouppercase{\it\rightmark}}
+\fancyhead[RE]{\nouppercase{\it\leftmark}}
+\fancyhead[LE,RO]{\it\thepage}
+
+
+\fancypagestyle{onlyPageNumbers}{%
+   \fancyhf{} 
+   \fancyhead[LE,RO]{\it\thepage}
+}
+
+\fancypagestyle{PageNumbersChapterTitles}{%
+   \fancyhf{} 
+   \fancyhead[LO]{\nouppercase{\it\rightmark}}
+   \fancyhead[RE]{\nouppercase{\it\leftmark}}
+   \fancyhead[LE,RO]{\it\thepage}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% listings 
+\usepackage{listings}
+\lstset{%
+language=C++,%
+commentstyle=\textit,%
+identifierstyle=\textsf,%
+keywordstyle=\sffamily\bfseries, %\texttt, %
+%captionpos=b,%
+tabsize=3,%
+frame=lines,%
+numbers=left,%
+numberstyle=\tiny,%
+numbersep=5pt,%
+breaklines=true,%
+morekeywords={descriptor_gaussian,descriptor,partition,fcm_possibilistic,dataset,my_exception,exception,std,vector},%
+escapeinside={@*}{*@},%
+%texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% TODO LIST GENERATOR %%%%%%%%%
+
+\usepackage{color}
+\definecolor{brickred}      {cmyk}{0   , 0.89, 0.94, 0.28}
+
+\makeatletter \newcommand \kslistofremarks{\section*{Remarks} \@starttoc{rks}}
+  \newcommand\l@uwagas[2]
+    {\par\noindent \textbf{#2:} %\parbox{10cm}
+{#1}\par} \makeatother
+
+
+\newcommand{\remark}[1]{%
+{%\marginpar{\textdbend}
+{\color{brickred}{[#1]}}}%
+\addcontentsline{rks}{uwagas}{\protect{#1}}%
+}
+
+%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%% 
+
+% some issues...
+
+\newcounter{PagesWithoutNumbers}
+
+\newcommand{\hcancel}[1]{%
+    \tikz[baseline=(tocancel.base)]{
+        \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
+        \draw[red] (tocancel.south west) -- (tocancel.north east);
+    }%
+}%
+
+\newcommand{\MonthName}{%
+  \ifcase\the\month
+  \or January% 1
+  \or February% 2
+  \or March% 3
+  \or April% 4
+  \or May% 5
+  \or June% 6
+  \or July% 7
+  \or August% 8
+  \or September% 9
+  \or October% 10
+  \or November% 11
+  \or December% 12
+  \fi}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Helvetica font macros for the title page:
+\newcommand{\headerfont}{\fontfamily{phv}\fontsize{18}{18}\bfseries\scshape\selectfont}
+\newcommand{\titlefont}{\fontfamily{phv}\fontsize{18}{18}\selectfont}
+\newcommand{\otherfont}{\fontfamily{phv}\fontsize{14}{14}\selectfont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\Author}{Name Surname}
+\newcommand{\Supervisor}{Name Surname, DSc PhD}
+\newcommand{\Consultant}{Name Surname, PhD}
+\newcommand{\Title}{Title of engineer thesis}
+\newcommand{\Polsl}{Silesian University of Technology}
+\newcommand{\Faculty}{Faculty of Automatic Control, Electronics and Computer Science}
+\newcommand{\Programme}{Programme: Control, Electronic, and Information Enginnering}
+
+
+\begin{document} 
+	
+%%%%%%%%%%%%%%%%%%  Title page %%%%%%%%%%%%%%%%%%% 
+\pagestyle{empty}
+{
+	\newgeometry{top=2.5cm,%
+	             bottom=2.5cm,%
+	             left=3cm,
+	             right=2.5cm}
+	\sffamily
+	\rule{0cm}{0cm}
+	
+	\begin{center}
+	\includegraphics[width=45mm]{logo_eng.jpg}
+	\end{center} 
+	\vspace{1cm}
+	\begin{center}
+	\headerfont \Polsl
+	\end{center}
+	\begin{center}
+	\headerfont \Faculty
+	\end{center}
+	\vfill
+	\begin{center}
+   \headerfont \Programme
+	\end{center}
+	\vfill
+	\begin{center}
+	\titlefont Final Project
+	\end{center}
+	\vfill
+	
+	\begin{center}
+	\otherfont \Title\par
+	\end{center}
+	
+	\vfill
+	
+	\vfill
+	 
+	\noindent\vbox
+	{
+		\hbox{\otherfont author: \Author}
+		\vspace{12pt}
+		\hbox{\otherfont supervisor: \Supervisor}
+		\vspace{12pt} % only if applicable; otherwise delete the line
+		\hbox{\otherfont consultant: \Consultant % only if applicable; otherwise delete the line
+	}
+	\vfill 
+ 
+   \begin{center}
+   \otherfont Gliwice,  \MonthName\ \the\year
+   \end{center}	
+	\restoregeometry
+}
+  
+
+\cleardoublepage
+ 
+
+\rmfamily
+\normalfont
+
+
+
+%%%%%%%%%%%%%%%%%% Table of contents %%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{Roman}
+\pagestyle{onlyPageNumbers}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{PagesWithoutNumbers}{\value{page}}
+\mainmatter
+\pagestyle{empty}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+The text of the abstract should be copied into a respective field in the APD system. The Abstract with keywords should not exceed one page.
+
+\paragraph{Keywords:} 2-5 keywords, separated by commas
+
+
+
+\cleardoublepage
+
+
+\pagestyle{PageNumbersChapterTitles}
+
+%%%%%%%%%%%%%% body of the thesis %%%%%%%%%%%%%%%%%
+
+
+\chapter{Introduction}
+
+\begin{itemize}
+\item introduction into the problem domain
+\item settling of the problem in the domain
+\item objective of the thesis 
+\item scope of the thesis
+\item short description of chapters
+\item clear description of contribution of the thesis's author – in case of more authors table with enumeration of contribution of authors
+\end{itemize}
+
+\chapter{[Problem analysis]}
+
+\begin{itemize}
+\item  problem analysis
+\item state of the art, problem statement
+\item  literature research (all sources in the thesis have to be referenced \cite{bib:article,bib:book,bib:conference,bib:internet})
+\item description of existing solutions (also scientific ones, if the problem is scientifically researched), algorithms,  location of the thesis in the scientific domain
+\end{itemize}
+
+
+
+
+\chapter{Requirements and tools}
+
+\begin{itemize}
+\item functional and nonfunctional requirements
+\item use cases (UML diagrams)
+\item description of tools
+\item methodology of design and implementation
+\end{itemize} 
+
+
+\chapter{External specification}
+\begin{itemize}
+\item hardware and software requirements
+\item installation procedure
+\item activation procedure
+\item types of users
+\item user manual
+\item system administration
+\item security issues
+\item example of usage
+\item working scenarios (with screenshots or output files)
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{logo_eng.jpg}
+\caption{Figure caption (below the figure).}
+\label{fig:2}
+\end{figure}
+
+
+\chapter{Internal specification}
+
+\begin{itemize}
+\item concept of the system
+\item system architecture
+\item description of data structures (and data bases)
+\item components, modules, libraries, resume of important classes (if used)
+\item resume of important algorithms (if used)
+\item details of implementation of selected parts
+\item applied design patterns
+\item UML diagrams
+\end{itemize}
+
+
+Use special environment for inline code, eg \lstinline|descriptor| or \lstinline|descriptor_gaussian|. 
+Longer parts of code put in the figure environment, eg. code in Fig. \ref{fig:pseudokod}. Very long listings–move to an appendix.
+
+\begin{figure}
+\centering
+\begin{lstlisting}
+class descriptor_gaussian : virtual public descriptor
+{
+   protected:
+      /** core of the gaussian fuzzy set */
+      double _mean;
+      /** fuzzyfication of the gaussian fuzzy set */
+      double _stddev;
+      
+   public:
+      /** @param mean core of the set
+          @param stddev standard deviation */
+      descriptor_gaussian (double mean, double stddev);
+      descriptor_gaussian (const descriptor_gaussian & w);
+      virtual ~descriptor_gaussian();
+      virtual descriptor * clone () const;
+      
+      /** The method elaborates membership to the gaussian fuzzy set. */
+      virtual double getMembership (double x) const;
+     
+};
+\end{lstlisting}
+\caption{The \lstinline|descriptor_gaussian| class.}
+\label{fig:pseudokod}
+\end{figure}
+
+
+\chapter{Verification and validation}
+\begin{itemize}
+\item testing paradigm (eg V model)
+\item test cases, testing scope (full / partial)
+\item detected and fixed bugs
+\item results of experiments (optional)
+\end{itemize}
+
+ 
+ 
+
+\chapter{Conclusions}
+\begin{itemize}
+\item achieved results with regard to objectives of the thesis and requirements
+\item path of further development (eg functional extension …)
+\item encountered difficulties and problems
+\end{itemize}
+
+ 
+\begin{table}
+\centering
+\caption{A caption of a table is \textbf{above} it.}
+\label{id:tab:wyniki}
+\begin{tabular}{rrrrrrrr}
+\toprule
+	         &                                     \multicolumn{7}{c}{method}                                      \\
+	         \cmidrule{2-8}
+	         &         &         &        \multicolumn{3}{c}{alg. 3}        & \multicolumn{2}{c}{alg. 4, $\gamma = 2$} \\
+	         \cmidrule(r){4-6}\cmidrule(r){7-8}
+	$\zeta$ &     alg. 1 &   alg. 2 & $\alpha= 1.5$ & $\alpha= 2$ & $\alpha= 3$ &   $\beta = 0.1$  &   $\beta = -0.1$ \\
+\midrule
+	       0 &  8.3250 & 1.45305 &       7.5791 &    14.8517 &    20.0028 & 1.16396 &                       1.1365 \\
+	       5 &  0.6111 & 2.27126 &       6.9952 &    13.8560 &    18.6064 & 1.18659 &                       1.1630 \\
+	      10 & 11.6126 & 2.69218 &       6.2520 &    12.5202 &    16.8278 & 1.23180 &                       1.2045 \\
+	      15 &  0.5665 & 2.95046 &       5.7753 &    11.4588 &    15.4837 & 1.25131 &                       1.2614 \\
+	      20 & 15.8728 & 3.07225 &       5.3071 &    10.3935 &    13.8738 & 1.25307 &                       1.2217 \\
+	      25 &  0.9791 & 3.19034 &       5.4575 &     9.9533 &    13.0721 & 1.27104 &                       1.2640 \\
+	      30 &  2.0228 & 3.27474 &       5.7461 &     9.7164 &    12.2637 & 1.33404 &                       1.3209 \\
+	      35 & 13.4210 & 3.36086 &       6.6735 &    10.0442 &    12.0270 & 1.35385 &                       1.3059 \\
+	      40 & 13.2226 & 3.36420 &       7.7248 &    10.4495 &    12.0379 & 1.34919 &                       1.2768 \\
+	      45 & 12.8445 & 3.47436 &       8.5539 &    10.8552 &    12.2773 & 1.42303 &                       1.4362 \\
+	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
+\bottomrule
+\end{tabular}
+\end{table}  
+
+ 
+
+ 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+\pagenumbering{Roman}
+\stepcounter{PagesWithoutNumbers}
+\setcounter{page}{\value{PagesWithoutNumbers}}
+
+\pagestyle{onlyPageNumbers}
+
+%%%%%%%%%%% bibliography %%%%%%%%%%%%
+%\bibliographystyle{plplain} % bibtex
+%\bibliography{bibliography} % bibtex
+\printbibliography           % biblatex 
+
+\addcontentsline{toc}{chapter}{Bibliography}
+
+%%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
+
+\begin{appendices} 
+
+
+ 
+
+\chapter*{Index of abbreviations and symbols}
+\addcontentsline{toc}{chapter}{Index of abbreviations and symbols}
+
+\begin{itemize}
+\item[DNA] deoxyribonucleic acid
+\item[MVC] model--view--controller 
+\item[$N$] cardinality of data set
+\item[$\mu$] membership function of a fuzzy set
+\item[$\mathbb{E}$] set of edges of a graph
+\item[$\mathcal{L}$] Laplace transformation
+\end{itemize}
+
+
+\chapter*{Listings}
+\addcontentsline{toc}{chapter}{Listings}
+
+(Put long listings in the appendix.)
+
+\begin{lstlisting}
+partition fcm_possibilistic::doPartition
+                             (const dataset & ds)
+{
+   try
+   {
+      if (_nClusters < 1)
+         throw std::string ("unknown number of clusters");
+      if (_nIterations < 1 and _epsilon < 0)
+         throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
+      if (_nIterations > 0 and _epsilon > 0)
+         throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
+   
+      auto mX = ds.getMatrix();
+      std::size_t nAttr = ds.getNumberOfAttributes();
+      std::size_t nX    = ds.getNumberOfData();
+      std::vector<std::vector<double>> mV;
+      mU = std::vector<std::vector<double>> (_nClusters);
+      for (auto & u : mU)
+         u = std::vector<double> (nX);
+      randomise(mU);
+      normaliseByColumns(mU);
+      calculateEtas(_nClusters, nX, ds);
+      if (_nIterations > 0)
+      {
+         for (int iter = 0; iter < _nIterations; iter++)
+         {
+            mV = calculateClusterCentres(mU, mX);
+            mU = modifyPartitionMatrix (mV, mX);
+         }
+      }
+      else if (_epsilon > 0)
+      {
+         double frob;
+         do 
+         {
+            mV = calculateClusterCentres(mU, mX);
+            auto mUnew = modifyPartitionMatrix (mV, mX);
+            
+            frob = Frobenius_norm_of_difference (mU, mUnew);
+            mU = mUnew;
+         } while (frob > _epsilon);
+      }
+      mV = calculateClusterCentres(mU, mX);
+      std::vector<std::vector<double>> mS = calculateClusterFuzzification(mU, mV, mX);
+      
+      partition part;
+      for (int c = 0; c < _nClusters; c++)
+      {
+         cluster cl; 
+         for (std::size_t a = 0; a < nAttr; a++)
+         {
+            descriptor_gaussian d (mV[c][a], mS[c][a]);
+            cl.addDescriptor(d);
+         }
+         part.addCluster(cl);
+      }
+      return part;
+   }
+   catch (my_exception & ex)                                  
+   {                                                       
+      throw my_exception (__FILE__, __FUNCTION__, __LINE__, ex.what()); 
+   }                                                          
+   catch (std::exception & ex)                                 
+   {                                                            
+      throw my_exceptionn (__FILE__, __FUNCTION__, __LINE__, ex.what()); 
+   }                                                            
+   catch (std::string & ex)                                     
+   {                                                            
+      throw my_exception (__FILE__, __FUNCTION__, __LINE__, ex);        
+   }                                                             
+   catch (...)                                                   
+   {                                                             
+      throw my_exception (__FILE__, __FUNCTION__, __LINE__, "unknown expection");       
+   }  
+}
+\end{lstlisting} 
+
+\chapter*{List of additional files in electronic submission}
+\addcontentsline{toc}{chapter}{List of additional files}
+
+Additional files uploaded to the system include:
+\begin{itemize}
+\item source code of the application,
+\item test data,
+\item a video file showing how software or hardware developed for thesis is used,
+\item etc.
+\end{itemize}
+ 
+\listoffigures
+\addcontentsline{toc}{chapter}{List of figures}
+\listoftables
+\addcontentsline{toc}{chapter}{List of tables}
+	
+
+\end{appendices}
+
+
+\end{document}
+
+
+%% Finis coronat opus.

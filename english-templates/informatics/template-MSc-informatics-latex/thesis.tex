@@ -7,6 +7,14 @@
 %  (c) Krzysztof Simiński, 2018-2021     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% compilation:
+
+% pdflatex thesis
+% biber    thesis
+% pdflatex thesis
+% pdflatex thesis 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \documentclass[a4paper,twoside,12pt]{book}
@@ -24,6 +32,10 @@
 \usepackage{mathtools}
 \usepackage{geometry}
 \usepackage[page]{appendix} 
+
+\usepackage{csquotes}
+\usepackage[natbib=true]{biblatex}
+\bibliography{bibliography}
 
 \usepackage{setspace}
 \onehalfspacing
@@ -227,7 +239,7 @@ The text of the abstract should be copied into a respective field in the APD sys
 
 \begin{itemize}
 \item problem analysis, problem statement
-\item state of the art, literature research (all sources in the thesis have to be referenced, eg journal article \cite{bib:article} book \cite{bib:book}, conference paper \cite{bib:conference},  \cite{bib:url})
+\item state of the art, literature research (all sources in the thesis have to be referenced, eg journal article \cite{bib:article} book \cite{bib:book}, conference paper \cite{bib:conference}, internet source \cite{bib:internet})
 \item description of known solutions, algorithms
 \item location of the thesis in scientific domain
 \item The title of this chapter is similar to the title of the thesis.
@@ -274,7 +286,7 @@ The experiments and their analysis should be done in the way commonly accepted i
 
 \begin{figure}
 \centering
-\includegraphics[width=3cm]{logo_eng.jpg}
+\includegraphics[width=5cm]{logo_eng.jpg}
 \caption{A caption of a figure is \textbf{below} it.}
 \label{fig:2}
 \end{figure}
@@ -326,8 +338,10 @@ The experiments and their analysis should be done in the way commonly accepted i
 \pagestyle{onlyPageNumbers}
 
 %%%%%%%%%%% bibliography %%%%%%%%%%%%
-\bibliographystyle{plain}
-\bibliography{bibliography}
+%\bibliographystyle{plplain} % bibtex
+%\bibliography{bibliography} % bibtex
+\printbibliography           % biblatex 
+
 \addcontentsline{toc}{chapter}{Bibliography}
 
 %%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
@@ -352,15 +366,15 @@ The experiments and their analysis should be done in the way commonly accepted i
 
 
  
+\chapter*{List of additional files in~electronic submission}
+\addcontentsline{toc}{chapter}{List of additional files}
 
-\chapter*{Contents of attached CD}
-\addcontentsline{toc}{chapter}{Contents of attached CD}
-
-The thesis is accompanied by a CD containing:
+Additional files uploaded to the system include:
 \begin{itemize}
-\item thesis (\texttt{pdf} file),
-\item source code of applications,
-\item data sets used in experiments.
+\item source code of the application,
+\item test data,
+%\item a video file showing how software or hardware developed for thesis is used,
+\item etc.
 \end{itemize}
 
 \listoffigures
