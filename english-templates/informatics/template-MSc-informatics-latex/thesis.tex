@@ -4,7 +4,7 @@
 %      Master thesis LaTeX template      % 
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  (c) Krzysztof Simiński, 2018-2021     %
+%  (c) Krzysztof Simiński, 2018-2022     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % compilation:
@@ -53,6 +53,24 @@
 
 %%%%%%%%%
  
+%%%% TODO LIST GENERATOR %%%%%%%%%
+
+\usepackage{color}
+\definecolor{brickred}      {cmyk}{0   , 0.89, 0.94, 0.28}
+
+\makeatletter \newcommand \kslistofremarks{\section*{Remarks} \@starttoc{rks}}
+  \newcommand\l@uwagas[2]
+    {\par\noindent \textbf{#2:} %\parbox{10cm}
+{#1}\par} \makeatother
+
+
+\newcommand{\ksremark}[1]{%
+{%\marginpar{\textdbend}
+{\color{brickred}{[#1]}}}%
+\addcontentsline{rks}{uwagas}{\protect{#1}}%
+}
+
+%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%% 
 
 %%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
 
@@ -131,6 +149,8 @@
 
 
 \begin{document} 
+%\kslistofremarks
+%\cleardoublepage
 	
 %%%%%%%%%%%%%%%%%%  Title page %%%%%%%%%%%%%%%%%%% 
 \pagestyle{empty}
