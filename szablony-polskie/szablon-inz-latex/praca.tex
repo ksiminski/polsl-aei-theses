@@ -1,9 +1,10 @@
+% !TeX spellcheck = pl_PL
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
 % Szablon pracy dyplomowej inzynierskiej % 
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  (c) Krzysztof Simiński, 2018-2021     %
+%  (c) Krzysztof Simiński, 2018-2022     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % kompilacja:
@@ -446,8 +447,7 @@ class descriptor_gaussian : virtual public descriptor
 \begin{appendices}
  
 
-\chapter*{Spis skrótów i symboli}
-\addcontentsline{toc}{chapter}{Spis skrótów i symboli}
+\chapter{Spis skrótów i symboli}
 
 \begin{itemize}
 \item[DNA] kwas deoksyrybonukleinowy (ang. \ang{deoxyribonucleic acid})
@@ -459,92 +459,21 @@ class descriptor_gaussian : virtual public descriptor
 \end{itemize}
 
 
-\chapter*{Źródła}
-\addcontentsline{toc}{chapter}{Źródła}
+\chapter{Źródła}
 
 Jeżeli w pracy konieczne jest umieszczenie długich fragmentów kodu źródłowego, należy je przenieść do załącznika.
 
 \begin{lstlisting}
-partition fcm_possibilistic::doPartition
-                             (const dataset & ds)
-{
-   try
-   {
-      if (_nClusters < 1)
-         throw std::string ("unknown number of clusters");
-      if (_nIterations < 1 and _epsilon < 0)
-         throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
-      if (_nIterations > 0 and _epsilon > 0)
-         throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
-   
-      auto mX = ds.getMatrix();
-      std::size_t nAttr = ds.getNumberOfAttributes();
-      std::size_t nX    = ds.getNumberOfData();
-      std::vector<std::vector<double>> mV;
-      mU = std::vector<std::vector<double>> (_nClusters);
-      for (auto & u : mU)
-         u = std::vector<double> (nX);
-      randomise(mU);
-      normaliseByColumns(mU);
-      calculateEtas(_nClusters, nX, ds);
-      if (_nIterations > 0)
-      {
-         for (int iter = 0; iter < _nIterations; iter++)
-         {
-            mV = calculateClusterCentres(mU, mX);
-            mU = modifyPartitionMatrix (mV, mX);
-         }
-      }
-      else if (_epsilon > 0)
-      {
-         double frob;
-         do 
-         {
-            mV = calculateClusterCentres(mU, mX);
-            auto mUnew = modifyPartitionMatrix (mV, mX);
-            
-            frob = Frobenius_norm_of_difference (mU, mUnew);
-            mU = mUnew;
-         } while (frob > _epsilon);
-      }
-      mV = calculateClusterCentres(mU, mX);
-      std::vector<std::vector<double>> mS = calculateClusterFuzzification(mU, mV, mX);
-      
-      partition part;
-      for (int c = 0; c < _nClusters; c++)
-      {
-         cluster cl; 
-         for (std::size_t a = 0; a < nAttr; a++)
-         {
-            descriptor_gaussian d (mV[c][a], mS[c][a]);
-            cl.addDescriptor(d);
-         }
-         part.addCluster(cl);
-      }
-      return part;
-   }
-   catch (my_exception & ex)                                  
-   {                                                       
-      throw my_exception (__FILE__, __FUNCTION__, __LINE__, ex.what()); 
-   }                                                          
-   catch (std::exception & ex)                                 
-   {                                                            
-      throw my_exceptionn (__FILE__, __FUNCTION__, __LINE__, ex.what()); 
-   }                                                            
-   catch (std::string & ex)                                     
-   {                                                            
-      throw my_exception (__FILE__, __FUNCTION__, __LINE__, ex);        
-   }                                                             
-   catch (...)                                                   
-   {                                                             
-      throw my_exception (__FILE__, __FUNCTION__, __LINE__, "unknown expection");       
-   }  
-}
+if (_nClusters < 1)
+	throw std::string ("unknown number of clusters");
+if (_nIterations < 1 and _epsilon < 0)
+	throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
+if (_nIterations > 0 and _epsilon > 0)
+	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
 \end{lstlisting}
  
 
-\chapter*{Lista dodatkowych plików, uzupełniających tekst pracy (jeżeli dotyczy)} 
-\addcontentsline{toc}{chapter}{Lista dodatkowych plików, uzupełniających tekst pracy (jeżeli dotyczy)}
+\chapter{Lista dodatkowych plików, uzupełniających tekst pracy (jeżeli dotyczy)} 
 
 
 W systemie do pracy dołączono dodatkowe pliki zawierające:
