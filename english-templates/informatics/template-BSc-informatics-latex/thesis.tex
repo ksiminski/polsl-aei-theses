@@ -14,6 +14,13 @@
 % pdflatex thesis
 % pdflatex thesis 
 
+% compilation with minted package
+
+% pdflatex -shell-escape thesis
+% biber    thesis
+% pdflatex -shell-escape thesis
+% pdflatex -shell-escape thesis 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,twoside,12pt]{book}
@@ -42,15 +49,38 @@
 
 \frenchspacing
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% listings
+% packages: listings or minted
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+% package listings
 \usepackage{listings}
-\lstset{
-	language={},
-	basicstyle=\ttfamily,
-	keywordstyle=\lst@ifdisplaystyle\color{blue}\fi,
-	commentstyle=\color{gray}
+\lstset{%
+language=C++,%
+commentstyle=\textit,%
+identifierstyle=\textsf,%
+keywordstyle=\sffamily\bfseries, %\texttt, %
+%captionpos=b,%
+tabsize=3,%
+frame=lines,%
+numbers=left,%
+numberstyle=\tiny,%
+numbersep=5pt,%
+breaklines=true,%
+morekeywords={descriptor_gaussian,descriptor,partition,fcm_possibilistic,dataset,my_exception,exception,std,vector},%
+escapeinside={@*}{*@},% 
 }
 
-%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% package minted
+\usepackage{minted}
+
+% This package requires a special command line option in compilation
+% pdflatex -shell-escape thesis
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
  
 
 %%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
@@ -76,26 +106,7 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% listings 
-\usepackage{listings}
-\lstset{%
-language=C++,%
-commentstyle=\textit,%
-identifierstyle=\textsf,%
-keywordstyle=\sffamily\bfseries, %\texttt, %
-%captionpos=b,%
-tabsize=3,%
-frame=lines,%
-numbers=left,%
-numberstyle=\tiny,%
-numbersep=5pt,%
-breaklines=true,%
-morekeywords={descriptor_gaussian,descriptor,partition,fcm_possibilistic,dataset,my_exception,exception,std,vector},%
-escapeinside={@*}{*@},%
-%texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
 
 %%%% TODO LIST GENERATOR %%%%%%%%%
 
@@ -330,35 +341,50 @@ The text of the abstract should be copied into a respective field in the APD sys
 \end{itemize}
 
 
-Use special environment for inline code, eg \lstinline|descriptor| or \lstinline|descriptor_gaussian|. 
-Longer parts of code put in the figure environment, eg. code in Fig. \ref{fig:pseudokod}. Very long listings–move to an appendix.
+Use special environments for inline code, eg  \lstinline|int a;| (package \texttt{listings}) or  \mintinline{C++}|int a;| (package \texttt{minted}). 
+Longer parts of code put in the figure environment, eg. code in Fig. \ref{fig:pseudocode:listings} i rys. \ref{fig:pseudocode:minted}. Very long listings–move to an appendix.
+
+ 
+ 
+% manuals:
+% https://ctan.org/pkg/minted
+% https://ctan.org/pkg/listingss
+
 
 \begin{figure}
 \centering
 \begin{lstlisting}
-class descriptor_gaussian : virtual public descriptor
+class test : public basic
 {
-   protected:
-      /** core of the gaussian fuzzy set */
-      double _mean;
-      /** fuzzyfication of the gaussian fuzzy set */
-      double _stddev;
+    public:
+      test (int a);
+      friend std::ostream operator<<(std::ostream & s, 
+                                     const test & t);
+    protected:
+      int _a;  
       
-   public:
-      /** @param mean core of the set
-          @param stddev standard deviation */
-      descriptor_gaussian (double mean, double stddev);
-      descriptor_gaussian (const descriptor_gaussian & w);
-      virtual ~descriptor_gaussian();
-      virtual descriptor * clone () const;
-      
-      /** The method elaborates membership to the gaussian fuzzy set. */
-      virtual double getMembership (double x) const;
-     
 };
 \end{lstlisting}
-\caption{The \lstinline|descriptor_gaussian| class.}
-\label{fig:pseudokod}
+\caption{Pseudocode in \texttt{listings}.}
+\label{fig:pseudocode:listings}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{minted}[linenos,frame=lines]{c++}
+class test : public basic
+{
+    public:
+      test (int a);
+      friend std::ostream operator<<(std::ostream & s, 
+                                     const test & t);
+    protected:
+      int _a;  
+      
+};
+\end{minted}
+\caption{Pseudocode in \texttt{minted}.}
+\label{fig:pseudocode:minted}
 \end{figure}
 
 
@@ -458,7 +484,17 @@ if (_nIterations < 1 and _epsilon < 0)
 	throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
 if (_nIterations > 0 and _epsilon > 0)
 	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
-\end{lstlisting} 
+\end{lstlisting}
+
+
+\begin{minted}[linenos,breaklines,frame=lines]{c++}
+if (_nClusters < 1)
+	throw std::string ("unknown number of clusters");
+if (_nIterations < 1 and _epsilon < 0)
+	throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
+if (_nIterations > 0 and _epsilon > 0)
+	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
+\end{minted} 
 
 \chapter{List of additional files in~electronic submission (if applicable)}
 

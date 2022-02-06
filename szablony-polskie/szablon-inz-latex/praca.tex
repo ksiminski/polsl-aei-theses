@@ -14,6 +14,14 @@
 % pdflatex praca
 % pdflatex praca 
 
+%%%%
+% kompilacja z pakietem minted
+
+% pdflatex -shell-escape praca
+% biber    praca
+% pdflatex -shell-escape praca
+% pdflatex -shell-escape praca 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -49,16 +57,12 @@
 
 \frenchspacing
 
-\usepackage{listings}
-%\lstset{
-%	language={},
-%	basicstyle=\ttfamily,
-%	keywordstyle=\lst@ifdisplaystyle\color{blue}\fi,
-%	commentstyle=\color{gray}
-%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% listingi i fragmentu kodu źródłowego 
+% pakiet: listings lub minted
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% listingi 
+% bibliotegka listings
 \usepackage{listings}
 \lstset{%
 language=C++,%
@@ -76,10 +80,16 @@ morekeywords={descriptor_gaussian,descriptor,partition,fcm_possibilistic,dataset
 escapeinside={@*}{*@},%
 %texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% pakiet minted
+\usepackage{minted}
 
-%%%%%%%%%
+% pakiet wymaga specjalnego kompilowania:
+% pdflatex -shell-escape praca
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%% TODO LIST GENERATOR %%%%%%%%%
 
@@ -352,36 +362,50 @@ Jeśli „Specyfikacja wewnętrzna”:
 
 
 
-Krótka wstawka kodu w linii tekstu jest możliwa, np. \lstinline|descriptor|, a nawet \lstinline|descriptor_gaussian|. 
-Dłuższe fragmenty lepiej jest umieszczać jako rysunek, np. kod na rysunku \ref{fig:pseudokod}, a naprawdę długie fragmenty – w załączniku.
+Krótka wstawka kodu w linii tekstu jest możliwa, np.  \lstinline|int a;| (biblioteka \texttt{listings}) lub  \mintinline{C++}|int a;| (biblioteka \texttt{minted}). 
+Dłuższe fragmenty lepiej jest umieszczać jako rysunek, np. kod na rys \ref{fig:pseudokod:listings} i rys. \ref{fig:pseudokod:minted}, a naprawdę długie fragmenty – w załączniku.
+ 
+% dokumentacja:
+% https://ctan.org/pkg/minted
+% https://ctan.org/pkg/listingss
+
 
 \begin{figure}
 \centering
 \begin{lstlisting}
-class descriptor_gaussian : virtual public descriptor
+class test : public basic
 {
-   protected:
-      /** core of the gaussian fuzzy set */
-      double _mean;
-      /** fuzzyfication of the gaussian fuzzy set */
-      double _stddev;
+    public:
+      test (int a);
+      friend std::ostream operator<<(std::ostream & s, 
+                                     const test & t);
+    protected:
+      int _a;  
       
-   public:
-      /** @param mean core of the set
-          @param stddev standard deviation */
-      descriptor_gaussian (double mean, double stddev);
-      descriptor_gaussian (const descriptor_gaussian & w);
-      virtual ~descriptor_gaussian();
-      virtual descriptor * clone () const;
-      
-      /** The method elaborates membership to the gaussian fuzzy set. */
-      virtual double getMembership (double x) const;
-     
 };
 \end{lstlisting}
-\caption{Klasa \lstinline|descriptor_gaussian|.}
-\label{fig:pseudokod}
+\caption{Pseudokod w \texttt{listings}.}
+\label{fig:pseudokod:listings}
 \end{figure}
+
+\begin{figure}
+\centering
+\begin{minted}[linenos,frame=lines]{c++}
+class test : public basic
+{
+    public:
+      test (int a);
+      friend std::ostream operator<<(std::ostream & s, 
+                                     const test & t);
+    protected:
+      int _a;  
+      
+};
+\end{minted}
+\caption{Pseudokod w \texttt{minted}.}
+\label{fig:pseudokod:minted}
+\end{figure}
+
 
 
 \chapter{Weryfikacja i walidacja}
@@ -471,6 +495,16 @@ if (_nIterations < 1 and _epsilon < 0)
 if (_nIterations > 0 and _epsilon > 0)
 	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
 \end{lstlisting}
+
+
+\begin{minted}[linenos,breaklines,frame=lines]{c++}
+if (_nClusters < 1)
+	throw std::string ("unknown number of clusters");
+if (_nIterations < 1 and _epsilon < 0)
+	throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
+if (_nIterations > 0 and _epsilon > 0)
+	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
+\end{minted}
  
 
 \chapter{Lista dodatkowych plików, uzupełniających tekst pracy (jeżeli dotyczy)} 
