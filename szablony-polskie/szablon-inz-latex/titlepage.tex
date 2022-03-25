@@ -1,0 +1,69 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% PROSZĘ NIE MODYFIKOWAĆ PONIŻSZYCH USTAWIEŃ! %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%  STRONA TYTULOWA %%%%%%%%%%%%%%%%%%%
+\pagestyle{empty}
+{
+	\newgeometry{top=1.5cm,%
+	             bottom=4cm,%
+	             left=3cm,
+	             right=2.5cm}
+ 
+	\ifxetex 
+	  \begingroup
+	  \setsansfont{Calibri}
+	   
+	\fi 
+	 \sffamily
+	\begin{center}
+	\includegraphics[width=50mm]{logo_pl.jpg}
+	 
+	
+	{\Large\bfseries\typ\par}
+	
+	\vfill  \vfill  
+			 
+	{\large\tytul\par}
+	
+	\vfill  
+		
+	{\large\bfseries\autor\par}
+	
+	{\normalsize\bfseries Nr albumu: \album}
+	
+	\vfill  		
+ 
+	{\large{\bfseries Kierunek:} \kierunek\par} 
+	
+	{\large{\bfseries Specjalność:} \specjalnosc\par} 
+	 		
+	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill  
+	 
+	{\large{\bfseries PROWADZĄCY PRACĘ}\par}
+	
+	{\large{\bfseries \promotor}\par}
+				
+	{\large{\bfseries KATEDRA \katedra} \par}
+		
+	{\large{\bfseries \wydzial}\par}
+		
+	\vfill  \vfill  
+
+    	
+    \printOpiekun{\opiekun}
+    
+	\vfill  \vfill  
+		
+    {\large\bfseries  Gliwice \the\year}
+
+   \end{center}	
+       \ifxetex 
+       	  \endgroup
+       \fi
+	\restoregeometry
+}
+  

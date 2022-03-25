@@ -1,4 +1,5 @@
 % !TeX spellcheck = pl_PL
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
 % Szablon pracy dyplomowej inzynierskiej % 
@@ -7,49 +8,67 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  (c) Krzysztof Simiński, 2018-2022     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% pdfLaTeX 
-% kompilacja:
-
+%
+% W przypadku pytań, uwag, proszę pisać na adres: krzysztof.siminski(małpa)polsl.pl
+%
+% Projekt LaTeXowy zapewnia odpowiednie formatowanie pracy,
+% zgodnie z wymaganiami Systemu zapewniania jakości kształcenia.
+% Proszę nie zmieniać ustawień formatowania (np. fontu,
+% marginesów, wytłuszczeń, kursywy itd. ).
+%
+% Projekt można kompilować na kilka sposobów.
+%
+% 1. kompilacja pdfLaTeX
+%
+% Jeżeli w pracy używany jest pakiet minted do formatowania
+% kodów źródłowych należy kompilować w następujący sposób:
+%
+% pdflatex -shell-escape praca
+% biber                  praca
+% pdflatex -shell-escape praca
+% pdflatex -shell-escape praca 
+%
+% Jeżeli pakiet minted nie jest wykorzystywany, można zakomentować
+% import tego pakietu \usepackage{minted} i użycie w kodzie pracy.
+% Wtedy wystarczy prosta kompilacja 
+%
 % pdflatex praca
 % biber    praca
 % pdflatex praca
 % pdflatex praca 
-
-
-% kompilacja z pakietem minted
-
-% pdflatex -shell-escape praca
-% biber    praca
-% pdflatex -shell-escape praca
-% pdflatex -shell-escape praca 
-
-
-%%%%%
-%% XeLaTeX (wymaga zainstalowanej czcionki Calibri użytej na stronie tytułowej)
-
-% kompilacja:
-
-% xelatex praca
-% biber    praca
-% xelatex praca
-% xelatex praca 
-
-
-% kompilacja z pakietem minted
-
+%
+%
+% 2. kompilacja XeLaTeX
+%
+% Kompilatacja przy użyciu XeLaTeXa różni się tym, że na stronie
+% tytułowej używany jest font Calibri. Wymaga to jego uprzedniego
+% zainstalowania. Podobnie jak w przypadku pdfLaTeXa użycie
+% pakietu minted wymaga kompilacji jak poniżej:
+%
 % xelatex -shell-escape praca
-% biber    praca
+% biber                 praca
 % xelatex -shell-escape praca
 % xelatex -shell-escape praca 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-
+%
+% Bez pakietu minted kompilacja jest trochę prostsza:
+%
+% xelatex praca
+% biber   praca
+% xelatex praca
+% xelatex praca 
+%
+%
+% dokumentacja pakietów do kodów źródłowych:
+% https://ctan.org/pkg/minted
+% https://ctan.org/pkg/listings
+%
+%
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Proszę wpisać swoje dane w poniższych definicjach.
 
+% TODO
 \newcommand{\imie}{Imię}
 \newcommand{\nazwisko}{Nazwisko}
 \newcommand{\promotor}{$\langle$tytuł lub stopień naukowy oraz imię i nazwisko$\rangle$}
@@ -59,290 +78,42 @@
 \newcommand{\specjalnosc}{$\langle$wpisać właściwą$\rangle$}
 \newcommand{\album}{$\langle$wpisać właściwy$\rangle$}
 \newcommand{\katedra}{$\langle$wpisać właściwą$\rangle$}
+
+% Jeżeli został wyznaczony promotor pomocniczy lub opieku proszę go/ją wpisać ...
 \newcommand{\opiekun}{$\langle$stopień naukowy imię i nazwisko$\rangle$}
+% ... w przeciwnym razie proszę zostawić puste miejsce jak poniżej:
+%\newcommand{\opiekun}{} % brak promotowa pomocniczego / opiekuna
 
 % koniec fragmentu do modyfikacji
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                             %
-% PROSZĘ NIE MODYFIKOWAĆ PONIŻSZYCH USTAWIEŃ! %
-%                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{settings.tex} % Proszę nie modyfikować pliku settings.tex
 
-\documentclass[a4paper,twoside,12pt]{book}
-\usepackage[utf8]{inputenc}                                      
-\usepackage[T1]{fontenc}  
-\usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage[british,polish]{babel} 
-\usepackage{indentfirst}
-
-
-
-\usepackage{ifxetex}
-
-\ifxetex
-	\usepackage{fontspec}
-	\defaultfontfeatures{Mapping=tex—text} % to support TeX conventions like ``——-''
-	\usepackage{xunicode} % Unicode support for LaTeX character names (accents, European chars, etc)
-	\usepackage{xltxtra} % Extra customizations for XeLaTeX
-\else
-	\usepackage{lmodern}
-\fi
-
-
-
-\usepackage[margin=2.5cm]{geometry}
-\usepackage{graphicx} 
-\usepackage{hyperref}
-\usepackage{booktabs}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usepackage{mathtools}
-\usepackage{geometry}
-\usepackage[page]{appendix} % toc,
-\renewcommand{\appendixtocname}{Dodatki}
-\renewcommand{\appendixpagename}{Dodatki}
-\renewcommand{\appendixname}{Dodatek}
-
-\usepackage{csquotes}
-\usepackage[natbib=true]{biblatex}
-\bibliography{bibliografia}
-
-\usepackage{lipsum}
-
-
-\usepackage{setspace}
-\onehalfspacing
-
-
-\frenchspacing
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% listingi i fragmentu kodu źródłowego 
-% pakiet: listings lub minted
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-
-% bibliotegka listings
-\usepackage{listings}
+% Poniżej można dodać słowa kluczowe dla
 \lstset{%
-language=C++,%
-commentstyle=\textit,%
-identifierstyle=\textsf,%
-keywordstyle=\sffamily\bfseries, %\texttt, %
-%captionpos=b,%
-tabsize=3,%
-frame=lines,%
-numbers=left,%
-numberstyle=\tiny,%
-numbersep=5pt,%
-breaklines=true,%
-morekeywords={descriptor_gaussian,descriptor,partition,fcm_possibilistic,dataset,my_exception,exception,std,vector},%
-escapeinside={@*}{*@},%
-%texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
-}
-
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% pakiet minted
-\usepackage{minted}
-
-% pakiet wymaga specjalnego kompilowania:
-% pdflatex -shell-escape praca
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%% TODO LIST GENERATOR %%%%%%%%%
-
-%\usepackage{tikz}
-%\usepackage{manfnt}   % dangerous sign 
-\usepackage{color}
-\definecolor{brickred}      {cmyk}{0   , 0.89, 0.94, 0.28}
-
-\makeatletter \newcommand \kslistofremarks{\section*{Uwagi} \@starttoc{rks}}
-  \newcommand\l@uwagas[2]
-    {\par\noindent \textbf{#2:} %\parbox{10cm}
-{#1}\par} \makeatother
-
-
-\newcommand{\ksremark}[1]{%
-{%\marginpar{\textdbend}
-{\color{brickred}{[#1]}}}%
-\addcontentsline{rks}{uwagas}{\protect{#1}}%
-}
-
-\newcommand{\comma}{\ksremark{przecinek}}
-\newcommand{\nocomma}{\ksremark{bez przecinka}}
-\newcommand{\styl}{\ksremark{styl}}
-\newcommand{\ortografia}{\ksremark{ortografia}}
-\newcommand{\fleksja}{\ksremark{fleksja}}
-\newcommand{\pauza}{\ksremark{pauza `--', nie dywiz `-'}}
-\newcommand{\kolokwializm}{\ksremark{kolokwializm}}
-\newcommand{\cudzyslowy}{\ksremark{,,polskie cudzysłowy''}}
-
-%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
-
-%%%%%%%%%%%% ZYWA PAGINA %%%%%%%%%%%%%%%
-% brak kapitalizacji zywej paginy
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[LO]{\nouppercase{\it\rightmark}}
-\fancyhead[RE]{\nouppercase{\it\leftmark}}
-\fancyhead[LE,RO]{\it\thepage}
-
-
-\fancypagestyle{tylkoNumeryStron}{%
-   \fancyhf{} 
-   \fancyhead[LE,RO]{\it\thepage}
-}
-
-\fancypagestyle{bezNumeracji}{%
-   \fancyhf{} 
-   \fancyhead[LE,RO]{}
-}
-
-\fancypagestyle{NumeryStronNazwyRozdzialow}{%
-   \fancyhf{} 
-   \fancyhead[LE]{\nouppercase{\imie\ \nazwisko}}
-   \fancyhead[RO]{\nouppercase{\leftmark}}
-%   \fancyhead[LE,RO]{\it\thepage}
-   \fancyfoot[CE, CO]{\thepage}
+morekeywords={string,exception,std,vector},% słowa kluczowe rozpoznawane przez pakiet listings
 }
 
 
-%%%%%%%%%%%%% OBCE WTRETY  
-\newcommand{\obcy}[1]{\emph{#1}}
-\newcommand{\ang}[1]{{\selectlanguage{british}\obcy{#1}}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% polskie oznaczenia funkcji matematycznych
-\renewcommand{\tan}{\operatorname {tg}}
-\renewcommand{\log}{\operatorname {lg}}
-
-% jeszcze jakies drobiazgi
-
-\newcounter{stronyPozaNumeracja}
-
- 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-% Proszę nie modyfikować poniższych definicji!
-\author{\imie\ \nazwisko}
-\newcommand{\autor}{\imie\ \MakeUppercase{\nazwisko}}
-\newcommand{\typ}{PROJEKT INŻYNIERSKI}
-\newcommand{\wydzial}{Wydział Automatyki, Elektroniki i Informatyki} 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 
 
 \begin{document}
 %\kslistofremarks 
 
-%%%%%%%%%%%%%%%%%%  STRONA TYTULOWA %%%%%%%%%%%%%%%%%%%
-\pagestyle{empty}
-{
-	\newgeometry{top=1.5cm,%
-	             bottom=4cm,%
-	             left=3cm,
-	             right=2.5cm}
- 
-	\ifxetex 
-	  \begingroup
-	  \setsansfont{Calibri}
-	   
-	\fi 
-	 \sffamily
-	\begin{center}
-	\includegraphics[width=50mm]{logo_pl.jpg}
-	 
-	
-	{\Large\bfseries\typ\par}
-	
-	\vfill  \vfill  
-			 
-	{\large\tytul\par}
-	
-	\vfill  
-		
-	{\large\bfseries\autor\par}
-	
-	{\normalsize\bfseries Nr albumu: \album}
-	
-	\vfill  		
- 
-	{\large{\bfseries Kierunek:} \kierunek\par} 
-	
-	{\large{\bfseries Specjalność:} \specjalnosc\par} 
-	 		
-	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill  
-	 
-	{\large{\bfseries PROWADZĄCY PRACĘ}\par}
-	
-	{\large{\bfseries \promotor}\par}
-				
-	{\large{\bfseries KATEDRA \katedra} \par}
-		
-	{\large{\bfseries \wydzial}\par}
-		
-	\vfill  \vfill  
-					
-	{\large{\bfseries OPIEKUN, PROMOTOR POMOCNICZY (jeżeli został powołany)}\par}  % Zakomentuj, jeżeli nie ma promotora pomocniczego!
-		
-	{\large{\bfseries \opiekun}\par} % Zakomentuj, jeżeli nie ma promotora pomocniczego!
-		
-	\vfill  \vfill  
-		
-    {\large\bfseries  Gliwice \the\year}
-
-   \end{center}	
-       \ifxetex 
-       	  \endgroup
-       \fi
-	\restoregeometry
-}
-  
+\input{titlepage.tex}  % Proszę nie modyfikować pliku titlepage.tex
 
 \cleardoublepage
  
-
-\rmfamily
-\normalfont
+\rmfamily\normalfont
 \pagestyle{empty}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
 %%% No to zaczynamy pisać pracę :-) %%%%
 
+% TODO
+\input{00.tex} % informacje redakcyjne
 
-\subsubsection*{Tytuł pracy} \tytul
-
-\subsubsection*{Streszczenie}  
-(Streszczenie pracy – odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia. Streszczenie wraz ze słowami kluczowymi nie powinno przekroczyć objętości jednej strony.)
-
-\subsubsection*{Słowa kluczowe} 
-2-5 slow (fraz) kluczowych, oddzielonych przecinkami
-
-\subsubsection*{Thesis title} 
-\begin{otherlanguage}{british}
-\Title
-\end{otherlanguage}
-
-\subsubsection*{Abstract} 
-\begin{otherlanguage}{british}
-(Thesis abstract – to be copied into an appropriate field during an electronic submission. The abstract and keywords should not exceed one page.)
-\end{otherlanguage}
-\subsubsection*{Key words}  
-\begin{otherlanguage}{british}
-2-5 keywords, separated by commas
-\end{otherlanguage}
-
- 
 
 %%%%%%%%%%%%%%%%%% SPIS TRESCI %%%%%%%%%%%%%%%%%%%%%%
 %\pagenumbering{Roman}
@@ -361,257 +132,44 @@ escapeinside={@*}{*@},%
 
 %%%%%%%%%%%%%% wlasciwa tresc pracy %%%%%%%%%%%%%%%%%
 
-\chapter{Wstęp}
+% TODO
+\input{01.tex}  % wstęp
 
-\begin{itemize}
-\item wprowadzenie w problem/zagadnienie
-\item osadzenie problemu w dziedzinie
-\item cel pracy
-\item zakres pracy
-\item zwięzła charakterystyka rozdziałów
-\item jednoznaczne określenie wkładu autora, w przypadku prac wieloosobowych – tabela z autorstwem poszczególnych elementów pracy
-\end{itemize}
+% TODO
+\input{02.tex} % analiza tematu 
 
- 
+% TODO
+\input{03.tex} % Wymagania i narzędzia
 
+% TODO
+\input{04.tex} % [Właściwy dla kierunku -- np. Specyfikacja zewnętrzna]
 
-\chapter{[Analiza tematu]}
+% TODO
+\input{05.tex} % [Właściwy dla kierunku -- np. Specyfikacja wewnętrzna]
 
-\begin{itemize}
-\item sformułowanie problemu
-\item osadzenie tematu w kontekście aktualnego stanu wiedzy (\ang{state of the art}) o poruszanym problemie
-\item  studia literaturowe \cite{bib:artykul,bib:ksiazka,bib:konferencja,bib:internet} -  opis znanych rozwiązań (także opisanych naukowo, jeżeli problem jest poruszany w publikacjach naukowych), algorytmów, 
-\end{itemize}
+% TODO
+\input{06.tex} % Weryfikacja i walidacja
 
+% TODO
+\input{07.tex} % Podsumowanie i wnioski
 
-Wzory  
-\begin{align}
-y = \frac{\partial x}{\partial t}
-\end{align}
-jak i pojedyncze symbole $x$ i $y$  składa się w trybie matematycznym.
-
-\chapter{Wymagania i narzędzia}
-
-\begin{itemize}
-\item wymagania funkcjonalne i niefunkcjonalne
-\item przypadki użycia (diagramy UML) -- dla prac, w których mają zastosowanie
-\item opis narzędzi, metod eksperymentalnych, metod modelowania itp.
-\item metodyka pracy nad projektowaniem i implementacją -- dla prac, w których ma to zastosowanie
-\end{itemize}
-
-\chapter{[Właściwy dla kierunku -- np. Specyfikacja zewnętrzna]}
-Jeśli „Specyfikacja zewnętrzna”:
-\begin{itemize}
-\item  wymagania sprzętowe i programowe
-\item  sposób instalacji
-\item  sposób aktywacji
-\item  kategorie użytkowników
-\item  sposób obsługi
-\item  administracja systemem
-\item  kwestie bezpieczeństwa
-\item  przykład działania
-\item  scenariusze korzystania z systemu (ilustrowane zrzutami z ekranu lub generowanymi dokumentami)
-\end{itemize}
-
- 
-\begin{figure}
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    y tick label style={
-        /pgf/number format/.cd,
-            fixed,   % po zakomentowaniu os rzednych jest indeksowana wykladniczo
-            fixed zerofill, % 1.0 zamiast 1
-            precision=1,
-        /tikz/.cd
-    },
-    x tick label style={
-        /pgf/number format/.cd,
-            fixed,
-            fixed zerofill,
-            precision=2,
-        /tikz/.cd
-    }
-]
-\addplot [domain=0.0:0.1] {rnd};
-\end{axis} 
-\end{tikzpicture}
-\caption{Podpis rysunku po rysunkiem.}
-\label{fig:2}
-\end{figure}
-
-
-\chapter{[Właściwy dla kierunku -- np. Specyfikacja wewnętrzna]}
-Jeśli „Specyfikacja wewnętrzna”:
-\begin{itemize}
-\item przedstawienie idei
-\item architektura systemu
-\item opis struktur danych (i organizacji baz danych)
-\item komponenty, moduły, biblioteki, przegląd ważniejszych klas (jeśli występują)
-\item przegląd ważniejszych algorytmów (jeśli występują)
-\item szczegóły implementacji wybranych fragmentów, zastosowane wzorce projektowe
-\item diagramy UML
-\end{itemize}
-
-
-
-Krótka wstawka kodu w linii tekstu jest możliwa, np.  \lstinline|int a;| (biblioteka \texttt{listings}) lub  \mintinline{C++}|int a;| (biblioteka \texttt{minted}). 
-Dłuższe fragmenty lepiej jest umieszczać jako rysunek, np. kod na rys \ref{fig:pseudokod:listings} i rys. \ref{fig:pseudokod:minted}, a naprawdę długie fragmenty – w załączniku.
- 
-% dokumentacja:
-% https://ctan.org/pkg/minted
-% https://ctan.org/pkg/listingss
-
-
-\begin{figure}
-\centering
-\begin{lstlisting}
-class test : public basic
-{
-    public:
-      test (int a);
-      friend std::ostream operator<<(std::ostream & s, 
-                                     const test & t);
-    protected:
-      int _a;  
-      
-};
-\end{lstlisting}
-\caption{Pseudokod w \texttt{listings}.}
-\label{fig:pseudokod:listings}
-\end{figure}
-
-\begin{figure}
-\centering
-\begin{minted}[linenos,frame=lines]{c++}
-class test : public basic
-{
-    public:
-      test (int a);
-      friend std::ostream operator<<(std::ostream & s, 
-                                     const test & t);
-    protected:
-      int _a;  
-      
-};
-\end{minted}
-\caption{Pseudokod w \texttt{minted}.}
-\label{fig:pseudokod:minted}
-\end{figure}
-
-
-
-\chapter{Weryfikacja i walidacja}
-\begin{itemize}
-\item sposób testowania w ramach pracy (np. odniesienie do modelu V)
-\item organizacja eksperymentów
-\item przypadki testowe zakres testowania (pełny/niepełny)
-\item wykryte i usunięte błędy
-\item opcjonalnie wyniki badań eksperymentalnych
-\end{itemize}
-
-\begin{table}
-\centering
-\caption{Nagłówek tabeli jest nad nią.}
-\label{id:tab:wyniki}
-\begin{tabular}{rrrrrrrr}
-\toprule
-	         &                                     \multicolumn{7}{c}{metoda}                                      \\
-	         \cmidrule{2-8}
-	         &         &         &        \multicolumn{3}{c}{alg. 3}        & \multicolumn{2}{c}{alg. 4, $\gamma = 2$} \\
-	         \cmidrule(r){4-6}\cmidrule(r){7-8}
-	$\zeta$ &     alg. 1 &   alg. 2 & $\alpha= 1.5$ & $\alpha= 2$ & $\alpha= 3$ &   $\beta = 0.1$  &   $\beta = -0.1$ \\
-\midrule
-	       0 &  8.3250 & 1.45305 &       7.5791 &    14.8517 &    20.0028 & 1.16396 &                       1.1365 \\
-	       5 &  0.6111 & 2.27126 &       6.9952 &    13.8560 &    18.6064 & 1.18659 &                       1.1630 \\
-	      10 & 11.6126 & 2.69218 &       6.2520 &    12.5202 &    16.8278 & 1.23180 &                       1.2045 \\
-	      15 &  0.5665 & 2.95046 &       5.7753 &    11.4588 &    15.4837 & 1.25131 &                       1.2614 \\
-	      20 & 15.8728 & 3.07225 &       5.3071 &    10.3935 &    13.8738 & 1.25307 &                       1.2217 \\
-	      25 &  0.9791 & 3.19034 &       5.4575 &     9.9533 &    13.0721 & 1.27104 &                       1.2640 \\
-	      30 &  2.0228 & 3.27474 &       5.7461 &     9.7164 &    12.2637 & 1.33404 &                       1.3209 \\
-	      35 & 13.4210 & 3.36086 &       6.6735 &    10.0442 &    12.0270 & 1.35385 &                       1.3059 \\
-	      40 & 13.2226 & 3.36420 &       7.7248 &    10.4495 &    12.0379 & 1.34919 &                       1.2768 \\
-	      45 & 12.8445 & 3.47436 &       8.5539 &    10.8552 &    12.2773 & 1.42303 &                       1.4362 \\
-	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
-\bottomrule
-\end{tabular}
-\end{table}  
-
- 
- 
-
-\chapter{Podsumowanie i wnioski}
-\begin{itemize}
-\item uzyskane wyniki w świetle postawionych celów i zdefiniowanych wyżej wymagań
-\item kierunki ewentualnych danych prac (rozbudowa funkcjonalna …)
-\item problemy napotkane w trakcie pracy
-\end{itemize}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter 
-%\stepcounter{stronyPozaNumeracja}
-%\pagenumbering{Roman}
-%\setcounter{page}{\value{stronyPozaNumeracja}}
-%\pagestyle{tylkoNumeryStron}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %\bibliographystyle{plplain} % bibtex
 %\bibliography{bibliografia} % bibtex
 \printbibliography           % biblatex 
 \addcontentsline{toc}{chapter}{Bibliografia}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 \begin{appendices}
- 
 
-\chapter{Spis skrótów i symboli}
+% TODO
+\input{08.tex} % Spis skrótów i symboli
 
-\begin{itemize}
-\item[DNA] kwas deoksyrybonukleinowy (ang. \ang{deoxyribonucleic acid})
-\item[MVC] model -- widok -- kontroler (ang. \ang{model--view--controller}) 
-\item[$N$] liczebność zbioru danych
-\item[$\mu$] stopnień przyleżności do zbioru
-\item[$\mathbb{E}$] zbiór krawędzi grafu
-\item[$\mathcal{L}$] transformata Laplace'a 
-\end{itemize}
+% TODO
+\input{09.tex} % Źródła
 
-
-\chapter{Źródła}
-
-Jeżeli w pracy konieczne jest umieszczenie długich fragmentów kodu źródłowego, należy je przenieść do załącznika.
-
-\begin{lstlisting}
-if (_nClusters < 1)
-	throw std::string ("unknown number of clusters");
-if (_nIterations < 1 and _epsilon < 0)
-	throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
-if (_nIterations > 0 and _epsilon > 0)
-	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
-\end{lstlisting}
-
-
-\begin{minted}[linenos,breaklines,frame=lines]{c++}
-if (_nClusters < 1)
-   throw std::string ("unknown number of clusters");
-if (_nIterations < 1 and _epsilon < 0)
-   throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
-if (_nIterations > 0 and _epsilon > 0)
-   throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
-\end{minted}
- 
-
-\chapter{Lista dodatkowych plików, uzupełniających tekst pracy} 
-
-
-W systemie do pracy dołączono dodatkowe pliki zawierające:
-\begin{itemize}
-\item źródła programu,
-\item dane testowe,
-\item film pokazujący działanie opracowanego oprogramowania lub zaprojektowanego i~wykonanego urządzenia,
-\item itp.
-\end{itemize}
+% TODO
+\input{10.tex} % Lista dodatkowych plików, uzupełniających tekst pracy
 
 \listoffigures
 \addcontentsline{toc}{chapter}{Spis rysunków}
