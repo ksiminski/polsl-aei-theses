@@ -2,11 +2,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
 % Szablon pracy dyplomowej inzynierskiej % 
+% zgodny  z aktualnymi  przepisami  SZJK %
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  (c) Krzysztof Simiński, 2018-2022     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% pdfLaTeX 
 % kompilacja:
 
 % pdflatex praca
@@ -14,7 +16,7 @@
 % pdflatex praca
 % pdflatex praca 
 
-%%%%
+
 % kompilacja z pakietem minted
 
 % pdflatex -shell-escape praca
@@ -22,9 +24,50 @@
 % pdflatex -shell-escape praca
 % pdflatex -shell-escape praca 
 
+
+%%%%%
+%% XeLaTeX (wymaga zainstalowanej czcionki Calibri użytej na stronie tytułowej)
+
+% kompilacja:
+
+% xelatex praca
+% biber    praca
+% xelatex praca
+% xelatex praca 
+
+
+% kompilacja z pakietem minted
+
+% xelatex -shell-escape praca
+% biber    praca
+% xelatex -shell-escape praca
+% xelatex -shell-escape praca 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Proszę wpisać swoje dane w poniższych definicjach.
 
+\newcommand{\imie}{Imię}
+\newcommand{\nazwisko}{Nazwisko}
+\newcommand{\promotor}{$\langle$tytuł lub stopień naukowy oraz imię i nazwisko$\rangle$}
+\newcommand{\tytul}{Tytuł pracy dyplomowej inżynierskiej}
+\newcommand{\Title}{Thesis title in English}
+\newcommand{\kierunek}{$\langle$wpisać właściwy$\rangle$}
+\newcommand{\specjalnosc}{$\langle$wpisać właściwą$\rangle$}
+\newcommand{\album}{$\langle$wpisać właściwy$\rangle$}
+\newcommand{\katedra}{$\langle$wpisać właściwą$\rangle$}
+\newcommand{\opiekun}{$\langle$stopień naukowy imię i nazwisko$\rangle$}
+
+% koniec fragmentu do modyfikacji
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% PROSZĘ NIE MODYFIKOWAĆ PONIŻSZYCH USTAWIEŃ! %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,twoside,12pt]{book}
 \usepackage[utf8]{inputenc}                                      
@@ -32,12 +75,28 @@
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
 \usepackage[british,polish]{babel} 
 \usepackage{indentfirst}
-\usepackage{lmodern}
+
+
+
+\usepackage{ifxetex}
+
+\ifxetex
+	\usepackage{fontspec}
+	\defaultfontfeatures{Mapping=tex—text} % to support TeX conventions like ``——-''
+	\usepackage{xunicode} % Unicode support for LaTeX character names (accents, European chars, etc)
+	\usepackage{xltxtra} % Extra customizations for XeLaTeX
+\else
+	\usepackage{lmodern}
+\fi
+
+
+
+\usepackage[margin=2.5cm]{geometry}
 \usepackage{graphicx} 
 \usepackage{hyperref}
 \usepackage{booktabs}
-%\usepackage{tikz}
-%\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{pgfplots}
 \usepackage{mathtools}
 \usepackage{geometry}
 \usepackage[page]{appendix} % toc,
@@ -49,6 +108,7 @@
 \usepackage[natbib=true]{biblatex}
 \bibliography{bibliografia}
 
+\usepackage{lipsum}
 
 
 \usepackage{setspace}
@@ -136,11 +196,17 @@ escapeinside={@*}{*@},%
    \fancyhead[LE,RO]{\it\thepage}
 }
 
+\fancypagestyle{bezNumeracji}{%
+   \fancyhf{} 
+   \fancyhead[LE,RO]{}
+}
+
 \fancypagestyle{NumeryStronNazwyRozdzialow}{%
    \fancyhf{} 
-   \fancyhead[LO]{\nouppercase{\it\rightmark}}
-   \fancyhead[RE]{\nouppercase{\it\leftmark}}
-   \fancyhead[LE,RO]{\it\thepage}
+   \fancyhead[LE]{\nouppercase{\imie\ \nazwisko}}
+   \fancyhead[RO]{\nouppercase{\leftmark}}
+%   \fancyhead[LE,RO]{\it\thepage}
+   \fancyfoot[CE, CO]{\thepage}
 }
 
 
@@ -157,107 +223,82 @@ escapeinside={@*}{*@},%
 
 \newcounter{stronyPozaNumeracja}
 
-\newcommand{\hcancel}[1]{%
-    \tikz[baseline=(tocancel.base)]{
-        \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
-        \draw[red] (tocancel.south west) -- (tocancel.north east);
-    }%
-}%
-
-\newcommand{\miesiac}{%
-  \ifcase\the\month
-  \or styczeń% 1
-  \or luty% 2
-  \or marzec% 3
-  \or kwiecień% 4
-  \or maj% 5
-  \or czerwiec% 6
-  \or lipiec% 7
-  \or sierpień% 8
-  \or wrzesień% 9
-  \or październik% 10
-  \or listopad% 11
-  \or grudzień% 12
-  \fi}
-
+ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Helvetica font macros for the title page:
-\newcommand{\headerfont}{\fontfamily{phv}\fontsize{18}{18}\bfseries\scshape\selectfont}
-\newcommand{\titlefont}{\fontfamily{phv}\fontsize{18}{18}\selectfont}
-\newcommand{\otherfont}{\fontfamily{phv}\fontsize{14}{14}\selectfont}
+ 
+% Proszę nie modyfikować poniższych definicji!
+\author{\imie\ \nazwisko}
+\newcommand{\autor}{\imie\ \MakeUppercase{\nazwisko}}
+\newcommand{\typ}{PROJEKT INŻYNIERSKI}
+\newcommand{\wydzial}{Wydział Automatyki, Elektroniki i Informatyki} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\newcommand{\autor}{Imię Nazwisko}
-\newcommand{\promotor}{dr inż. Imię Nazwisko}
-\newcommand{\konsultant}{dr inż. Imię Nazwisko}
-\newcommand{\tytul}{Tytuł pracy dyplomowej inżynierskiej}
-\newcommand{\polsl}{Politechnika Śląska}
-\newcommand{\wydzial}{Wydział Automatyki, Elektroniki i Informatyki}
-\newcommand{\kierunek}{Kierunek: [wpisać właściwy]}
 
 
 \begin{document}
 %\kslistofremarks 
-	
+
 %%%%%%%%%%%%%%%%%%  STRONA TYTULOWA %%%%%%%%%%%%%%%%%%%
 \pagestyle{empty}
 {
-	\newgeometry{top=2.5cm,%
-	             bottom=2.5cm,%
+	\newgeometry{top=1.5cm,%
+	             bottom=4cm,%
 	             left=3cm,
 	             right=2.5cm}
-	\sffamily
-	\rule{0cm}{0cm}
-	
-	\begin{center}
-	\includegraphics[width=29mm]{logo_pl.jpg}
-	\end{center} 
-	\vspace{1cm}
-	\begin{center}
-	\headerfont \polsl
-	\end{center}
-	\begin{center}
-	\headerfont \wydzial
-	\end{center}
-	\begin{center}
-	\headerfont \kierunek
-	\end{center}
-	\vfill
-	\begin{center}
-	\titlefont Praca dyplomowa inżynierska
-	\end{center}
-	\vfill
-	
-	\begin{center}
-	\otherfont \tytul\par
-	\end{center}
-	
-	\vfill
-	
-	\vfill
-	 
-	\noindent\vbox
-	{
-		\hbox{\otherfont autor: \autor}
-		\vspace{12pt}
-		\hbox{\otherfont kierujący pracą: \promotor}
-		\vspace{12pt}  % zakomentuj, jezeli nie ma konsultanta
-		\hbox{\otherfont konsultant: \konsultant} % zakomentuj, jezeli nie ma konsultanta
-	}
-	\vfill 
  
-   \begin{center}
-   \otherfont Gliwice,  \miesiac\ \the\year
+	\ifxetex 
+	  \begingroup
+	  \setsansfont{Calibri}
+	   
+	\fi 
+	 \sffamily
+	\begin{center}
+	\includegraphics[width=50mm]{logo_pl.jpg}
+	 
+	
+	{\Large\bfseries\typ\par}
+	
+	\vfill  \vfill  
+			 
+	{\large\tytul\par}
+	
+	\vfill  
+		
+	{\large\bfseries\autor\par}
+	
+	{\normalsize\bfseries Nr albumu: \album}
+	
+	\vfill  		
+ 
+	{\large{\bfseries Kierunek:} \kierunek\par} 
+	
+	{\large{\bfseries Specjalność:} \specjalnosc\par} 
+	 		
+	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill  
+	 
+	{\large{\bfseries PROWADZĄCY PRACĘ}\par}
+	
+	{\large{\bfseries \promotor}\par}
+				
+	{\large{\bfseries KATEDRA \katedra} \par}
+		
+	{\large{\bfseries \wydzial}\par}
+		
+	\vfill  \vfill  
+					
+	{\large{\bfseries OPIEKUN, PROMOTOR POMOCNICZY (jeżeli został powołany)}\par}  % Zakomentuj, jeżeli nie ma promotora pomocniczego!
+		
+	{\large{\bfseries \opiekun}\par} % Zakomentuj, jeżeli nie ma promotora pomocniczego!
+		
+	\vfill  \vfill  
+		
+    {\large\bfseries  Gliwice \the\year}
+
    \end{center}	
+       \ifxetex 
+       	  \endgroup
+       \fi
 	\restoregeometry
 }
   
@@ -267,27 +308,53 @@ escapeinside={@*}{*@},%
 
 \rmfamily
 \normalfont
+\pagestyle{empty}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+%%% No to zaczynamy pisać pracę :-) %%%%
+
+
+\subsubsection*{Tytuł pracy} \tytul
+
+\subsubsection*{Streszczenie}  
+(Streszczenie pracy – odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia. Streszczenie wraz ze słowami kluczowymi nie powinno przekroczyć objętości jednej strony.)
+
+\subsubsection*{Słowa kluczowe} 
+2-5 slow (fraz) kluczowych, oddzielonych przecinkami
+
+\subsubsection*{Thesis title} 
+\begin{otherlanguage}{british}
+\Title
+\end{otherlanguage}
+
+\subsubsection*{Abstract} 
+\begin{otherlanguage}{british}
+(Thesis abstract – to be copied into an appropriate field during an electronic submission. The abstract and keywords should not exceed one page.)
+\end{otherlanguage}
+\subsubsection*{Key words}  
+\begin{otherlanguage}{british}
+2-5 keywords, separated by commas
+\end{otherlanguage}
+
+ 
 
 %%%%%%%%%%%%%%%%%% SPIS TRESCI %%%%%%%%%%%%%%%%%%%%%%
-\pagenumbering{Roman}
-\pagestyle{tylkoNumeryStron}
+%\pagenumbering{Roman}
+\thispagestyle{empty}
 \tableofcontents
+\thispagestyle{empty}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{stronyPozaNumeracja}{\value{page}}
 \mainmatter
 \pagestyle{empty}
-
-\chapter*{Streszczenie}
-\addcontentsline{toc}{chapter}{Streszczenie}
-
-Odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia. Streszczenie wraz ze słowami kluczowymi nie powinno przekroczyć jednej strony.
-
-\paragraph{Słowa kluczowe:} 2-5 slow (fraz) kluczowych, oddzielonych przecinkami
-
-
-
+ 
 \cleardoublepage
 
 \pagestyle{NumeryStronNazwyRozdzialow}
@@ -305,6 +372,8 @@ Odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia. Stre
 \item jednoznaczne określenie wkładu autora, w przypadku prac wieloosobowych – tabela z autorstwem poszczególnych elementów pracy
 \end{itemize}
 
+ 
+
 
 \chapter{[Analiza tematu]}
 
@@ -315,7 +384,11 @@ Odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia. Stre
 \end{itemize}
 
 
-
+Wzory  
+\begin{align}
+y = \frac{\partial x}{\partial t}
+\end{align}
+jak i pojedyncze symbole $x$ i $y$  składa się w trybie matematycznym.
 
 \chapter{Wymagania i narzędzia}
 
@@ -340,9 +413,29 @@ Jeśli „Specyfikacja zewnętrzna”:
 \item  scenariusze korzystania z systemu (ilustrowane zrzutami z ekranu lub generowanymi dokumentami)
 \end{itemize}
 
+ 
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{logo_pl.jpg}
+\begin{tikzpicture}
+\begin{axis}[
+    y tick label style={
+        /pgf/number format/.cd,
+            fixed,   % po zakomentowaniu os rzednych jest indeksowana wykladniczo
+            fixed zerofill, % 1.0 zamiast 1
+            precision=1,
+        /tikz/.cd
+    },
+    x tick label style={
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=2,
+        /tikz/.cd
+    }
+]
+\addplot [domain=0.0:0.1] {rnd};
+\end{axis} 
+\end{tikzpicture}
 \caption{Podpis rysunku po rysunkiem.}
 \label{fig:2}
 \end{figure}
@@ -419,7 +512,7 @@ class test : public basic
 
 \begin{table}
 \centering
-\caption{Opis tabeli nad nią.}
+\caption{Nagłówek tabeli jest nad nią.}
 \label{id:tab:wyniki}
 \begin{tabular}{rrrrrrrr}
 \toprule
@@ -443,6 +536,8 @@ class test : public basic
 \bottomrule
 \end{tabular}
 \end{table}  
+
+ 
  
 
 \chapter{Podsumowanie i wnioski}
@@ -455,10 +550,10 @@ class test : public basic
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter 
-\stepcounter{stronyPozaNumeracja}
-\pagenumbering{Roman}
-\setcounter{page}{\value{stronyPozaNumeracja}}
-\pagestyle{tylkoNumeryStron}
+%\stepcounter{stronyPozaNumeracja}
+%\pagenumbering{Roman}
+%\setcounter{page}{\value{stronyPozaNumeracja}}
+%\pagestyle{tylkoNumeryStron}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\bibliographystyle{plplain} % bibtex
 %\bibliography{bibliografia} % bibtex
@@ -499,22 +594,22 @@ if (_nIterations > 0 and _epsilon > 0)
 
 \begin{minted}[linenos,breaklines,frame=lines]{c++}
 if (_nClusters < 1)
-	throw std::string ("unknown number of clusters");
+   throw std::string ("unknown number of clusters");
 if (_nIterations < 1 and _epsilon < 0)
-	throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
+   throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
 if (_nIterations > 0 and _epsilon > 0)
-	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
+   throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
 \end{minted}
  
 
-\chapter{Lista dodatkowych plików, uzupełniających tekst pracy (jeżeli dotyczy)} 
+\chapter{Lista dodatkowych plików, uzupełniających tekst pracy} 
 
 
 W systemie do pracy dołączono dodatkowe pliki zawierające:
 \begin{itemize}
 \item źródła programu,
 \item dane testowe,
-\item film pokazujący działanie opracowanego oprogramowania lub zaprojektowanego i wykonanego urządzenia,
+\item film pokazujący działanie opracowanego oprogramowania lub zaprojektowanego i~wykonanego urządzenia,
 \item itp.
 \end{itemize}
 
@@ -524,7 +619,6 @@ W systemie do pracy dołączono dodatkowe pliki zawierające:
 \addcontentsline{toc}{chapter}{Spis tabel}
 	
 \end{appendices}
-
 
 \end{document}
 
