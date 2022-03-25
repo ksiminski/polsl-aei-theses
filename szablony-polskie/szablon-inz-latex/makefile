@@ -3,6 +3,7 @@ f=praca
 minted=-shell-escape 
 
 .PHONY : short
+.PHONY : clean
 
 pdflatex : $(f).tex
 	pdflatex $(minted) -synctex=1 $(f)
@@ -26,3 +27,9 @@ $(f).pdf : $(f).tex
 short : $(f).tex
 	pdflatex $(minted) -synctex=1 $(f)
 
+clean : 
+	for p in *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.toc *.xml *.gz  ; \
+	do \
+		if [ -f $$p ] ; then rm $$p; fi; \
+	done;  \
+	if [ -d *minted* ] ; then rm -r *minted*; fi; 

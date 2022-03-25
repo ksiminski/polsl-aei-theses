@@ -9,7 +9,6 @@
 %  (c) Krzysztof Simiński, 2018-2022     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% W przypadku pytań, uwag, proszę pisać na adres: krzysztof.siminski(małpa)polsl.pl
 %
 % Projekt LaTeXowy zapewnia odpowiednie formatowanie pracy,
 % zgodnie z wymaganiami Systemu zapewniania jakości kształcenia.
@@ -62,10 +61,12 @@
 % https://ctan.org/pkg/minted
 % https://ctan.org/pkg/listings
 %
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% W przypadku pytań, uwag, proszę pisać na adres:   %
+%      krzysztof.siminski(małpa)polsl.pl            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proszę wpisać swoje dane w poniższych definicjach.
 
 % TODO
@@ -87,7 +88,7 @@
 % koniec fragmentu do modyfikacji
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{settings.tex} % Proszę nie modyfikować pliku settings.tex
+\input{config/settings.tex} % Proszę nie modyfikować pliku settings.tex
 
 % Poniżej można dodać słowa kluczowe dla
 \lstset{%
@@ -101,7 +102,7 @@ morekeywords={string,exception,std,vector},% słowa kluczowe rozpoznawane przez 
 \begin{document}
 %\kslistofremarks 
 
-\input{titlepage.tex}  % Proszę nie modyfikować pliku titlepage.tex
+\input{config/titlepage.tex}  % Proszę nie modyfikować pliku titlepage.tex
 
 \cleardoublepage
  
@@ -112,7 +113,7 @@ morekeywords={string,exception,std,vector},% słowa kluczowe rozpoznawane przez 
 %%% No to zaczynamy pisać pracę :-) %%%%
 
 % TODO
-\input{00.tex} % informacje redakcyjne
+\input{chapters/00.tex} % informacje redakcyjne
 
 
 %%%%%%%%%%%%%%%%%% SPIS TRESCI %%%%%%%%%%%%%%%%%%%%%%
@@ -133,25 +134,25 @@ morekeywords={string,exception,std,vector},% słowa kluczowe rozpoznawane przez 
 %%%%%%%%%%%%%% wlasciwa tresc pracy %%%%%%%%%%%%%%%%%
 
 % TODO
-\input{01.tex}  % wstęp
+\input{chapters/01.tex}  % wstęp
 
 % TODO
-\input{02.tex} % analiza tematu 
+\input{chapters/02.tex} % analiza tematu 
 
 % TODO
-\input{03.tex} % Wymagania i narzędzia
+\input{chapters/03.tex} % Wymagania i narzędzia
 
 % TODO
-\input{04.tex} % [Właściwy dla kierunku -- np. Specyfikacja zewnętrzna]
+\input{chapters/04.tex} % [Właściwy dla kierunku -- np. Specyfikacja zewnętrzna]
 
 % TODO
-\input{05.tex} % [Właściwy dla kierunku -- np. Specyfikacja wewnętrzna]
+\input{chapters/05.tex} % [Właściwy dla kierunku -- np. Specyfikacja wewnętrzna]
 
 % TODO
-\input{06.tex} % Weryfikacja i walidacja
+\input{chapters/06.tex} % Weryfikacja i walidacja
 
 % TODO
-\input{07.tex} % Podsumowanie i wnioski
+\input{chapters/07.tex} % Podsumowanie i wnioski
 
 \backmatter 
 
@@ -163,13 +164,13 @@ morekeywords={string,exception,std,vector},% słowa kluczowe rozpoznawane przez 
 \begin{appendices}
 
 % TODO
-\input{08.tex} % Spis skrótów i symboli
+\input{chapters/08.tex} % Spis skrótów i symboli
 
 % TODO
-\input{09.tex} % Źródła
+\input{chapters/09.tex} % Źródła
 
 % TODO
-\input{10.tex} % Lista dodatkowych plików, uzupełniających tekst pracy
+\input{chapters/10.tex} % Lista dodatkowych plików, uzupełniających tekst pracy
 
 \listoffigures
 \addcontentsline{toc}{chapter}{Spis rysunków}
