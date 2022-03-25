@@ -1,0 +1,43 @@
+\chapter{External specification}
+\begin{itemize}
+\item hardware and software requirements
+\item installation procedure
+\item activation procedure
+\item types of users
+\item user manual
+\item system administration
+\item security issues
+\item example of usage
+\item working scenarios (with screenshots or output files)
+\end{itemize}
+
+ 
+
+
+ 
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    y tick label style={
+        /pgf/number format/.cd,
+            fixed,    
+            fixed zerofill, % 1.0 zamiast 1
+            precision=1,
+        /tikz/.cd
+    },
+    x tick label style={
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=2,
+        /tikz/.cd
+    }
+]
+\addplot [domain=0.0:0.1] {rnd};
+\end{axis} 
+\end{tikzpicture}
+\caption{Figure caption (below the figure).}
+\label{fig:2}
+\end{figure}
+
