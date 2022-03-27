@@ -1,7 +1,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %
-% PROSZĘ NIE MODYFIKOWAĆ PONIŻSZYCH USTAWIEŃ! %
+%    PLEASE DO NOT MODIFY THE FILE BELOW!     %
 %                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -11,7 +11,7 @@
 \usepackage[utf8]{inputenc}                                      
 \usepackage[T1]{fontenc}  
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage[british,polish]{babel} 
+\usepackage[polish,british]{babel} 
 \usepackage{indentfirst}
 
 
@@ -38,9 +38,9 @@
 \usepackage{mathtools}
 \usepackage{geometry}
 \usepackage[page]{appendix} % toc,
-\renewcommand{\appendixtocname}{Dodatki}
-\renewcommand{\appendixpagename}{Dodatki}
-\renewcommand{\appendixname}{Dodatek}
+
+
+
 
 \usepackage{csquotes}
 \usepackage[natbib=true]{biblatex}
@@ -55,11 +55,11 @@
 \frenchspacing
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% listingi i fragmentu kodu źródłowego 
-% pakiet: listings lub minted
+% listings
+% packages: listings or minted
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-% biblioteka listings
+% package listings
 \usepackage{listings}
 \lstset{%
 language=C++,%
@@ -74,15 +74,15 @@ numberstyle=\tiny,%
 numbersep=5pt,%
 breaklines=true,%
 %morekeywords={descriptor_gaussian,descriptor,partition,fcm_possibilistic,dataset,my_exception,exception,std,vector},%
-escapeinside={@*}{*@},%
+escapeinside={@*}{*@},% 
 }
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% pakiet minted
+% package minted
 \usepackage{minted}
 
-% pakiet wymaga specjalnego kompilowania:
-% pdflatex -shell-escape praca
+% This package requires a special command line option in compilation
+% pdflatex -shell-escape thesis
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -92,7 +92,7 @@ escapeinside={@*}{*@},%
 \usepackage{color}
 \definecolor{brickred}      {cmyk}{0   , 0.89, 0.94, 0.28}
 
-\makeatletter \newcommand \kslistofremarks{\section*{Uwagi} \@starttoc{rks}}
+\makeatletter \newcommand \kslistofremarks{\section*{Remarks} \@starttoc{rks}}
   \newcommand\l@uwagas[2]
     {\par\noindent \textbf{#2:} %\parbox{10cm}
 {#1}\par} \makeatother
@@ -104,18 +104,18 @@ escapeinside={@*}{*@},%
 \addcontentsline{rks}{uwagas}{\protect{#1}}%
 }
 
-\newcommand{\comma}{\ksremark{przecinek}}
-\newcommand{\nocomma}{\ksremark{bez przecinka}}
-\newcommand{\styl}{\ksremark{styl}}
-\newcommand{\ortografia}{\ksremark{ortografia}}
-\newcommand{\fleksja}{\ksremark{fleksja}}
-\newcommand{\pauza}{\ksremark{pauza `--', nie dywiz `-'}}
-\newcommand{\kolokwializm}{\ksremark{kolokwializm}}
-\newcommand{\cudzyslowy}{\ksremark{,,polskie cudzysłowy''}}
 
-%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
 
-%%%%%%%%%%%% ZYWA PAGINA %%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%  
+
+%%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
 % brak kapitalizacji zywej paginy
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -125,64 +125,65 @@ escapeinside={@*}{*@},%
 \fancyhead[LE,RO]{\it\thepage}
 
 
-\fancypagestyle{tylkoNumeryStron}{%
+\fancypagestyle{onlyPageNumbers}{%
    \fancyhf{} 
    \fancyhead[LE,RO]{\it\thepage}
 }
 
-\fancypagestyle{bezNumeracji}{%
+\fancypagestyle{noNumbers}{%
    \fancyhf{} 
    \fancyhead[LE,RO]{}
 }
 
-\fancypagestyle{NumeryStronNazwyRozdzialow}{%
+
+\fancypagestyle{PageNumbersChapterTitles}{%
    \fancyhf{} 
-   \fancyhead[LE]{\nouppercase{\FirstName\ \Surname}}
-   \fancyhead[RO]{\nouppercase{\leftmark}} 
+   \fancyhead[LO]{\nouppercase{\Firstnames \Surname}}
+   \fancyhead[RE]{\nouppercase{\leftmark}} 
    \fancyfoot[CE, CO]{\thepage}
 }
+ 
 
 
-%%%%%%%%%%%%% OBCE WTRETY  
-\newcommand{\obcy}[1]{\emph{#1}}
-\newcommand{\ang}[1]{{\selectlanguage{british}\obcy{#1}}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% polskie oznaczenia funkcji matematycznych
-\renewcommand{\tan}{\operatorname {tg}}
-\renewcommand{\log}{\operatorname {lg}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% jeszcze jakies drobiazgi
 
-\newcounter{stronyPozaNumeracja}
+
+
+
+
+
+\newcounter{pagesWithoutNumbers}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \usepackage{xstring}
 \newcommand{\printOpiekun}[1]{%		
 
-    \StrLen{\opiekun}[\mystringlen]
+    \StrLen{\Consultant}[\mystringlen]
     \ifthenelse{\mystringlen > 0}%
     {%
-       {\large{\bfseries OPIEKUN, PROMOTOR POMOCNICZY}\par}
+       {\large{\bfseries CONSULTANT}\par}
        
-       {\large{\bfseries \opiekun}\par}
+       {\large{\bfseries \Consultant}\par}
     }%
     {}
 } 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-% Proszę nie modyfikować poniższych definicji!
-\author{\FirstName\ \Surname}
-\newcommand{\Author}{\FirstName\ \MakeUppercase{\Surname}}
-\newcommand{\Type}{PROJEKT INŻYNIERSKI}
-\newcommand{\Faculty}{Wydział Automatyki, Elektroniki i Informatyki} 
-\newcommand{\Polsl}{Politechnika Śląska}
-\newcommand{\Logo}{graf/politechnika_sl_logo_bw_pion_pl.pdf}
-\newcommand{\LeftId}{Nr albumu}
-\newcommand{\LeftProgram}{Kierunek}
-\newcommand{\LeftSpecialisation}{Specjalność}
-\newcommand{\LeftSUPERVISOR}{PROWADZĄCY PRACĘ}
-\newcommand{\LeftDEPARTMENT}{KATEDRA}
+% Please do not modify the lines below!
+\author{\Firstnames\ \Surname}
+\newcommand{\Author}{\Firstnames\ \MakeUppercase{\Surname}}
+\newcommand{\Type}{MASTER THESIS}
+\newcommand{\Faculty}{Faculty of Automatic Control, Electronics and Computer Science}
+\newcommand{\Polsl}{Silesian University of Technology}
+\newcommand{\Logo}{graf/politechnika_sl_logo_bw_pion_en.pdf}
+\newcommand{\LeftId}{Student identification number}
+\newcommand{\LeftProgram}{Programme}
+\newcommand{\LeftSpecialisation}{Specialisation}
+\newcommand{\LeftSUPERVISOR}{SUPERVISOR}
+\newcommand{\LeftDEPARTMENT}{DEPARTMENT}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

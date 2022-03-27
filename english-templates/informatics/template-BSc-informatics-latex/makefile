@@ -1,6 +1,7 @@
 
-f=thesis
+f=main
 minted=-shell-escape 
+minteddir=_minted-$(f)
 
 .PHONY : short
 .PHONY : clean
@@ -32,4 +33,4 @@ clean :
 	do \
 		if [ -f $$p ] ; then rm $$p; fi; \
 	done;  \
-	if [ -d *minted* ] ; then rm -r *minted*; fi; 
+	if [ -d $(minteddir) ] ; then rm -r $(minteddir) ; fi; 
