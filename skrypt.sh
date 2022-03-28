@@ -10,10 +10,10 @@ for f in `find . -type d -name *latex` ; do # wyluskanie nazw katalogow
    echo $f ;    # kontrolne wypisanie nazwy katalogow
 	cd $f;       # przejscie do katalogu
 	plik=`basename *.tex .tex` ;  # zapamietanie nazwy pliku tex
-   pdflatex $minted $plik  # kompilacja 
+   xelatex $minted $plik  # kompilacja 
    biber    $plik  # kompilacja bibliografii
-   pdflatex $minted $plik
-   pdflatex $minted $plik
+   xelatex $minted $plik
+   xelatex $minted $plik
    rm *.toc *.xml *.out *.lot *.log *.lof *.bcf *.aux *.blg *.bbl *.gz *.xml *.bcf # troche porzadku
    rm -r _minted-$plik
  
