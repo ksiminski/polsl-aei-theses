@@ -30,19 +30,19 @@
 % Jeżeli w pracy używany jest pakiet minted do formatowania
 % kodów źródłowych należy kompilować w następujący sposób:
 %
-% pdflatex -shell-escape praca
-% biber                  praca
-% pdflatex -shell-escape praca
-% pdflatex -shell-escape praca 
+% pdflatex -shell-escape main
+% biber                  main
+% pdflatex -shell-escape main
+% pdflatex -shell-escape main 
 %
 % Jeżeli pakiet minted nie jest wykorzystywany, można zakomentować
 % import tego pakietu \usepackage{minted} i użycie w kodzie pracy.
 % Wtedy wystarczy prosta kompilacja 
 %
-% pdflatex praca
-% biber    praca
-% pdflatex praca
-% pdflatex praca 
+% pdflatex main
+% biber    main
+% pdflatex main
+% pdflatex main 
 %
 %
 % 2. kompilacja XeLaTeX
@@ -52,17 +52,17 @@
 % zainstalowania. Podobnie jak w przypadku pdfLaTeXa użycie
 % pakietu minted wymaga kompilacji jak poniżej:
 %
-% xelatex -shell-escape praca
-% biber                 praca
-% xelatex -shell-escape praca
-% xelatex -shell-escape praca 
+% xelatex -shell-escape main
+% biber                 main
+% xelatex -shell-escape main
+% xelatex -shell-escape main 
 %
 % Bez pakietu minted kompilacja jest trochę prostsza:
 %
-% xelatex praca
-% biber   praca
-% xelatex praca
-% xelatex praca 
+% xelatex main
+% biber   main
+% xelatex main
+% xelatex main 
 %
 %
 % dokumentacja pakietów do kodów źródłowych:

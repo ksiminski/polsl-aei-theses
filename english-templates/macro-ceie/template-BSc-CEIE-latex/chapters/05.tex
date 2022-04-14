@@ -11,8 +11,19 @@
 \item UML diagrams
 \end{itemize}
 
-Use special environments for inline code, eg  \lstinline|int a;| (package \texttt{listings}) or  \mintinline{C++}|int a;| (package \texttt{minted}). 
-Longer parts of code put in the figure environment, eg. code in Fig. \ref{fig:pseudocode:listings} i rys. \ref{fig:pseudocode:minted}. Very long listings–move to an appendix.
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% To use the minted packages uncomment the package import in        %
+% file config/settings.tex :  \usepackage{minted}                   %
+% and compile with the shell escape                                 %
+% pdflatex -shell-escape main                                       %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+
+Use special environments for inline code, eg  \lstinline|int a;| (package \texttt{listings})% or  \mintinline{C++}|int a;| (package \texttt{minted})
+. Longer parts of code put in the figure environment, eg. code in Fig. \ref{fig:pseudocode:listings}% and Fig. \ref{fig:pseudocode:minted}
+. Very long listings–move to an appendix.
 
 
 \clearpage
@@ -34,22 +45,22 @@ class test : public basic
 \label{fig:pseudocode:listings}
 \end{figure}
 
-\begin{figure}
-\centering
-\begin{minted}[linenos,frame=lines]{c++}
-class test : public basic
-{
-    public:
-      test (int a);
-      friend std::ostream operator<<(std::ostream & s, 
-                                     const test & t);
-    protected:
-      int _a;  
-      
-};
-\end{minted}
-\caption{Pseudocode in \texttt{minted}.}
-\label{fig:pseudocode:minted}
-\end{figure}
+%\begin{figure}
+%\centering
+%\begin{minted}[linenos,frame=lines]{c++}
+%class test : public basic
+%{
+%    public:
+%      test (int a);
+%      friend std::ostream operator<<(std::ostream & s, 
+%                                     const test & t);
+%    protected:
+%      int _a;  
+%      
+%};
+%\end{minted}
+%\caption{Pseudocode in \texttt{minted}.}
+%\label{fig:pseudocode:minted}
+%\end{figure}
 
 
