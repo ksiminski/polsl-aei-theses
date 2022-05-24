@@ -286,16 +286,16 @@ morekeywords={string,exception,std,vector},% keyword for the listings package
 % TODO
 \newcommand{\Firstnames}{First Names}
 \newcommand{\Surname}{Surname}
-\newcommand{\Supervisor}{$\langle$title first name surname$\rangle$}
+\newcommand{\Supervisor}{$\langle$title first name surname$\rangle$}     % remove \langle and \rangle in the final version
 \newcommand{\Title}{Thesis title in English}
 \newcommand{\TitleAlt}{Thesis title in Polish}
 \newcommand{\Program}{Control, Electronic, and Information Engineering}
 \newcommand{\Specialisation}{Informatics}
-\newcommand{\Id}{$\langle$your student id$\rangle$}
-\newcommand{\Departament}{$\langle$departament name$\rangle$}
+\newcommand{\Id}{$\langle$your student id$\rangle$}                      % remove \langle and \rangle in the final version
+\newcommand{\Departament}{$\langle$departament name$\rangle$}            % remove \langle and \rangle in the final version
 
 % If you have a consultant for your thesis, put their name below ...
-\newcommand{\Consultant}{$\langle$title first name surname$\rangle$}
+\newcommand{\Consultant}{$\langle$title first name surname$\rangle$}     % remove \langle and \rangle in the final version
 % ... else leave the braces empty:
 %\newcommand{\consultant}{} % no consultant
 
@@ -448,6 +448,14 @@ morekeywords={string,exception,std,vector},% keyword for the listings package
 
 % TODO
 \chapter{[Chapter title]}
+
+
+%\begin{itemize}
+%\item What problem do I want (have to :-) to solve?
+%\item Why the problem is important?
+%\item How do others solve the problem?
+%\item What are pros and cons of my solution?
+%\end{itemize}
 
 References to 
 book \cite{bib:book},
@@ -630,6 +638,7 @@ Each table in the document should be referred to at least once (Tab. \ref{tab:re
 %\label{fig:2}
 %\end{figure}
 %
+%\begin{figure}
 %\begin{lstlisting}
 %if (_nClusters < 1)
 %	throw std::string ("unknown number of clusters");
@@ -638,9 +647,19 @@ Each table in the document should be referred to at least once (Tab. \ref{tab:re
 %if (_nIterations > 0 and _epsilon > 0)
 %	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
 %\end{lstlisting}
+%\caption{Example of pseudocode.}
+%\end{figure}
 
 % TODO
 \chapter{Summary}
+
+%\begin{itemize}
+%\item What problem have I solved?
+%\item How have I solved the problem?
+%\item What are pros and cons of my solutions?
+%\item Can I state some recommendations?
+%\end{itemize}
+
 \begin{itemize}
 \item synthetic description of performed work
 \item conclusions
