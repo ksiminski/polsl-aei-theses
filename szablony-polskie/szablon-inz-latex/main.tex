@@ -118,8 +118,8 @@
 \renewcommand{\appendixname}{Dodatek}
 
 \usepackage{csquotes}
-%\usepackage[natbib=true]{biblatex} % biblatex
-%\bibliography{biblio}       % biblatex
+\usepackage[style=numeric,backend=bibtex]{biblatex}
+\bibliography{biblio}       % biblatex
 
 \usepackage{ifmtarg}   % empty commands  
 
@@ -629,9 +629,9 @@ class test : public basic
 
 \backmatter 
 
-\bibliographystyle{plplain} % bibtex
-\bibliography{biblio} % bibtex
-%\printbibliography           % biblatex 
+%\bibliographystyle{plplain} % bibtex
+%\bibliography{biblio} % bibtex
+\printbibliography           % biblatex 
 \addcontentsline{toc}{chapter}{Bibliografia}
 
 \begin{appendices}

@@ -121,8 +121,8 @@
 \renewcommand{\appendixname}{Dodatek}
 
 \usepackage{csquotes}
-%\usepackage[natbib=true]{biblatex}
-%\bibliography{biblio/biblio}
+\usepackage[style=numeric,backend=bibtex]{biblatex}
+\bibliography{biblio}
 
 \usepackage{ifmtarg}   % empty commands  
 
@@ -674,9 +674,9 @@ Tekst dokumentu powinien również zawierać odniesienia do tabel (tab. \ref{id:
 
 \backmatter 
 
-\bibliographystyle{plplain} % bibtex
-\bibliography{biblio} % bibtex
-%\printbibliography           % biblatex 
+%\bibliographystyle{plplain} % bibtex
+%\bibliography{biblio} % bibtex
+\printbibliography           % biblatex 
 \addcontentsline{toc}{chapter}{Bibliografia}
 
 \begin{appendices}
