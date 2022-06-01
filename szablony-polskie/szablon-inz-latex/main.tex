@@ -31,7 +31,7 @@
 % kodów źródłowych należy kompilować w następujący sposób:
 %
 % pdflatex -shell-escape main
-% biber                  main
+% bibtex                 main
 % pdflatex -shell-escape main
 % pdflatex -shell-escape main 
 %
@@ -40,7 +40,7 @@
 % Wtedy wystarczy prosta kompilacja 
 %
 % pdflatex main
-% biber    main
+% bibtex   main
 % pdflatex main
 % pdflatex main 
 %
@@ -53,14 +53,14 @@
 % pakietu minted wymaga kompilacji jak poniżej:
 %
 % xelatex -shell-escape main
-% biber                 main
+% bibtex                main
 % xelatex -shell-escape main
 % xelatex -shell-escape main 
 %
 % Bez pakietu minted kompilacja jest trochę prostsza:
 %
 % xelatex main
-% biber   main
+% bibtex  main
 % xelatex main
 % xelatex main 
 %
@@ -89,7 +89,7 @@
 \newcommand{\Departament}{$\langle$wpisać właściwą$\rangle$}        % katedra promotora
 
 % Jeżeli został wyznaczony promotor pomocniczy lub opieku proszę go/ją wpisać ...
-\newcommand{\opiekun}{$\langle$stopień naukowy imię i nazwisko$\rangle$}
+\newcommand{\Consultant}{$\langle$stopień naukowy imię i nazwisko$\rangle$}
 % ... w przeciwnym razie proszę zostawić puste miejsce jak poniżej:
 %\newcommand{\opiekun}{} % brak promotowa pomocniczego / opiekuna
 

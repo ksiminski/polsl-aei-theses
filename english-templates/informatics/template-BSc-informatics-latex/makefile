@@ -1,4 +1,4 @@
-
+:
 f=main
 minted=-shell-escape 
 minteddir=_minted-$(f)
@@ -9,19 +9,19 @@ minteddir=_minted-$(f)
 
 xelatex : $(f).tex
 	xelatex $(minted) -synctex=1 $(f)
-	biber $(f)
+	bibtex $(f)
 	xelatex $(minted) -synctex=1 $(f)
 	xelatex $(minted) -synctex=1 $(f)
 
 pdflatex : $(f).tex
 	pdflatex $(minted) -synctex=1 $(f)
-	biber $(f)
+	bibtex $(f)
 	pdflatex $(minted) -synctex=1 $(f)
 	pdflatex $(minted) -synctex=1 $(f)
 
 $(f).pdf : $(f).tex
 	pdflatex $(minted) -synctex=1 $(f)
-	biber $(f)
+	bibtex $(f)
 	pdflatex $(minted) -synctex=1 $(f)
 	pdflatex $(minted) -synctex=1 $(f)
 

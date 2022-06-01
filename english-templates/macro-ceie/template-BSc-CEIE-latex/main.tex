@@ -30,7 +30,7 @@
 % compile the project like this:
 %
 % pdflatex -shell-escape main
-% biber                  main
+% bibtex                 main
 % pdflatex -shell-escape main
 % pdflatex -shell-escape main
 %
@@ -39,7 +39,7 @@
 % Then run the compilation:
 %
 % pdflatex main
-% biber    main
+% bibtex   main
 % pdflatex main
 % pdflatex main
 %
@@ -51,17 +51,17 @@
 % As above you can use the minted package or not. 
 % Compilation with the minted package:
 %
-% xelatex -shell-escape thesis
-% biber                 thesis
-% xelatex -shell-escape thesis
-% xelatex -shell-escape thesis
+% xelatex -shell-escape main
+% bibtex                main
+% xelatex -shell-escape main
+% xelatex -shell-escape main
 %
 % Without the minted package the compilation is simpler:
 %
-% xelatex thesis
-% biber   thesis
-% xelatex thesis
-% xelatex thesis
+% xelatex main
+% bibtex  main
+% xelatex main
+% xelatex main
 %
 %
 % manuals for code snippets packages:

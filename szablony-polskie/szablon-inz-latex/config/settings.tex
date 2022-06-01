@@ -43,7 +43,7 @@
 \renewcommand{\appendixname}{Dodatek}
 
 \usepackage{csquotes}
-\usepackage[natbib=true]{biblatex}
+\usepackage[natbib=true,backend=bibtex]{biblatex}
 \bibliography{biblio/biblio}
 
 \usepackage{ifmtarg}   % empty commands  
@@ -160,12 +160,12 @@ escapeinside={@*}{*@},%
 \usepackage{xstring}
 \newcommand{\printOpiekun}[1]{%		
 
-    \StrLen{\opiekun}[\mystringlen]
+    \StrLen{\Consultant}[\mystringlen]
     \ifthenelse{\mystringlen > 0}%
     {%
        {\large{\bfseries OPIEKUN, PROMOTOR POMOCNICZY}\par}
        
-       {\large{\bfseries \opiekun}\par}
+       {\large{\bfseries \Consultant}\par}
     }%
     {}
 } 
