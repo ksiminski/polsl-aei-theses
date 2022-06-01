@@ -121,8 +121,8 @@
 
 
 \usepackage{csquotes}
-%\usepackage[natbib=true]{biblatex}
-%\bibliography{biblio/biblio}
+\usepackage[style=numeric,backend=bibtex]{biblatex}  % biblatex
+\bibliography{biblio}  % biblatex
 
 \usepackage{ifmtarg}   % empty commands  
 
@@ -669,9 +669,9 @@ Each table in the document should be referred to at least once (Tab. \ref{tab:re
 
 \backmatter 
 
-\bibliographystyle{plain} % bibtex
-\bibliography{biblio} % bibtex
-%\printbibliography           % biblatex 
+%\bibliographystyle{plain} % bibtex
+%\bibliography{biblio} % bibtex
+\printbibliography           % biblatex 
 \addcontentsline{toc}{chapter}{References}
 
 \begin{appendices}

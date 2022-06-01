@@ -123,8 +123,8 @@
 
 
 \usepackage{csquotes}
-%\usepackage[natbib=true]{biblatex} % biblatex
-%\bibliography{biblio/biblio}       % biblatex
+\usepackage[style=numeric,backend=bibtex]{biblatex}  % biblatex
+\bibliography{biblio}  % biblatex
 
 \usepackage{ifmtarg}   % empty commands  
 
@@ -631,9 +631,9 @@ class test : public basic
 
 \backmatter 
 
-\bibliographystyle{plain} % bibtex
-\bibliography{biblio} % bibtex
-%\printbibliography           % biblatex 
+%\bibliographystyle{plain} % bibtex
+%\bibliography{biblio} % bibtex
+\printbibliography           % biblatex 
 \addcontentsline{toc}{chapter}{References}
 
 \begin{appendices}
