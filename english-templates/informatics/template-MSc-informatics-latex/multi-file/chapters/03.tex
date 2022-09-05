@@ -1,0 +1,124 @@
+
+
+\chapter{[Chapter title]}
+
+tekst
+
+\section{[Section title]}
+
+\section{[Subsection title]}
+
+Each figure in the document should be referred to at least once (fig. \ref{fig:2}).
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    y tick label style={
+        /pgf/number format/.cd,
+            fixed,   % po zakomentowaniu os rzednych jest indeksowana wykladniczo
+            fixed zerofill, % 1.0 zamiast 1
+            precision=1,
+        /tikz/.cd
+    },
+    x tick label style={
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=2,
+        /tikz/.cd
+    }
+]
+\addplot [domain=0.0:0.1] {rnd};
+\end{axis} 
+\end{tikzpicture}
+\caption{Figure caption.} % Figure caption is BELOW the figure!
+\label{fig:2}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% FIGURE FROM FILE
+%
+%\begin{figure}
+%\centering
+%\includegraphics[width=0.5\textwidth]{./graf/politechnika_sl_logo_bw_pion_en.pdf}
+%\caption{Caption of a figure is always below the figure.}
+%\label{fig:label}
+%\end{figure}
+%Fig. \ref{fig:label} presents …
+%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%
+%% SUBFIGURES
+%
+%\begin{figure}
+%\centering
+%\begin{subfigure}{0.4\textwidth}
+%    \includegraphics[width=\textwidth]{./graf/politechnika_sl_logo_bw_pion_en.pdf}
+%    \caption{Upper left figure.}
+%    \label{fig:upper-left}
+%\end{subfigure}
+%\hfill
+%\begin{subfigure}{0.4\textwidth}
+%    \includegraphics[width=\textwidth]{./graf/politechnika_sl_logo_bw_pion_en.pdf}
+%    \caption{Upper right figure.}
+%    \label{fig:upper-right}
+%\end{subfigure}
+%
+%\begin{subfigure}{0.4\textwidth}
+%    \includegraphics[width=\textwidth]{./graf/politechnika_sl_logo_bw_pion_en.pdf}
+%    \caption{Lower left figure.}
+%    \label{fig:lower-left}
+%\end{subfigure}
+%\hfill
+%\begin{subfigure}{0.4\textwidth}
+%    \includegraphics[width=\textwidth]{./graf/politechnika_sl_logo_bw_pion_en.pdf}
+%    \caption{Lower right figure.}
+%    \label{fig:lower-right}
+%\end{subfigure}
+%        
+%\caption{Common caption for all subfigures.}
+%\label{fig:subfigures}
+%\end{figure}
+%Fig. \ref{fig:subfigures} presents very important information, eg. Fig. \ref{fig:upper-right} is an upper right subfigure.
+%%%%%%%%%%%%%%%%%%%%%
+
+
+Each table in the document should be referred to at least once (Tab. \ref{tab:results}).
+
+\begin{table}
+\centering
+\caption{A caption of a table is ABOVE it.}
+\label{tab:results}
+\begin{tabular}{rrrrrrrr}
+\toprule
+	         &                                     \multicolumn{7}{c}{method}                                      \\
+	         \cmidrule{2-8}
+	         &         &         &        \multicolumn{3}{c}{alg. 3}        & \multicolumn{2}{c}{alg. 4, $\gamma = 2$} \\
+	         \cmidrule(r){4-6}\cmidrule(r){7-8}
+	$\zeta$ &     alg. 1 &   alg. 2 & $\alpha= 1.5$ & $\alpha= 2$ & $\alpha= 3$ &   $\beta = 0.1$  &   $\beta = -0.1$ \\
+\midrule
+	       0 &  8.3250 & 1.45305 &       7.5791 &    14.8517 &    20.0028 & 1.16396 &                       1.1365 \\
+	       5 &  0.6111 & 2.27126 &       6.9952 &    13.8560 &    18.6064 & 1.18659 &                       1.1630 \\
+	      10 & 11.6126 & 2.69218 &       6.2520 &    12.5202 &    16.8278 & 1.23180 &                       1.2045 \\
+	      15 &  0.5665 & 2.95046 &       5.7753 &    11.4588 &    15.4837 & 1.25131 &                       1.2614 \\
+	      20 & 15.8728 & 3.07225 &       5.3071 &    10.3935 &    13.8738 & 1.25307 &                       1.2217 \\
+	      25 &  0.9791 & 3.19034 &       5.4575 &     9.9533 &    13.0721 & 1.27104 &                       1.2640 \\
+	      30 &  2.0228 & 3.27474 &       5.7461 &     9.7164 &    12.2637 & 1.33404 &                       1.3209 \\
+	      35 & 13.4210 & 3.36086 &       6.6735 &    10.0442 &    12.0270 & 1.35385 &                       1.3059 \\
+	      40 & 13.2226 & 3.36420 &       7.7248 &    10.4495 &    12.0379 & 1.34919 &                       1.2768 \\
+	      45 & 12.8445 & 3.47436 &       8.5539 &    10.8552 &    12.2773 & 1.42303 &                       1.4362 \\
+	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
+\bottomrule
+\end{tabular}
+\end{table}  
+
+
+%\chapter{[Subject of the thesis]}
+%
+%\begin{itemize}
+%\item solution to the problem proposed by the author of the thesis
+%\item theoretical analysis of proposed solutions
+%\item rationale of applied methods, algorithms, and tools
+%\end{itemize}
