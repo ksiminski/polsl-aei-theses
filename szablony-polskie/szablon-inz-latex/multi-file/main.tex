@@ -1,7 +1,7 @@
 % !TeX spellcheck = pl_PL
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
-% Szablon pracy dyplomowej inzynierskiej % 
+% Szablon pracy dyplomowej inzynierskiej %
 % zgodny  z aktualnymi  przepisami  SZJK %
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -29,19 +29,19 @@
 % pdflatex main
 % bibtex   main
 % pdflatex main
-% pdflatex main 
+% pdflatex main
 %
 %
 % 2. kompilacja XeLaTeX
 %
 % Kompilatacja przy użyciu XeLaTeXa różni się tym, że na stronie
 % tytułowej używany jest font Calibri. Wymaga to jego uprzedniego
-% zainstalowania. 
+% zainstalowania.
 %
 % xelatex main
 % bibtex  main
 % xelatex main
-% xelatex main 
+% xelatex main
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,10 +49,10 @@
 %      krzysztof.siminski(małpa)polsl.pl            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Chcemy ulepszać szablony LaTeXowe prac dyplomowych. 
-% Wypełniając ankietę spod poniższego adresu pomogą 
-% Państwo nam to zrobić. Ankieta jest całkowicie 
-% anonimowa. Dziękujemy! 
+% Chcemy ulepszać szablony LaTeXowe prac dyplomowych.
+% Wypełniając ankietę spod poniższego adresu pomogą
+% Państwo nam to zrobić. Ankieta jest całkowicie
+% anonimowa. Dziękujemy!
 % https://docs.google.com/forms/d/e/1FAIpQLScyllVxNKzKFHfILDfdbwC-jvT8YL0RSTFs-s27UGw9CKn-fQ/viewform?usp=sf_link
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -91,26 +91,27 @@
 %                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{config/settings.tex} % Proszę nie modyfikować pliku settings.tex
 
 \input{config/my-settings.tex} % Tutaj proszę umieścić swoje pakiety, makra, ustawienia itd.
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
-%\kslistofremarks 
+%\kslistofremarks
 
+\frontmatter
 \input{config/titlepage.tex}  % Proszę nie modyfikować pliku titlepage.tex
 
 \cleardoublepage
- 
+
 \rmfamily\normalfont
 \pagestyle{empty}
 
-  
+
 %%% No to zaczynamy pisać pracę :-) %%%%
 
 % TODO
@@ -118,16 +119,15 @@
 
 
 %%%%%%%%%%%%%%%%%% SPIS TRESCI %%%%%%%%%%%%%%%%%%%%%%
-%\pagenumbering{Roman}
-\thispagestyle{empty}
+% Add \thispagestyle{empty} to the toc file (main.toc), because \pagestyle{empty} doesn't work if the TOC has multiple pages
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
-\thispagestyle{empty}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{stronyPozaNumeracja}{\value{page}}
 \mainmatter
 \pagestyle{empty}
- 
+
 \cleardoublepage
 
 \pagestyle{NumeryStronNazwyRozdzialow}
@@ -138,7 +138,7 @@
 \input{chapters/01.tex}  % wstęp
 
 % TODO
-\input{chapters/02.tex} % analiza tematu 
+\input{chapters/02.tex} % analiza tematu
 
 % TODO
 \input{chapters/03.tex} % Wymagania i narzędzia
@@ -155,11 +155,11 @@
 % TODO
 \input{chapters/07.tex} % Podsumowanie i wnioski
 
-\backmatter 
+\backmatter
 
 %\bibliographystyle{plplain}  % bibtex
 %\bibliography{biblio/biblio} % bibtex
-\printbibliography           % biblatex 
+\printbibliography           % biblatex
 \addcontentsline{toc}{chapter}{Bibliografia}
 
 \begin{appendices}
@@ -177,7 +177,7 @@
 \addcontentsline{toc}{chapter}{Spis rysunków}
 \listoftables
 \addcontentsline{toc}{chapter}{Spis tabel}
-	
+
 \end{appendices}
 
 \end{document}
