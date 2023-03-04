@@ -1,7 +1,7 @@
 % !TeX spellcheck = en_GB
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
-%    Engineer thesis LaTeX template      % 
+%    Engineer thesis LaTeX template      %
 %  compliant with the SZJK regulations   %
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,15 +17,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-% This LaTeX project formats the final thesis 
-% with compliance to the SZJK regulations. 
+% This LaTeX project formats the final thesis
+% with compliance to the SZJK regulations.
 % Please to not change formatting (fonts, margins,
 % bolds, italics, etc).
 %
 % You can compile the project in several ways.
 %
 % 1. pdfLaTeX compilation
-% 
+%
 % pdflatex main
 % bibtex   main
 % pdflatex main
@@ -36,7 +36,7 @@
 %
 % Compilation with the XeLaTeX engine inserts Calibri font
 % in the title page. Of course the font has to be installed.
-% 
+%
 % xelatex main
 % bibtex  main
 % xelatex main
@@ -48,10 +48,10 @@
 %            krzysztof.siminski(at)polsl.pl               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% We would like to improve the LaTeX templates 
-% of final theses. By answering the questions 
-% in the survey whose address your can find below 
-% you help us to do so. The survey is completely 
+% We would like to improve the LaTeX templates
+% of final theses. By answering the questions
+% in the survey whose address your can find below
+% you help us to do so. The survey is completely
 % anonimous. Thank you!
 %
 % https://docs.google.com/forms/d/e/1FAIpQLScyllVxNKzKFHfILDfdbwC-jvT8YL0RSTFs-s27UGw9CKn-fQ/viewform?usp=sf_link
@@ -72,7 +72,7 @@
 \newcommand{\Supervisor}{$\langle$title first name surname$\rangle$}  % supervisor (remove $\langle$ and $\rangle)
 \newcommand{\Title}{Thesis title in English}
 \newcommand{\TitleAlt}{Thesis title in Polish}
-\newcommand{\Program}{Control, Electronic, and Information Engineering} 
+\newcommand{\Program}{Control, Electronic, and Information Engineering}
 \newcommand{\Specialisation}{Informatics}
 \newcommand{\Id}{$\langle$your student id$\rangle$} %  (remove $\langle$ and $\rangle)
 \newcommand{\Departament}{$\langle$departament name$\rangle$} % your supervisor's departament  (remove $\langle$ and $\rangle)
@@ -92,7 +92,7 @@
 %                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,10 +104,10 @@
 
 
 \documentclass[a4paper,twoside,12pt]{book}
-\usepackage[utf8]{inputenc}                                      
-\usepackage[T1]{fontenc}  
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage[polish,british]{babel} 
+\usepackage[polish,british]{babel}
 \usepackage{indentfirst}
 \usepackage{xurl}
 
@@ -126,7 +126,7 @@
 
 
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{graphicx} 
+\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{tikz}
@@ -144,7 +144,7 @@
 %\usepackage[natbib=true,backend=biber,maxbibnames=99]{biblatex}  % compilation of bibliography with Biber
 \bibliography{biblio}
 
-\usepackage{ifmtarg}   % empty commands  
+\usepackage{ifmtarg}   % empty commands
 
 \usepackage{setspace}
 \onehalfspacing
@@ -180,7 +180,7 @@
 
 
 
-%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%  
+%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
 
 %%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
 % no capitalisation of headers
@@ -193,23 +193,23 @@
 
 
 \fancypagestyle{onlyPageNumbers}{%
-   \fancyhf{} 
+   \fancyhf{}
    \fancyhead[LE,RO]{\it\thepage}
 }
 
 \fancypagestyle{noNumbers}{%
-   \fancyhf{} 
+   \fancyhf{}
    \fancyhead[LE,RO]{}
 }
 
 
 \fancypagestyle{PageNumbersChapterTitles}{%
-   \fancyhf{} 
+   \fancyhf{}
    \fancyhead[LO]{\nouppercase{\Firstnames\ \Surname}}
-   \fancyhead[RE]{\nouppercase{\leftmark}} 
+   \fancyhead[RE]{\nouppercase{\leftmark}}
    \fancyfoot[CE, CO]{\thepage}
 }
- 
+
 
 
 
@@ -223,23 +223,23 @@
 
 \newcounter{pagesWithoutNumbers}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{xstring}
 \usepackage{ifthen}
-\newcommand{\printOpiekun}[1]{%		
+\newcommand{\printOpiekun}[1]{%
 
     \StrLen{\Consultant}[\mystringlen]
     \ifthenelse{\mystringlen > 0}%
     {%
        {\large{\bfseries CONSULTANT}\par}
-       
+
        {\large{\bfseries \Consultant}\par}
     }%
     {}
-} 
+}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
+
 % Please do not modify the lines below!
 \author{\Firstnames\ \Surname}
 \newcommand{\Author}{\Firstnames\ \MakeUppercase{\Surname}}
@@ -272,11 +272,11 @@
 % Put your packages, macros, setting here.
 
 
- 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % listings
 % packages: listings or minted
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 % package listings
 \usepackage{listings}
@@ -297,7 +297,7 @@ breaklines=true,%
 escapeinside={@*}{*@},%
 }
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % package minted
 % \usepackage{minted}
 
@@ -316,14 +316,14 @@ escapeinside={@*}{*@},%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
-%\kslistofremarks 
+%\kslistofremarks
 
-
+\frontmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %
 %    PLEASE DO NOT MODIFY THE TITLE PAGE!     %
@@ -338,90 +338,90 @@ escapeinside={@*}{*@},%
 	             bottom=2.5cm,%
 	             left=3cm,
 	             right=2.5cm}
- 
-	\ifxetex 
+
+	\ifxetex
 	  \begingroup
 	  \setsansfont{Calibri}
-	   
-	\fi 
+
+	\fi
 	 \sffamily
 	\begin{center}
 	\includegraphics[width=50mm]{\Logo}
-	 
-	
-	{\Large\bfseries\Type\par}
-	
-	\vfill  \vfill  
-			 
-	{\large\Title\par}
-	
-	\vfill  
-		
-	{\large\bfseries\Author\par}
-	
-	{\normalsize\bfseries \LeftId: \Id}
-	
-	\vfill  		
- 
-	{\large{\bfseries \LeftProgram:} \Program\par} 
-	
-	{\large{\bfseries \LeftSpecialisation:} \Specialisation\par} 
-	 		
-	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill  
-	 
-	{\large{\bfseries \LeftSUPERVISOR}\par}
-	
-	{\large{\bfseries \Supervisor}\par}
-				
-	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
-		
-	{\large{\bfseries \Faculty}\par}
-		
-	\vfill  \vfill  
 
-    	
+
+	{\Large\bfseries\Type\par}
+
+	\vfill  \vfill
+
+	{\large\Title\par}
+
+	\vfill
+
+	{\large\bfseries\Author\par}
+
+	{\normalsize\bfseries \LeftId: \Id}
+
+	\vfill
+
+	{\large{\bfseries \LeftProgram:} \Program\par}
+
+	{\large{\bfseries \LeftSpecialisation:} \Specialisation\par}
+
+	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill
+
+	{\large{\bfseries \LeftSUPERVISOR}\par}
+
+	{\large{\bfseries \Supervisor}\par}
+
+	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
+
+	{\large{\bfseries \Faculty}\par}
+
+	\vfill  \vfill
+
+
     \printOpiekun{\Consultant}
-    
-	\vfill  \vfill  
-		
+
+	\vfill  \vfill
+
     {\large\bfseries  Gliwice \the\year}
 
-   \end{center}	
-       \ifxetex 
+   \end{center}
+       \ifxetex
        	  \endgroup
        \fi
 	\restoregeometry
 }
-  
+
 
 
 \cleardoublepage
- 
+
 \rmfamily\normalfont
 \pagestyle{empty}
 
-  
+
 %%% Let's start the thesis %%%%
 
 % TODO
 \subsubsection*{Thesis title} \Title
 
-\subsubsection*{Abstract}  
+\subsubsection*{Abstract}
 (Thesis abstract – to be copied into an appropriate field during an electronic submission – in English.)
 
-\subsubsection*{Keywords} 
+\subsubsection*{Keywords}
 (2-5 keywords, separated with commas)
 
-\subsubsection*{Tytuł pracy} 
+\subsubsection*{Tytuł pracy}
 \begin{otherlanguage}{polish}
 \TitleAlt
 \end{otherlanguage}
 
-\subsubsection*{Streszczenie} 
+\subsubsection*{Streszczenie}
 \begin{otherlanguage}{polish}
 (Thesis abstract – to be copied into an appropriate field during an electronic submission – in Polish.)
 \end{otherlanguage}
-\subsubsection*{Słowa kluczowe}  
+\subsubsection*{Słowa kluczowe}
 \begin{otherlanguage}{polish}
 (2-5 keywords, separated by commas, in Polish)
 \end{otherlanguage}
@@ -430,16 +430,15 @@ escapeinside={@*}{*@},%
 
 
 %%%%%%%%%%%%%%%%%% Table of contents %%%%%%%%%%%%%%%%%%%%%%
-%\pagenumbering{Roman}
-\thispagestyle{empty}
+% Add \thispagestyle{empty} to the toc file (main.toc), because \pagestyle{empty} doesn't work if the TOC has multiple pages
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
-\thispagestyle{empty}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{pagesWithoutNumbers}{\value{page}}
 \mainmatter
 \pagestyle{empty}
- 
+
 \cleardoublepage
 
 \pagestyle{PageNumbersChapterTitles}
@@ -452,7 +451,7 @@ escapeinside={@*}{*@},%
 \begin{itemize}
 \item introduction into the problem domain
 \item settling of the problem in the domain
-\item objective of the thesis 
+\item objective of the thesis
 \item scope of the thesis
 \item short description of chapters
 \item clear description of contribution of the thesis's author – in case of more authors table with enumeration of contribution of authors
@@ -471,7 +470,7 @@ escapeinside={@*}{*@},%
 
 
 
-Mathematical formulae  
+Mathematical formulae
 \begin{align}
 y = \frac{\partial x}{\partial t}
 \end{align}
@@ -487,7 +486,7 @@ and single math symbols $x$ and $y$ are typeset in the mathematical mode.
 \item use cases (UML diagrams)
 \item description of tools
 \item methodology of design and implementation
-\end{itemize} 
+\end{itemize}
 
 % TODO
 \chapter{External specification}
@@ -505,14 +504,14 @@ and single math symbols $x$ and $y$ are typeset in the mathematical mode.
 
 
 
- 
+
 \begin{figure}
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     y tick label style={
         /pgf/number format/.cd,
-            fixed,    
+            fixed,
             fixed zerofill, % 1.0 zamiast 1
             precision=1,
         /tikz/.cd
@@ -526,7 +525,7 @@ and single math symbols $x$ and $y$ are typeset in the mathematical mode.
     }
 ]
 \addplot [domain=0.0:0.1] {rnd};
-\end{axis} 
+\end{axis}
 \end{tikzpicture}
 \caption{Figure caption (below the figure).}
 \label{fig:2}
@@ -572,7 +571,7 @@ and single math symbols $x$ and $y$ are typeset in the mathematical mode.
 %    \caption{Lower right figure.}
 %    \label{fig:lower-right}
 %\end{subfigure}
-%        
+%
 %\caption{Common caption for all subfigures.}
 %\label{fig:subfigures}
 %\end{figure}
@@ -596,12 +595,12 @@ and single math symbols $x$ and $y$ are typeset in the mathematical mode.
 
 
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % To use the minted packages uncomment the package import in        %
 % file config/settings.tex :  \usepackage{minted}                   %
 % and compile with the shell escape                                 %
 % pdflatex -shell-escape main                                       %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 
 Use special environments for inline code, eg  \lstinline|int a;| (package \texttt{listings})% or  \mintinline{C++}|int a;| (package \texttt{minted})
@@ -617,11 +616,11 @@ class test : public basic
 {
     public:
       test (int a);
-      friend std::ostream operator<<(std::ostream & s, 
+      friend std::ostream operator<<(std::ostream & s,
                                      const test & t);
     protected:
-      int _a;  
-      
+      int _a;
+
 };
 \end{lstlisting}
 \caption{Pseudocode in \texttt{listings}.}
@@ -635,11 +634,11 @@ class test : public basic
 %{
 %    public:
 %      test (int a);
-%      friend std::ostream operator<<(std::ostream & s, 
+%      friend std::ostream operator<<(std::ostream & s,
 %                                     const test & t);
 %    protected:
-%      int _a;  
-%      
+%      int _a;
+%
 %};
 %\end{minted}
 %\caption{Pseudocode in \texttt{minted}.}
@@ -658,7 +657,7 @@ class test : public basic
 \item results of experiments (optional)
 \end{itemize}
 
- 
+
 \begin{table}
 \centering
 \caption{A caption of a table is \textbf{above} it.}
@@ -684,7 +683,7 @@ class test : public basic
 	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
 \bottomrule
 \end{tabular}
-\end{table}  
+\end{table}
 
 
 
@@ -698,11 +697,11 @@ class test : public basic
 
 
 
-\backmatter 
+\backmatter
 
 %\bibliographystyle{plain}  % bibtex
 %\bibliography{biblio} % bibtex
-\printbibliography           % biblatex 
+\printbibliography           % biblatex
 \addcontentsline{toc}{chapter}{Bibliography}
 
 \begin{appendices}
@@ -713,7 +712,7 @@ class test : public basic
 
 \begin{itemize}
 \item[DNA] deoxyribonucleic acid
-\item[MVC] model--view--controller 
+\item[MVC] model--view--controller
 \item[$N$] cardinality of data set
 \item[$\mu$] membership function of a fuzzy set
 \item[$\mathbb{E}$] set of edges of a graph
@@ -736,12 +735,12 @@ if (_nIterations > 0 and _epsilon > 0)
 \end{lstlisting}
 
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % To use the minted packages uncomment the package import in        %
 % file config/settings.tex :  \usepackage{minted}                   %
 % and compile with the shell escape                                 %
 % pdflatex -shell-escape main                                       %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 %\begin{minted}[linenos,breaklines,frame=lines]{c++}
 %if (_nClusters < 1)
@@ -750,7 +749,7 @@ if (_nIterations > 0 and _epsilon > 0)
 %	throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
 %if (_nIterations > 0 and _epsilon > 0)
 %	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
-%\end{minted} 
+%\end{minted}
 
 % TODO
 \chapter{List of additional files in~electronic submission (if applicable)}
@@ -768,7 +767,7 @@ Additional files uploaded to the system include:
 \addcontentsline{toc}{chapter}{List of figures}
 \listoftables
 \addcontentsline{toc}{chapter}{List of tables}
-	
+
 \end{appendices}
 
 \end{document}

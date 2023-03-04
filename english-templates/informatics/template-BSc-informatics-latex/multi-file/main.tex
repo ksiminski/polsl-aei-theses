@@ -1,7 +1,7 @@
 % !TeX spellcheck = en_GB
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
-%    Engineer thesis LaTeX template      % 
+%    Engineer thesis LaTeX template      %
 %  compliant with the SZJK regulations   %
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,15 +17,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
-% This LaTeX project formats the final thesis 
-% with compliance to the SZJK regulations. 
+% This LaTeX project formats the final thesis
+% with compliance to the SZJK regulations.
 % Please to not change formatting (fonts, margins,
 % bolds, italics, etc).
 %
 % You can compile the project in several ways.
 %
 % 1. pdfLaTeX compilation
-% 
+%
 % pdflatex main
 % bibtex   main
 % pdflatex main
@@ -36,7 +36,7 @@
 %
 % Compilation with the XeLaTeX engine inserts Calibri font
 % in the title page. Of course the font has to be installed.
-% 
+%
 
 % xelatex main
 % bibtex  main
@@ -49,10 +49,10 @@
 %            krzysztof.siminski(at)polsl.pl               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% We would like to improve the LaTeX templates 
-% of final theses. By answering the questions 
-% in the survey whose address your can find below 
-% you help us to do so. The survey is completely 
+% We would like to improve the LaTeX templates
+% of final theses. By answering the questions
+% in the survey whose address your can find below
+% you help us to do so. The survey is completely
 % anonimous. Thank you!
 %
 % https://docs.google.com/forms/d/e/1FAIpQLScyllVxNKzKFHfILDfdbwC-jvT8YL0RSTFs-s27UGw9CKn-fQ/viewform?usp=sf_link
@@ -73,7 +73,7 @@
 \newcommand{\Supervisor}{$\langle$title first name surname$\rangle$}  % supervisor (remove $\langle$ and $\rangle)
 \newcommand{\Title}{Thesis title in English}
 \newcommand{\TitleAlt}{Thesis title in Polish}
-\newcommand{\Program}{Informatics} 
+\newcommand{\Program}{Informatics}
 \newcommand{\Specialisation}{Informatics}
 \newcommand{\Id}{$\langle$your student id$\rangle$} %  (remove $\langle$ and $\rangle)
 \newcommand{\Departament}{$\langle$departament name$\rangle$} % your supervisor's departament  (remove $\langle$ and $\rangle)
@@ -93,26 +93,27 @@
 %                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{config/settings.tex} % Do not modify!
 
 \input{config/my-settings.tex} % Put your settings, packages, macros here.
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
-%\kslistofremarks 
+%\kslistofremarks
 
+\frontmatter
 \input{config/titlepage.tex}  % Please to not modify the titlepage.tex file!
 
 \cleardoublepage
- 
+
 \rmfamily\normalfont
 \pagestyle{empty}
 
-  
+
 %%% Let's start the thesis %%%%
 
 % TODO
@@ -120,16 +121,15 @@
 
 
 %%%%%%%%%%%%%%%%%% Table of contents %%%%%%%%%%%%%%%%%%%%%%
-%\pagenumbering{Roman}
-\thispagestyle{empty}
+% Add \thispagestyle{empty} to the toc file (main.toc), because \pagestyle{empty} doesn't work if the TOC has multiple pages
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
-\thispagestyle{empty}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{pagesWithoutNumbers}{\value{page}}
 \mainmatter
 \pagestyle{empty}
- 
+
 \cleardoublepage
 
 \pagestyle{PageNumbersChapterTitles}
@@ -137,49 +137,49 @@
 %%%%%%%%%%%%%% body of the thesis %%%%%%%%%%%%%%%%%
 
 % TODO
-\input{chapters/01.tex} 
+\input{chapters/01.tex}
 
 % TODO
-\input{chapters/02.tex}  
+\input{chapters/02.tex}
 
 % TODO
-\input{chapters/03.tex} 
+\input{chapters/03.tex}
 
 % TODO
-\input{chapters/04.tex} 
+\input{chapters/04.tex}
 
 % TODO
-\input{chapters/05.tex} 
+\input{chapters/05.tex}
 
 % TODO
-\input{chapters/06.tex} 
+\input{chapters/06.tex}
 
 % TODO
-\input{chapters/07.tex} 
+\input{chapters/07.tex}
 
-\backmatter 
+\backmatter
 
 %\bibliographystyle{plain}  % bibtex
 %\bibliography{biblio/biblio} % bibtex
-\printbibliography           % biblatex 
+\printbibliography           % biblatex
 \addcontentsline{toc}{chapter}{Bibliography}
 
 \begin{appendices}
 
 % TODO
-\input{chapters/08.tex}  
+\input{chapters/08.tex}
 
 % TODO
-\input{chapters/09.tex}  
+\input{chapters/09.tex}
 
 % TODO
-\input{chapters/10.tex} 
+\input{chapters/10.tex}
 
 \listoffigures
 \addcontentsline{toc}{chapter}{List of figures}
 \listoftables
 \addcontentsline{toc}{chapter}{List of tables}
-	
+
 \end{appendices}
 
 \end{document}
