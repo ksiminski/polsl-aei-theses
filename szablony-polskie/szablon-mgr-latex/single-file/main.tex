@@ -2,7 +2,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
-% Szablon pracy dyplomowej magisterskiej % 
+% Szablon pracy dyplomowej magisterskiej %
 % zgodny  z aktualnymi  przepisami  SZJK %
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,19 +30,19 @@
 % pdflatex main
 % bibtex   main
 % pdflatex main
-% pdflatex main 
+% pdflatex main
 %
 %
 % 2. kompilacja XeLaTeX
 %
 % Kompilatacja przy użyciu XeLaTeXa różni się tym, że na stronie
 % tytułowej używany jest font Calibri. Wymaga to jego uprzedniego
-% zainstalowania. 
+% zainstalowania.
 %
 % xelatex main
 % bibtex  main
 % xelatex main
-% xelatex main 
+% xelatex main
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,10 +50,10 @@
 %      krzysztof.siminski(małpa)polsl.pl            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Chcemy ulepszać szablony LaTeXowe prac dyplomowych. 
-% Wypełniając ankietę spod poniższego adresu pomogą 
-% Państwo nam to zrobić. Ankieta jest całkowicie 
-% anonimowa. Dziękujemy! 
+% Chcemy ulepszać szablony LaTeXowe prac dyplomowych.
+% Wypełniając ankietę spod poniższego adresu pomogą
+% Państwo nam to zrobić. Ankieta jest całkowicie
+% anonimowa. Dziękujemy!
 %
 % https://docs.google.com/forms/d/e/1FAIpQLScyllVxNKzKFHfILDfdbwC-jvT8YL0RSTFs-s27UGw9CKn-fQ/viewform?usp=sf_link
 %
@@ -92,7 +92,7 @@
 %                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,10 +104,10 @@
 
 
 \documentclass[a4paper,twoside,12pt]{book}
-\usepackage[utf8]{inputenc}                                      
-\usepackage[T1]{fontenc}  
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage[british,polish]{babel} 
+\usepackage[british,polish]{babel}
 \usepackage{indentfirst}
 \usepackage{xurl}
 
@@ -126,7 +126,7 @@
 
 
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{graphicx} 
+\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{tikz}
@@ -144,7 +144,7 @@
 %\usepackage[natbib=true,backend=biber,maxbibnames=99]{biblatex}  % kompilacja bibliografii Biberem
 \bibliography{biblio}
 
-\usepackage{ifmtarg}   % empty commands  
+\usepackage{ifmtarg}   % empty commands
 
 \usepackage{setspace}
 \onehalfspacing
@@ -193,24 +193,24 @@
 
 
 \fancypagestyle{tylkoNumeryStron}{%
-   \fancyhf{} 
+   \fancyhf{}
    \fancyhead[LE,RO]{\it\thepage}
 }
 
 \fancypagestyle{bezNumeracji}{%
-   \fancyhf{} 
+   \fancyhf{}
    \fancyhead[LE,RO]{}
 }
 
 \fancypagestyle{NumeryStronNazwyRozdzialow}{%
-   \fancyhf{} 
+   \fancyhf{}
    \fancyhead[LE]{\nouppercase{\FirstName\ \Surname}}
-   \fancyhead[RO]{\nouppercase{\leftmark}} 
+   \fancyhead[RO]{\nouppercase{\leftmark}}
    \fancyfoot[CE, CO]{\thepage}
 }
 
 
-%%%%%%%%%%%%% OBCE WTRETY  
+%%%%%%%%%%%%% OBCE WTRETY
 \newcommand{\obcy}[1]{\emph{#1}}
 \newcommand{\english}[1]{{\selectlanguage{british}\obcy{#1}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -223,28 +223,28 @@
 
 \newcounter{stronyPozaNumeracja}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{xstring}
 \usepackage{ifthen}
-\newcommand{\printOpiekun}[1]{%		
+\newcommand{\printOpiekun}[1]{%
 
     \StrLen{\Consultant}[\mystringlen]
     \ifthenelse{\mystringlen > 0}%
     {%
        {\large{\bfseries OPIEKUN, PROMOTOR POMOCNICZY}\par}
-       
+
        {\large{\bfseries \Consultant}\par}
     }%
     {}
-} 
+}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
+
 % Proszę nie modyfikować poniższych definicji!
 \author{\FirstName\ \Surname}
 \newcommand{\Author}{\FirstName\ \MakeUppercase{\Surname}}
 \newcommand{\Type}{PRACA MAGISTERSKA}
-\newcommand{\Faculty}{Wydział Automatyki, Elektroniki i Informatyki} 
+\newcommand{\Faculty}{Wydział Automatyki, Elektroniki i Informatyki}
 \newcommand{\Polsl}{Politechnika Śląska}
 \newcommand{\Logo}{politechnika_sl_logo_bw_pion_pl.pdf}
 \newcommand{\LeftId}{Nr albumu}
@@ -272,11 +272,11 @@
 % Tutaj proszę umieszczać swoje pakiety, makra, ustawienia itd.
 
 
- 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% listingi i fragmentu kodu źródłowego 
+% listingi i fragmentu kodu źródłowego
 % pakiet: listings lub minted
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 % biblioteka listings
 \usepackage{listings}
@@ -296,7 +296,7 @@ breaklines=true,%
 escapeinside={@*}{*@},%
 }
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % pakiet minted
 %\usepackage{minted}
 
@@ -331,13 +331,14 @@ escapeinside={@*}{*@},%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
-%\kslistofremarks 
+%\kslistofremarks
 
+\frontmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %
 % PROSZĘ NIE MODYFIKOWAĆ STRONY TYTUŁOWEJ!    %
@@ -352,96 +353,96 @@ escapeinside={@*}{*@},%
 	             bottom=2.5cm,%
 	             left=3cm,
 	             right=2.5cm}
- 
-	\ifxetex 
+
+	\ifxetex
 	  \begingroup
 	  \setsansfont{Calibri}
-	   
-	\fi 
+
+	\fi
 	 \sffamily
 	\begin{center}
 	\includegraphics[width=50mm]{\Logo}
-	 
-	
-	{\Large\bfseries\Type\par}
-	
-	\vfill  \vfill  
-			 
-	{\large\Title\par}
-	
-	\vfill  
-		
-	{\large\bfseries\Author\par}
-	
-	{\normalsize\bfseries \LeftId: \Id}
-	
-	\vfill  		
- 
-	{\large{\bfseries \LeftProgram:} \Program\par} 
-	
-	{\large{\bfseries \LeftSpecialisation:} \Specialisation\par} 
-	 		
-	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill  
-	 
-	{\large{\bfseries \LeftSUPERVISOR}\par}
-	
-	{\large{\bfseries \Supervisor}\par}
-				
-	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
-		
-	{\large{\bfseries \Faculty}\par}
-		
-	\vfill  \vfill  
 
-    	
+
+	{\Large\bfseries\Type\par}
+
+	\vfill  \vfill
+
+	{\large\Title\par}
+
+	\vfill
+
+	{\large\bfseries\Author\par}
+
+	{\normalsize\bfseries \LeftId: \Id}
+
+	\vfill
+
+	{\large{\bfseries \LeftProgram:} \Program\par}
+
+	{\large{\bfseries \LeftSpecialisation:} \Specialisation\par}
+
+	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill
+
+	{\large{\bfseries \LeftSUPERVISOR}\par}
+
+	{\large{\bfseries \Supervisor}\par}
+
+	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
+
+	{\large{\bfseries \Faculty}\par}
+
+	\vfill  \vfill
+
+
     \printOpiekun{\Consultant}
-    
-	\vfill  \vfill  
-		
+
+	\vfill  \vfill
+
     {\large\bfseries  Gliwice \the\year}
 
-   \end{center}	
-       \ifxetex 
+   \end{center}
+       \ifxetex
        	  \endgroup
        \fi
 	\restoregeometry
 }
-  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %
 % KONIEC STRONY TYTUŁOWEJ                     %
 %                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \cleardoublepage
- 
+
 \rmfamily\normalfont
 \pagestyle{empty}
 
-  
+
 %%% No to zaczynamy pisać pracę :-) %%%%
 
 % TODO
-\subsubsection*{Tytuł pracy} 
+\subsubsection*{Tytuł pracy}
 \Title
 
-\subsubsection*{Streszczenie}  
+\subsubsection*{Streszczenie}
 (Streszczenie pracy – odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia.)
 
-\subsubsection*{Słowa kluczowe} 
+\subsubsection*{Słowa kluczowe}
 (2-5 slow (fraz) kluczowych, oddzielonych przecinkami)
 
-\subsubsection*{Thesis title} 
+\subsubsection*{Thesis title}
 \begin{otherlanguage}{british}
 \TitleAlt
 \end{otherlanguage}
 
-\subsubsection*{Abstract} 
+\subsubsection*{Abstract}
 \begin{otherlanguage}{british}
 (Thesis abstract – to be copied into an appropriate field during an electronic submission – in English.)
 \end{otherlanguage}
-\subsubsection*{Key words}  
+\subsubsection*{Key words}
 \begin{otherlanguage}{british}
 (2-5 keywords, separated by commas)
 \end{otherlanguage}
@@ -450,16 +451,15 @@ escapeinside={@*}{*@},%
 
 
 %%%%%%%%%%%%%%%%%% SPIS TRESCI %%%%%%%%%%%%%%%%%%%%%%
-%\pagenumbering{Roman}
-\thispagestyle{empty}
+% Add \thispagestyle{empty} to the toc file (main.toc), because \pagestyle{empty} doesn't work if the TOC has multiple pages
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
-\thispagestyle{empty}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{stronyPozaNumeracja}{\value{page}}
 \mainmatter
 \pagestyle{empty}
- 
+
 \cleardoublepage
 
 \pagestyle{NumeryStronNazwyRozdzialow}
@@ -470,18 +470,18 @@ escapeinside={@*}{*@},%
 \chapter{Wstęp}
 
 %\begin{itemize}
-%\item wprowadzenie w problem/zagadnienie 
-%\item osadzenie problemu w dziedzinie 
-%\item cel pracy 
-%\item zakres pracy 
-%\item zwięzła charakterystyka rozdziałów 
+%\item wprowadzenie w problem/zagadnienie
+%\item osadzenie problemu w dziedzinie
+%\item cel pracy
+%\item zakres pracy
+%\item zwięzła charakterystyka rozdziałów
 %\end{itemize}
 
 
 
 % TODO
 \chapter{[Tytuł rozdziału]}  % Analiza tematu
-% 
+%
 
 %\begin{itemize}
 %\item Jaki problem chcę (muszę :-) rozwiązać?
@@ -490,9 +490,9 @@ escapeinside={@*}{*@},%
 %\item Jakie są zalety i wady tych rozwiązań?
 %\end{itemize}
 
-Odwołania do literatury: 
+Odwołania do literatury:
 książek \cite{bib:ksiazka},
-artykułów w czasopismach \cite{bib:artykul}, 
+artykułów w czasopismach \cite{bib:artykul},
 materiałów konferencyjnych \cite{bib:konferencja}
 i stron www \cite{bib:internet}.
 
@@ -504,18 +504,18 @@ y = \frac{\partial x}{\partial t}
 %
 %\begin{itemize}
 %\item analiza tematu
-%\item wprowadzenie do dziedziny (\english{state of the art}) – sformułowanie problemu, 
+%\item wprowadzenie do dziedziny (\english{state of the art}) – sformułowanie problemu,
 %\item poszerzone studia literaturowe, przegląd literatury tematu (należy wskazać źródła wszystkich informacji zawartych w pracy)
 %\item opis znanych rozwiązań, algorytmów, osadzenie pracy w kontekście
-%\item Tytuł rozdziału jest często zbliżony do tematu pracy. 
-%\item Rozdział jest wysycony cytowaniami do literatury \cite{bib:artykul,bib:ksiazka,bib:konferencja}. 
+%\item Tytuł rozdziału jest często zbliżony do tematu pracy.
+%\item Rozdział jest wysycony cytowaniami do literatury \cite{bib:artykul,bib:ksiazka,bib:konferencja}.
 %Cytowanie książki \cite{bib:ksiazka}, artykułu w czasopiśmie \cite{bib:artykul}, artykułu konferencyjnego \cite{bib:konferencja} lub strony internetowej \cite{bib:internet}.
 %\end{itemize}
 
 
 % TODO
 
-\chapter{[Tytuł rozdziału]} 
+\chapter{[Tytuł rozdziału]}
 
 tekst
 
@@ -545,7 +545,7 @@ W całym dokumencie powinny znajdować się odniesienia do zawartych w nim ilust
     }
 ]
 \addplot [domain=0.0:0.1] {rnd};
-\end{axis} 
+\end{axis}
 \end{tikzpicture}
 \caption{Wykres przebiegu funkcji.} % Podpis jest zawsze POD rysunkiem.
 \label{fig:2}
@@ -565,7 +565,7 @@ W całym dokumencie powinny znajdować się odniesienia do zawartych w nim ilust
 %%%%%%%%%%%%%%%%%%%%%
 %
 %%%%%%%%%%%%%%%%%%%%%
-%% WIELE RYSUNKÓW 
+%% WIELE RYSUNKÓW
 %
 %\begin{figure}
 %\centering
@@ -592,7 +592,7 @@ W całym dokumencie powinny znajdować się odniesienia do zawartych w nim ilust
 %    \caption{Prawy dolny rysunek.}
 %    \label{fig:prawy-dolny}
 %\end{subfigure}
-%        
+%
 %\caption{Wspólny podpis kilku rysunków.}
 %\label{fig:wiele-rysunkow}
 %\end{figure}
@@ -627,7 +627,7 @@ Tekst dokumentu powinien również zawierać odniesienia do tabel (tab. \ref{id:
 	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
 \bottomrule
 \end{tabular}
-\end{table}  
+\end{table}
 
 %\chapter{[Przedmiot pracy]}
 %
@@ -644,10 +644,10 @@ Tekst dokumentu powinien również zawierać odniesienia do tabel (tab. \ref{id:
 % TODO
 \chapter{Badania}
 %
-% 
+%
 %
 %Rozdział przedstawia przeprowadzone badania. Jest to zasadnicza część i~musi wyraźnie dominować w~pracy.
-%Badania i analizę wyników należy przeprowadzić, tak jak jest przyjęte w środowisku naukowym (na przykład korzystanie z danych benchmarkowych, walidacja krzyżowa, zapewnienie powtarzalności testów itd). 
+%Badania i analizę wyników należy przeprowadzić, tak jak jest przyjęte w środowisku naukowym (na przykład korzystanie z danych benchmarkowych, walidacja krzyżowa, zapewnienie powtarzalności testów itd).
 %
 %\section{Metodyka badań}
 %
@@ -670,7 +670,7 @@ Tekst dokumentu powinien również zawierać odniesienia do tabel (tab. \ref{id:
 %\item prezentacja wyników, opracowanie i poszerzona dyskusja  wyników, wnioski
 %\end{itemize}
 %
-% 
+%
 %\begin{table}
 %\centering
 %\caption{Opis tabeli nad nią.}
@@ -696,10 +696,10 @@ Tekst dokumentu powinien również zawierać odniesienia do tabel (tab. \ref{id:
 %	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
 %\bottomrule
 %\end{tabular}
-%\end{table}  
+%\end{table}
 %
 %
-% 
+%
 %\begin{figure}
 %\centering
 %\begin{tikzpicture}
@@ -720,7 +720,7 @@ Tekst dokumentu powinien również zawierać odniesienia do tabel (tab. \ref{id:
 %    }
 %]
 %\addplot [domain=0.0:0.1] {rnd};
-%\end{axis} 
+%\end{axis}
 %\end{tikzpicture}
 %\caption{Podpis rysunku po rysunkiem.}
 %\label{fig:2}
@@ -755,16 +755,16 @@ Tekst dokumentu powinien również zawierać odniesienia do tabel (tab. \ref{id:
 \item syntetyczny opis wykonanych prac
 \item wnioski
 \item możliwość rozwoju, kontynuacji prac, potencjalne nowe kierunki
-\item Czy cel pracy zrealizowany? 
+\item Czy cel pracy zrealizowany?
 \end{itemize}
 
 
 
-\backmatter 
+\backmatter
 
 %\bibliographystyle{plplain}  % bibtex
 %\bibliography{biblio} % bibtex
-\printbibliography           % biblatex 
+\printbibliography           % biblatex
 \addcontentsline{toc}{chapter}{Bibliografia}
 
 \begin{appendices}
@@ -778,15 +778,15 @@ Tekst dokumentu powinien również zawierać odniesienia do tabel (tab. \ref{id:
 
 \begin{itemize}
 \item[DNA] kwas deoksyrybonukleinowy (ang. \english{deoxyribonucleic acid})
-\item[MVC] model -- widok -- kontroler (ang. \english{model--view--controller}) 
+\item[MVC] model -- widok -- kontroler (ang. \english{model--view--controller})
 \item[$N$] liczebność zbioru danych
 \item[$\mu$] stopnień przyleżności do zbioru
 \item[$\mathbb{E}$] zbiór krawędzi grafu
-\item[$\mathcal{L}$] transformata Laplace'a 
+\item[$\mathcal{L}$] transformata Laplace'a
 \end{itemize}
 
 % TODO
-\chapter{Lista dodatkowych plików, uzupełniających tekst pracy (jeżeli dotyczy)} 
+\chapter{Lista dodatkowych plików, uzupełniających tekst pracy (jeżeli dotyczy)}
 
 W systemie do pracy dołączono dodatkowe pliki zawierające:
 \begin{itemize}
@@ -801,7 +801,7 @@ W systemie do pracy dołączono dodatkowe pliki zawierające:
 \addcontentsline{toc}{chapter}{Spis rysunków}
 \listoftables
 \addcontentsline{toc}{chapter}{Spis tabel}
-	
+
 \end{appendices}
 
 \end{document}
