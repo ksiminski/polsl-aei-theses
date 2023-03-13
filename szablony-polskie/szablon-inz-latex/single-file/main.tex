@@ -53,6 +53,8 @@
 % Wypełniając ankietę spod poniższego adresu pomogą
 % Państwo nam to zrobić. Ankieta jest całkowicie
 % anonimowa. Dziękujemy!
+
+
 % https://docs.google.com/forms/d/e/1FAIpQLScyllVxNKzKFHfILDfdbwC-jvT8YL0RSTFs-s27UGw9CKn-fQ/viewform?usp=sf_link
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,14 +68,26 @@
 % Proszę wpisać swoje dane w poniższych definicjach.
 
 % TODO
-\newcommand{\FirstName}{Imię}
-\newcommand{\Surname}{Nazwisko}
+% dane autora
+\newcommand{\FirstNameAuthor}{Imię}
+\newcommand{\SurnameAuthor}{Nazwisko}
+\newcommand{\IdAuthor}{$\langle$wpisać właściwy$\rangle$}   % numer albumu  (bez $\langle$ i $\rangle$)
+
+% drugi autor:
+%\newcommand{\FirstNameCoauthor}{Imię}   % Jeżeli jest drugi autor, to tutaj należy podać imię.
+%\newcommand{\SurnameCoauthor}{Nazwisko} % Jeżeli jest drugi autor, to tutaj należy podać nazwisko.
+%\newcommand{\IdCoauthor}{$\langle$wpisać właściwy$\rangle$}  % numer albumu drugiego autora (bez $\langle$ i $\rangle$)
+% Gdy nie ma drugiego autora, należy zostawić poniższe definicje puste, jak poniżej. Gdy jest drugi autor, należy zakomentować te linie.
+\newcommand{\FirstNameCoauthor}{} % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\SurnameCoauthor}{}   % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\IdCoauthor}{}  % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+%%%%%%%%%%
+
 \newcommand{\Supervisor}{$\langle$tytuł lub stopień naukowy oraz imię i nazwisko$\rangle$}     % dane promotora (bez $\langle$ i $\rangle$)
 \newcommand{\Title}{Tytuł pracy dyplomowej inżynierskiej}           % tytuł pracy po polsku
 \newcommand{\TitleAlt}{Thesis title in English}                     % thesis title in English
 \newcommand{\Program}{$\langle$wpisać właściwy$\rangle$}            % kierunek studiów  (bez $\langle$ i $\rangle$)
 \newcommand{\Specialisation}{$\langle$wpisać właściwą$\rangle$}     % specjalność  (bez $\langle$ i $\rangle$)
-\newcommand{\Id}{$\langle$wpisać właściwy$\rangle$}                 % numer albumu  (bez $\langle$ i $\rangle$)
 \newcommand{\Departament}{$\langle$wpisać właściwą$\rangle$}        % katedra promotora  (bez $\langle$ i $\rangle$)
 
 % Jeżeli został wyznaczony promotor pomocniczy lub opiekun, proszę go/ją wpisać ...
@@ -103,12 +117,15 @@
 
 
 \documentclass[a4paper,twoside,12pt]{book}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}                                      
+\usepackage[T1]{fontenc}  
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage[british,polish]{babel}
+\usepackage[british,polish]{babel} 
 \usepackage{indentfirst}
 \usepackage{xurl}
+\usepackage{xstring}
+\usepackage{ifthen}
+
 
 
 \usepackage{ifxetex}
@@ -125,7 +142,7 @@
 
 
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{graphicx}
+\usepackage{graphicx} 
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{tikz}
@@ -143,7 +160,7 @@
 %\usepackage[natbib=true,backend=biber,maxbibnames=99]{biblatex}  % kompilacja bibliografii Biberem
 \bibliography{biblio}
 
-\usepackage{ifmtarg}   % empty commands
+\usepackage{ifmtarg}   % empty commands  
 
 \usepackage{setspace}
 \onehalfspacing
@@ -181,6 +198,35 @@
 
 %%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
 
+\newcommand{\printCoauthor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALen]
+    \ifthenelse{\FNCoALen > 0}%
+    {%
+		{\large\bfseries\Coauthor\par}
+	
+		{\normalsize\bfseries \LeftId: \IdCoauthor\par}
+    }%
+    {}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\autor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALenXX]
+    \ifthenelse{\FNCoALenXX > 0}%
+    {\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}%
+	{\FirstNameAuthor\ \SurnameAuthor}%
+}
+%%%%%%%%%%%%%%%%%%%%%
+
+\StrLen{\FirstNameCoauthor}[\FNCoALen]
+\ifthenelse{\FNCoALen > 0}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}
+}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor}
+}%
+
 %%%%%%%%%%%% ZYWA PAGINA %%%%%%%%%%%%%%%
 % brak kapitalizacji zywej paginy
 \usepackage{fancyhdr}
@@ -192,24 +238,25 @@
 
 
 \fancypagestyle{tylkoNumeryStron}{%
-   \fancyhf{}
+   \fancyhf{} 
    \fancyhead[LE,RO]{\it\thepage}
 }
 
 \fancypagestyle{bezNumeracji}{%
-   \fancyhf{}
+   \fancyhf{} 
    \fancyhead[LE,RO]{}
 }
 
+
 \fancypagestyle{NumeryStronNazwyRozdzialow}{%
-   \fancyhf{}
-   \fancyhead[LE]{\nouppercase{\FirstName\ \Surname}}
-   \fancyhead[RO]{\nouppercase{\leftmark}}
+   \fancyhf{} 
+   \fancyhead[LE]{\nouppercase{\autor}}
+   \fancyhead[RO]{\nouppercase{\leftmark}} 
    \fancyfoot[CE, CO]{\thepage}
 }
 
 
-%%%%%%%%%%%%% OBCE WTRETY
+%%%%%%%%%%%%% OBCE WTRETY  
 \newcommand{\obcy}[1]{\emph{#1}}
 \newcommand{\english}[1]{{\selectlanguage{british}\obcy{#1}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -222,28 +269,26 @@
 
 \newcounter{stronyPozaNumeracja}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{xstring}
-\usepackage{ifthen}
-\newcommand{\printOpiekun}[1]{%
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newcommand{\printOpiekun}[1]{%		
 
     \StrLen{\Consultant}[\mystringlen]
     \ifthenelse{\mystringlen > 0}%
     {%
        {\large{\bfseries OPIEKUN, PROMOTOR POMOCNICZY}\par}
-
+       
        {\large{\bfseries \Consultant}\par}
     }%
     {}
-}
+} 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+ 
 % Proszę nie modyfikować poniższych definicji!
-\author{\FirstName\ \Surname}
-\newcommand{\Author}{\FirstName\ \MakeUppercase{\Surname}}
+\newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
+\newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
 \newcommand{\Type}{PROJEKT INŻYNIERSKI}
-\newcommand{\Faculty}{Wydział Automatyki, Elektroniki i Informatyki}
+\newcommand{\Faculty}{Wydział Automatyki, Elektroniki i Informatyki} 
 \newcommand{\Polsl}{Politechnika Śląska}
 \newcommand{\Logo}{politechnika_sl_logo_bw_pion_pl.pdf}
 \newcommand{\LeftId}{Nr albumu}
@@ -271,11 +316,11 @@
 % Tutaj proszę umieszczać swoje pakiety, makra, ustawienia itd.
 
 
-
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% listingi i fragmentu kodu źródłowego
+% listingi i fragmentu kodu źródłowego 
 % pakiet: listings lub minted
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 % biblioteka listings
 \usepackage{listings}
@@ -295,7 +340,7 @@ breaklines=true,%
 escapeinside={@*}{*@},%
 }
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % pakiet minted
 %\usepackage{minted}
 
@@ -338,6 +383,7 @@ escapeinside={@*}{*@},%
 %\kslistofremarks
 
 \frontmatter
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %
 % PROSZĘ NIE MODYFIKOWAĆ STRONY TYTUŁOWEJ!    %
@@ -352,66 +398,69 @@ escapeinside={@*}{*@},%
 	             bottom=2.5cm,%
 	             left=3cm,
 	             right=2.5cm}
-
-	\ifxetex
+ 
+	\ifxetex 
 	  \begingroup
 	  \setsansfont{Calibri}
-
-	\fi
+	   
+	\fi 
 	 \sffamily
 	\begin{center}
 	\includegraphics[width=50mm]{\Logo}
-
-
+	 
+	
 	{\Large\bfseries\Type\par}
-
-	\vfill  \vfill
-
+	
+	\vfill  \vfill  
+			 
 	{\large\Title\par}
-
-	\vfill
-
+	
+	\vfill  
+		
 	{\large\bfseries\Author\par}
+	
+	{\normalsize\bfseries \LeftId: \IdAuthor}
 
-	{\normalsize\bfseries \LeftId: \Id}
-
-	\vfill
-
-	{\large{\bfseries \LeftProgram:} \Program\par}
-
-	{\large{\bfseries \LeftSpecialisation:} \Specialisation\par}
-
-	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill
-
+	\printCoauthor
+	
+	\vfill  		
+ 
+	{\large{\bfseries \LeftProgram:} \Program\par} 
+	
+	{\large{\bfseries \LeftSpecialisation:} \Specialisation\par} 
+	 		
+	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill  
+	 
 	{\large{\bfseries \LeftSUPERVISOR}\par}
-
+	
 	{\large{\bfseries \Supervisor}\par}
-
+				
 	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
-
+		
 	{\large{\bfseries \Faculty}\par}
+		
+	\vfill  \vfill  
 
-	\vfill  \vfill
-
-
+    	
     \printOpiekun{\Consultant}
-
-	\vfill  \vfill
-
+    
+	\vfill  \vfill  
+		
     {\large\bfseries  Gliwice \the\year}
 
-   \end{center}
-       \ifxetex
+   \end{center}	
+       \ifxetex 
        	  \endgroup
        \fi
 	\restoregeometry
 }
-
+  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %
 % KONIEC STRONY TYTUŁOWEJ                     %
 %                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \cleardoublepage
 
@@ -422,25 +471,25 @@ escapeinside={@*}{*@},%
 %%% No to zaczynamy pisać pracę :-) %%%%
 
 % TODO
-\subsubsection*{Tytuł pracy}
+\subsubsection*{Tytuł pracy} 
 \Title
 
-\subsubsection*{Streszczenie}
+\subsubsection*{Streszczenie}  
 (Streszczenie pracy – odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia.)
 
-\subsubsection*{Słowa kluczowe}
+\subsubsection*{Słowa kluczowe} 
 (2-5 slow (fraz) kluczowych, oddzielonych przecinkami)
 
-\subsubsection*{Thesis title}
+\subsubsection*{Thesis title} 
 \begin{otherlanguage}{british}
 \TitleAlt
 \end{otherlanguage}
 
-\subsubsection*{Abstract}
+\subsubsection*{Abstract} 
 \begin{otherlanguage}{british}
 (Thesis abstract – to be copied into an appropriate field during an electronic submission – in English.)
 \end{otherlanguage}
-\subsubsection*{Key words}
+\subsubsection*{Key words}  
 \begin{otherlanguage}{british}
 (2-5 keywords, separated by commas)
 \end{otherlanguage}
@@ -485,15 +534,20 @@ escapeinside={@*}{*@},%
 \begin{itemize}
 \item sformułowanie problemu
 \item osadzenie tematu w kontekście aktualnego stanu wiedzy (\english{state of the art}) o poruszanym problemie
-\item  studia literaturowe \cite{bib:artykul,bib:ksiazka,bib:konferencja,bib:internet} -  opis znanych rozwiązań (także opisanych naukowo, jeżeli problem jest poruszany w publikacjach naukowych), algorytmów,
+\item  studia literaturowe \cite{bib:artykul,bib:ksiazka,bib:konferencja,bib:internet} -  opis znanych rozwiązań (także opisanych naukowo, jeżeli problem jest poruszany w publikacjach naukowych), algorytmów, 
 \end{itemize}
 
 
-Wzory
+Wzory  
 \begin{align}
 y = \frac{\partial x}{\partial t}
 \end{align}
 jak i pojedyncze symbole $x$ i $y$  składa się w trybie matematycznym.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 
@@ -539,7 +593,7 @@ Jeśli „Specyfikacja zewnętrzna”:
 %%%%%%%%%%%%%%%%%%%%%
 %
 %%%%%%%%%%%%%%%%%%%%%
-%% WIELE RYSUNKÓW
+%% WIELE RYSUNKÓW 
 %
 %\begin{figure}
 %\centering
@@ -566,7 +620,7 @@ Jeśli „Specyfikacja zewnętrzna”:
 %    \caption{Prawy dolny rysunek.}
 %    \label{fig:prawy-dolny}
 %\end{subfigure}
-%
+%        
 %\caption{Wspólny podpis kilku rysunków.}
 %\label{fig:wiele-rysunkow}
 %\end{figure}
@@ -574,7 +628,7 @@ Jeśli „Specyfikacja zewnętrzna”:
 %%%%%%%%%%%%%%%%%%%%%
 
 
-
+ 
 \begin{figure}
 \centering
 \begin{tikzpicture}
@@ -595,7 +649,7 @@ Jeśli „Specyfikacja zewnętrzna”:
     }
 ]
 \addplot [domain=0.0:0.1] {rnd};
-\end{axis}
+\end{axis} 
 \end{tikzpicture}
 \caption{Podpis rysunku po rysunkiem.}
 \label{fig:2}
@@ -627,7 +681,7 @@ Jeśli „Specyfikacja wewnętrzna”:
 
 
 Krótka wstawka kodu w linii tekstu jest możliwa, np.  \lstinline|int a;| (biblioteka \texttt{listings})% lub  \mintinline{C++}|int a;| (biblioteka \texttt{minted})
-.
+. 
 Dłuższe fragmenty lepiej jest umieszczać jako rysunek, np. kod na rys \ref{fig:pseudokod:listings}% i rys. \ref{fig:pseudokod:minted}
 , a naprawdę długie fragmenty – w załączniku.
 
@@ -639,11 +693,11 @@ class test : public basic
 {
     public:
       test (int a);
-      friend std::ostream operator<<(std::ostream & s,
+      friend std::ostream operator<<(std::ostream & s, 
                                      const test & t);
     protected:
-      int _a;
-
+      int _a;  
+      
 };
 \end{lstlisting}
 \caption{Pseudokod w \texttt{listings}.}
@@ -657,11 +711,11 @@ class test : public basic
 %{
 %    public:
 %      test (int a);
-%      friend std::ostream operator<<(std::ostream & s,
+%      friend std::ostream operator<<(std::ostream & s, 
 %                                     const test & t);
 %    protected:
-%      int _a;
-%
+%      int _a;  
+%      
 %};
 %\end{minted}
 %\caption{Pseudokod w \texttt{minted}.}
@@ -707,7 +761,7 @@ class test : public basic
 	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table}  
 
 
 
@@ -735,11 +789,11 @@ class test : public basic
 
 \begin{itemize}
 \item[DNA] kwas deoksyrybonukleinowy (ang. \english{deoxyribonucleic acid})
-\item[MVC] model -- widok -- kontroler (ang. \english{model--view--controller})
+\item[MVC] model -- widok -- kontroler (ang. \english{model--view--controller}) 
 \item[$N$] liczebność zbioru danych
 \item[$\mu$] stopnień przyleżności do zbioru
 \item[$\mathbb{E}$] zbiór krawędzi grafu
-\item[$\mathcal{L}$] transformata Laplace'a
+\item[$\mathcal{L}$] transformata Laplace'a 
 \end{itemize}
 
 
@@ -758,12 +812,12 @@ if (_nIterations > 0 and _epsilon > 0)
 \end{lstlisting}
 
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % Pakiet minted wymaga odkomentowania w pliku config/settings.tex   %
 % importu pakietu minted: \usepackage{minted}                       %
 % i specjalnego kompilowania:                                       %
 % pdflatex -shell-escape praca                                      %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 %\begin{minted}[linenos,breaklines,frame=lines]{c++}
 %if (_nClusters < 1)
@@ -776,7 +830,7 @@ if (_nIterations > 0 and _epsilon > 0)
 
 
 % TODO
-\chapter{Lista dodatkowych plików, uzupełniających tekst pracy}
+\chapter{Lista dodatkowych plików, uzupełniających tekst pracy} 
 
 
 W systemie do pracy dołączono dodatkowe pliki zawierające:

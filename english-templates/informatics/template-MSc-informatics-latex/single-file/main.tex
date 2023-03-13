@@ -105,10 +105,10 @@
 
 
 \documentclass[a4paper,twoside,12pt]{book}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}                                      
+\usepackage[T1]{fontenc}  
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage[polish,british]{babel}
+\usepackage[polish,british]{babel} 
 \usepackage{indentfirst}
 \usepackage{xurl}
 
@@ -127,7 +127,7 @@
 
 
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{graphicx}
+\usepackage{graphicx} 
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{tikz}
@@ -145,7 +145,7 @@
 %\usepackage[natbib=true,backend=biber,maxbibnames=99]{biblatex}  % compilation of bibliography with Biber
 \bibliography{biblio}
 
-\usepackage{ifmtarg}   % empty commands
+\usepackage{ifmtarg}   % empty commands  
 
 \usepackage{setspace}
 \onehalfspacing
@@ -181,7 +181,7 @@
 
 
 
-%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
+%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%  
 
 %%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
 % no capitalisation of headers
@@ -194,23 +194,23 @@
 
 
 \fancypagestyle{onlyPageNumbers}{%
-   \fancyhf{}
+   \fancyhf{} 
    \fancyhead[LE,RO]{\it\thepage}
 }
 
 \fancypagestyle{noNumbers}{%
-   \fancyhf{}
+   \fancyhf{} 
    \fancyhead[LE,RO]{}
 }
 
 
 \fancypagestyle{PageNumbersChapterTitles}{%
-   \fancyhf{}
+   \fancyhf{} 
    \fancyhead[LO]{\nouppercase{\Firstnames\ \Surname}}
-   \fancyhead[RE]{\nouppercase{\leftmark}}
+   \fancyhead[RE]{\nouppercase{\leftmark}} 
    \fancyfoot[CE, CO]{\thepage}
 }
-
+ 
 
 
 
@@ -224,23 +224,23 @@
 
 \newcounter{pagesWithoutNumbers}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \usepackage{xstring}
 \usepackage{ifthen}
-\newcommand{\printOpiekun}[1]{%
+\newcommand{\printOpiekun}[1]{%		
 
     \StrLen{\Consultant}[\mystringlen]
     \ifthenelse{\mystringlen > 0}%
     {%
        {\large{\bfseries CONSULTANT}\par}
-
+       
        {\large{\bfseries \Consultant}\par}
     }%
     {}
-}
+} 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+ 
 % Please do not modify the lines below!
 \author{\Firstnames\ \Surname}
 \newcommand{\Author}{\Firstnames\ \MakeUppercase{\Surname}}
@@ -273,11 +273,11 @@
 % Put your packages, macros, setting here.
 
 
-
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % listings
 % packages: listings or minted
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 % package listings
 \usepackage{listings}
@@ -297,7 +297,7 @@ breaklines=true,%
 escapeinside={@*}{*@},%
 }
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % package minted
 % \usepackage{minted}
 
@@ -340,6 +340,7 @@ escapeinside={@*}{*@},%
 %\kslistofremarks
 
 \frontmatter
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %
 %    PLEASE DO NOT MODIFY THE TITLE PAGE!     %
@@ -354,61 +355,61 @@ escapeinside={@*}{*@},%
 	             bottom=2.5cm,%
 	             left=3cm,
 	             right=2.5cm}
-
-	\ifxetex
+ 
+	\ifxetex 
 	  \begingroup
 	  \setsansfont{Calibri}
-
-	\fi
+	   
+	\fi 
 	 \sffamily
 	\begin{center}
 	\includegraphics[width=50mm]{\Logo}
-
-
+	 
+	
 	{\Large\bfseries\Type\par}
-
-	\vfill  \vfill
-
+	
+	\vfill  \vfill  
+			 
 	{\large\Title\par}
-
-	\vfill
-
+	
+	\vfill  
+		
 	{\large\bfseries\Author\par}
-
+	
 	{\normalsize\bfseries \LeftId: \Id}
-
-	\vfill
-
-	{\large{\bfseries \LeftProgram:} \Program\par}
-
-	{\large{\bfseries \LeftSpecialisation:} \Specialisation\par}
-
-	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill
-
+	
+	\vfill  		
+ 
+	{\large{\bfseries \LeftProgram:} \Program\par} 
+	
+	{\large{\bfseries \LeftSpecialisation:} \Specialisation\par} 
+	 		
+	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill  
+	 
 	{\large{\bfseries \LeftSUPERVISOR}\par}
-
+	
 	{\large{\bfseries \Supervisor}\par}
-
+				
 	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
-
+		
 	{\large{\bfseries \Faculty}\par}
+		
+	\vfill  \vfill  
 
-	\vfill  \vfill
-
-
+    	
     \printOpiekun{\Consultant}
-
-	\vfill  \vfill
-
+    
+	\vfill  \vfill  
+		
     {\large\bfseries  Gliwice \the\year}
 
-   \end{center}
-       \ifxetex
+   \end{center}	
+       \ifxetex 
        	  \endgroup
        \fi
 	\restoregeometry
 }
-
+  
 
 
 \cleardoublepage
@@ -420,13 +421,13 @@ escapeinside={@*}{*@},%
 %%% Let's start the thesis %%%%
 
 % TODO
-\subsubsection*{Thesis title}
+\subsubsection*{Thesis title}  
 \Title
 
-\subsubsection*{Abstract}
+\subsubsection*{Abstract} 
 (Thesis abstract – to be copied into an appropriate field during an electronic submission – in English.)
 
-\subsubsection*{Key words}
+\subsubsection*{Key words}  
 (2-5 keywords, separated by commas)
 
 \subsubsection*{Tytuł pracy}
@@ -434,12 +435,12 @@ escapeinside={@*}{*@},%
 \TitleAlt
 \end{otherlanguage}
 
-\subsubsection*{Streszczenie}
+\subsubsection*{Streszczenie} 
 \begin{otherlanguage}{polish}
 (Streszczenie pracy – odpowiednie pole w systemie APD powinno zawierać kopię tego streszczenia.)
 \end{otherlanguage}
 
-\subsubsection*{Słowa kluczowe}
+\subsubsection*{Słowa kluczowe} 
 \begin{otherlanguage}{polish}
 (2-5 slow (fraz) kluczowych, oddzielonych przecinkami)
 \end{otherlanguage}
@@ -469,7 +470,7 @@ escapeinside={@*}{*@},%
 %\begin{itemize}
 %\item introduction into the problem domain
 %\item settling of the problem in the domain
-%\item objective of the thesis
+%\item objective of the thesis 
 %\item scope of the thesis
 %\item short description of chapters
 %\item clear description of contribution of the thesis's author
@@ -489,7 +490,7 @@ escapeinside={@*}{*@},%
 %\item What are pros and cons of my solution?
 %\end{itemize}
 
-References to
+References to 
 book \cite{bib:book},
 scientific papers in journals \cite{bib:article},
 conference papers \cite{bib:conference},
@@ -544,7 +545,7 @@ Each figure in the document should be referred to at least once (fig. \ref{fig:2
     }
 ]
 \addplot [domain=0.0:0.1] {rnd};
-\end{axis}
+\end{axis} 
 \end{tikzpicture}
 \caption{Figure caption.} % Figure caption is BELOW the figure!
 \label{fig:2}
@@ -591,7 +592,7 @@ Each figure in the document should be referred to at least once (fig. \ref{fig:2
 %    \caption{Lower right figure.}
 %    \label{fig:lower-right}
 %\end{subfigure}
-%
+%        
 %\caption{Common caption for all subfigures.}
 %\label{fig:subfigures}
 %\end{figure}
@@ -626,7 +627,7 @@ Each table in the document should be referred to at least once (Tab. \ref{tab:re
 	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table}  
 
 
 %\chapter{[Subject of the thesis]}
@@ -641,7 +642,7 @@ Each table in the document should be referred to at least once (Tab. \ref{tab:re
 % TODO
 \chapter{Experiments}
 %
-%This chapter presents the experiments. It is a crucial part of the thesis and has to dominate in the thesis.
+%This chapter presents the experiments. It is a crucial part of the thesis and has to dominate in the thesis. 
 %The experiments and their analysis should be done in the way commonly accepted in the scientific community (eg. benchmark datasets, cross validation of elaborated results, reproducibility and replicability of tests etc).
 %
 %
@@ -693,7 +694,7 @@ Each table in the document should be referred to at least once (Tab. \ref{tab:re
 %	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
 %\bottomrule
 %\end{tabular}
-%\end{table}
+%\end{table}  
 
 %%%%%%%%%%%%%%%%%%%%%
 % FIGURE FROM FILE
@@ -735,7 +736,7 @@ Each table in the document should be referred to at least once (Tab. \ref{tab:re
 %    \caption{Lower right figure.}
 %    \label{fig:lower-right}
 %\end{subfigure}
-%
+%        
 %\caption{Common caption for all subfigures.}
 %\label{fig:subfigures}
 %\end{figure}
@@ -764,7 +765,7 @@ Each table in the document should be referred to at least once (Tab. \ref{tab:re
 %    }
 %]
 %\addplot [domain=0.0:0.1] {rnd};
-%\end{axis}
+%\end{axis} 
 %\end{tikzpicture}
 %\caption{Figure caption is BELOW the figure.}
 %\label{fig:2}
@@ -819,7 +820,7 @@ Each table in the document should be referred to at least once (Tab. \ref{tab:re
 
 \begin{itemize}
 \item[DNA] deoxyribonucleic acid
-\item[MVC] model--view--controller
+\item[MVC] model--view--controller 
 \item[$N$] cardinality of data set
 \item[$\mu$] membership function of a fuzzy set
 \item[$\mathbb{E}$] set of edges of a graph
