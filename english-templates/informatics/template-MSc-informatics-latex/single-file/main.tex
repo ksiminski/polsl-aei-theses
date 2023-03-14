@@ -68,8 +68,21 @@
 % Please customise your thesis with the macros below.
 
 % TODO
-\newcommand{\Firstnames}{First Names}
-\newcommand{\Surname}{Surname}
+% author:
+\newcommand{\FirstNameAuthor}{First Names}
+\newcommand{\SurnameAuthor}{Surname}
+\newcommand{\IdAuthor}{$\langle$student id$\rangle$}  % (remove $\langle$ and $\rangle)
+
+% coauthor:
+%\newcommand{\FirstNameCoauthor}{First Names}  % If there is a coauthor, put the first names here.
+%\newcommand{\SurnameCoauthor}{Surname}        % If there is a coauthor, put the surnames here.
+%\newcommand{\IdCoauthor}{$\langle$student id$\rangle$} % If there is a coauthor, put the student id here (remove $\langle$ and $\rangle)
+% If there is no coathor, leave the definitions empty like below. If a coauthor exists, comment the lines below.
+\newcommand{\FirstNameCoauthor}{} % If there is only one author, leave the definitions empty.
+\newcommand{\SurnameCoauthor}{}   % If there is only one author, leave the definitions empty.
+\newcommand{\IdCoauthor}{}        % If there is only one author, leave the definitions empty.
+%%%%%%%%%%
+
 \newcommand{\Supervisor}{$\langle$title first name surname$\rangle$}  % supervisor (remove $\langle$ and $\rangle)
 \newcommand{\Title}{Thesis title in English}
 \newcommand{\TitleAlt}{Thesis title in Polish}
@@ -80,7 +93,7 @@
 
 
 % If you have a consultant for your thesis, put their name below ...
-\newcommand{\Consultant}{$\langle$title first name surname$\rangle$}  % remove \langle and \rangle in final version
+\newcommand{\Consultant}{$\langle$title first name surname$\rangle$}  %  (remove $\langle$ and $\rangle)
 % ... else leave the braces empty:
 %\newcommand{\Consultant}{} % no consultant
 
@@ -111,6 +124,9 @@
 \usepackage[polish,british]{babel} 
 \usepackage{indentfirst}
 \usepackage{xurl}
+\usepackage{xstring}
+\usepackage{ifthen}
+
 
 
 \usepackage{ifxetex}
@@ -183,6 +199,35 @@
 
 %%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%  
 
+\newcommand{\printCoauthor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALen]
+    \ifthenelse{\FNCoALen > 0}%
+    {%
+		{\large\bfseries\Coauthor\par}
+	
+		{\normalsize\bfseries \LeftId: \IdCoauthor\par}
+    }%
+    {}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\autor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALenXX]
+    \ifthenelse{\FNCoALenXX > 0}%
+    {\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}%
+	{\FirstNameAuthor\ \SurnameAuthor}%
+}
+%%%%%%%%%%%%%%%%%%%%%
+
+\StrLen{\FirstNameCoauthor}[\FNCoALen]
+\ifthenelse{\FNCoALen > 0}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}
+}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor}
+}%
+
 %%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
 % no capitalisation of headers
 \usepackage{fancyhdr}
@@ -222,11 +267,10 @@
 
 
 
+
 \newcounter{pagesWithoutNumbers}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\usepackage{xstring}
-\usepackage{ifthen}
 \newcommand{\printOpiekun}[1]{%		
 
     \StrLen{\Consultant}[\mystringlen]
@@ -242,8 +286,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 % Please do not modify the lines below!
-\author{\Firstnames\ \Surname}
-\newcommand{\Author}{\Firstnames\ \MakeUppercase{\Surname}}
+\newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
+\newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
 \newcommand{\Type}{MASTER THESIS}
 \newcommand{\Faculty}{Faculty of Automatic Control, Electronics and Computer Science}
 \newcommand{\Polsl}{Silesian University of Technology}
@@ -376,7 +420,9 @@ escapeinside={@*}{*@},%
 		
 	{\large\bfseries\Author\par}
 	
-	{\normalsize\bfseries \LeftId: \Id}
+	{\normalsize\bfseries \LeftId: \IdAuthor}
+
+	\printCoauthor
 	
 	\vfill  		
  

@@ -14,6 +14,9 @@
 \usepackage[british,polish]{babel} 
 \usepackage{indentfirst}
 \usepackage{xurl}
+\usepackage{xstring}
+\usepackage{ifthen}
+
 
 
 \usepackage{ifxetex}
@@ -86,6 +89,35 @@
 
 %%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
 
+\newcommand{\printCoauthor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALen]
+    \ifthenelse{\FNCoALen > 0}%
+    {%
+		{\large\bfseries\Coauthor\par}
+	
+		{\normalsize\bfseries \LeftId: \IdCoauthor\par}
+    }%
+    {}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\autor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALenXX]
+    \ifthenelse{\FNCoALenXX > 0}%
+    {\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}%
+	{\FirstNameAuthor\ \SurnameAuthor}%
+}
+%%%%%%%%%%%%%%%%%%%%%
+
+\StrLen{\FirstNameCoauthor}[\FNCoALen]
+\ifthenelse{\FNCoALen > 0}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}
+}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor}
+}%
+
 %%%%%%%%%%%% ZYWA PAGINA %%%%%%%%%%%%%%%
 % brak kapitalizacji zywej paginy
 \usepackage{fancyhdr}
@@ -106,9 +138,10 @@
    \fancyhead[LE,RO]{}
 }
 
+
 \fancypagestyle{NumeryStronNazwyRozdzialow}{%
    \fancyhf{} 
-   \fancyhead[LE]{\nouppercase{\FirstName\ \Surname}}
+   \fancyhead[LE]{\nouppercase{\autor}}
    \fancyhead[RO]{\nouppercase{\leftmark}} 
    \fancyfoot[CE, CO]{\thepage}
 }
@@ -128,8 +161,6 @@
 \newcounter{stronyPozaNumeracja}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\usepackage{xstring}
-\usepackage{ifthen}
 \newcommand{\printOpiekun}[1]{%		
 
     \StrLen{\Consultant}[\mystringlen]
@@ -145,8 +176,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 % Proszę nie modyfikować poniższych definicji!
-\author{\FirstName\ \Surname}
-\newcommand{\Author}{\FirstName\ \MakeUppercase{\Surname}}
+\newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
+\newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
 \newcommand{\Type}{PRACA MAGISTERSKA}
 \newcommand{\Faculty}{Wydział Automatyki, Elektroniki i Informatyki} 
 \newcommand{\Polsl}{Politechnika Śląska}

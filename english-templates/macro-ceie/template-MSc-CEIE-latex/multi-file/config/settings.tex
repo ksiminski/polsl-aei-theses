@@ -14,6 +14,9 @@
 \usepackage[polish,british]{babel} 
 \usepackage{indentfirst}
 \usepackage{xurl}
+\usepackage{xstring}
+\usepackage{ifthen}
+
 
 
 \usepackage{ifxetex}
@@ -86,6 +89,35 @@
 
 %%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%  
 
+\newcommand{\printCoauthor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALen]
+    \ifthenelse{\FNCoALen > 0}%
+    {%
+		{\large\bfseries\Coauthor\par}
+	
+		{\normalsize\bfseries \LeftId: \IdCoauthor\par}
+    }%
+    {}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\autor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALenXX]
+    \ifthenelse{\FNCoALenXX > 0}%
+    {\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}%
+	{\FirstNameAuthor\ \SurnameAuthor}%
+}
+%%%%%%%%%%%%%%%%%%%%%
+
+\StrLen{\FirstNameCoauthor}[\FNCoALen]
+\ifthenelse{\FNCoALen > 0}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}
+}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor}
+}%
+
 %%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
 % no capitalisation of headers
 \usepackage{fancyhdr}
@@ -109,8 +141,8 @@
 
 \fancypagestyle{PageNumbersChapterTitles}{%
    \fancyhf{} 
-   \fancyhead[LO]{\nouppercase{\Firstnames\ \Surname}}
-   \fancyhead[RE]{\nouppercase{\leftmark}} 
+   \fancyhead[LE]{\nouppercase{\autor}}
+   \fancyhead[RO]{\nouppercase{\leftmark}} 
    \fancyfoot[CE, CO]{\thepage}
 }
  
@@ -125,11 +157,10 @@
 
 
 
+
 \newcounter{pagesWithoutNumbers}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\usepackage{xstring}
-\usepackage{ifthen}
 \newcommand{\printOpiekun}[1]{%		
 
     \StrLen{\Consultant}[\mystringlen]
@@ -145,8 +176,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 % Please do not modify the lines below!
-\author{\Firstnames\ \Surname}
-\newcommand{\Author}{\Firstnames\ \MakeUppercase{\Surname}}
+\newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
+\newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
 \newcommand{\Type}{MASTER THESIS}
 \newcommand{\Faculty}{Faculty of Automatic Control, Electronics and Computer Science}
 \newcommand{\Polsl}{Silesian University of Technology}

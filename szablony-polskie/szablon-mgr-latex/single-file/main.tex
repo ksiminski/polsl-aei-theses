@@ -1,6 +1,5 @@
 % !TeX spellcheck = pl_PL
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
 % Szablon pracy dyplomowej magisterskiej %
 % zgodny  z aktualnymi  przepisami  SZJK %
@@ -54,7 +53,8 @@
 % Wypełniając ankietę spod poniższego adresu pomogą
 % Państwo nam to zrobić. Ankieta jest całkowicie
 % anonimowa. Dziękujemy!
-%
+
+
 % https://docs.google.com/forms/d/e/1FAIpQLScyllVxNKzKFHfILDfdbwC-jvT8YL0RSTFs-s27UGw9CKn-fQ/viewform?usp=sf_link
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,14 +68,26 @@
 % Proszę wpisać swoje dane w poniższych definicjach.
 
 % TODO
-\newcommand{\FirstName}{Imię}
-\newcommand{\Surname}{Nazwisko}
+% dane autora
+\newcommand{\FirstNameAuthor}{Imię}
+\newcommand{\SurnameAuthor}{Nazwisko}
+\newcommand{\IdAuthor}{$\langle$wpisać właściwy$\rangle$}   % numer albumu  (bez $\langle$ i $\rangle$)
+
+% drugi autor:
+%\newcommand{\FirstNameCoauthor}{Imię}   % Jeżeli jest drugi autor, to tutaj należy podać imię.
+%\newcommand{\SurnameCoauthor}{Nazwisko} % Jeżeli jest drugi autor, to tutaj należy podać nazwisko.
+%\newcommand{\IdCoauthor}{$\langle$wpisać właściwy$\rangle$}  % numer albumu drugiego autora (bez $\langle$ i $\rangle$)
+% Gdy nie ma drugiego autora, należy zostawić poniższe definicje puste, jak poniżej. Gdy jest drugi autor, należy zakomentować te linie.
+\newcommand{\FirstNameCoauthor}{} % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\SurnameCoauthor}{}   % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\IdCoauthor}{}  % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+%%%%%%%%%%
+
 \newcommand{\Supervisor}{$\langle$tytuł lub stopień naukowy oraz imię i nazwisko$\rangle$}     % dane promotora (bez $\langle$ i $\rangle$)
 \newcommand{\Title}{Tytuł pracy dyplomowej magisterskiej}           % tytuł pracy po polsku
 \newcommand{\TitleAlt}{Thesis title in English}                     % thesis title in English
 \newcommand{\Program}{$\langle$wpisać właściwy$\rangle$}            % kierunek studiów  (bez $\langle$ i $\rangle$)
 \newcommand{\Specialisation}{$\langle$wpisać właściwą$\rangle$}     % specjalność  (bez $\langle$ i $\rangle$)
-\newcommand{\Id}{$\langle$wpisać właściwy$\rangle$}                 % numer albumu  (bez $\langle$ i $\rangle$)
 \newcommand{\Departament}{$\langle$wpisać właściwą$\rangle$}        % katedra promotora  (bez $\langle$ i $\rangle$)
 
 % Jeżeli został wyznaczony promotor pomocniczy lub opiekun, proszę go/ją wpisać ...
@@ -85,6 +97,7 @@
 
 % koniec fragmentu do modyfikacji
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %
@@ -110,6 +123,9 @@
 \usepackage[british,polish]{babel} 
 \usepackage{indentfirst}
 \usepackage{xurl}
+\usepackage{xstring}
+\usepackage{ifthen}
+
 
 
 \usepackage{ifxetex}
@@ -182,6 +198,35 @@
 
 %%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
 
+\newcommand{\printCoauthor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALen]
+    \ifthenelse{\FNCoALen > 0}%
+    {%
+		{\large\bfseries\Coauthor\par}
+	
+		{\normalsize\bfseries \LeftId: \IdCoauthor\par}
+    }%
+    {}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\autor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALenXX]
+    \ifthenelse{\FNCoALenXX > 0}%
+    {\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}%
+	{\FirstNameAuthor\ \SurnameAuthor}%
+}
+%%%%%%%%%%%%%%%%%%%%%
+
+\StrLen{\FirstNameCoauthor}[\FNCoALen]
+\ifthenelse{\FNCoALen > 0}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}
+}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor}
+}%
+
 %%%%%%%%%%%% ZYWA PAGINA %%%%%%%%%%%%%%%
 % brak kapitalizacji zywej paginy
 \usepackage{fancyhdr}
@@ -202,9 +247,10 @@
    \fancyhead[LE,RO]{}
 }
 
+
 \fancypagestyle{NumeryStronNazwyRozdzialow}{%
    \fancyhf{} 
-   \fancyhead[LE]{\nouppercase{\FirstName\ \Surname}}
+   \fancyhead[LE]{\nouppercase{\autor}}
    \fancyhead[RO]{\nouppercase{\leftmark}} 
    \fancyfoot[CE, CO]{\thepage}
 }
@@ -224,8 +270,6 @@
 \newcounter{stronyPozaNumeracja}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\usepackage{xstring}
-\usepackage{ifthen}
 \newcommand{\printOpiekun}[1]{%		
 
     \StrLen{\Consultant}[\mystringlen]
@@ -241,8 +285,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 % Proszę nie modyfikować poniższych definicji!
-\author{\FirstName\ \Surname}
-\newcommand{\Author}{\FirstName\ \MakeUppercase{\Surname}}
+\newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
+\newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
 \newcommand{\Type}{PRACA MAGISTERSKA}
 \newcommand{\Faculty}{Wydział Automatyki, Elektroniki i Informatyki} 
 \newcommand{\Polsl}{Politechnika Śląska}
@@ -339,6 +383,7 @@ escapeinside={@*}{*@},%
 %\kslistofremarks
 
 \frontmatter
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %
 % PROSZĘ NIE MODYFIKOWAĆ STRONY TYTUŁOWEJ!    %
@@ -374,7 +419,9 @@ escapeinside={@*}{*@},%
 		
 	{\large\bfseries\Author\par}
 	
-	{\normalsize\bfseries \LeftId: \Id}
+	{\normalsize\bfseries \LeftId: \IdAuthor}
+
+	\printCoauthor
 	
 	\vfill  		
  
@@ -808,3 +855,4 @@ W systemie do pracy dołączono dodatkowe pliki zawierające:
 
 
 %% Finis coronat opus.
+
