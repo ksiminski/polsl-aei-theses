@@ -1,0 +1,66 @@
+\chapter{Internal specification}
+
+\begin{itemize}
+\item concept of the system
+\item system architecture
+\item description of data structures (and data bases)
+\item components, modules, libraries, resume of important classes (if used)
+\item resume of important algorithms (if used)
+\item details of implementation of selected parts
+\item applied design patterns
+\item UML diagrams
+\end{itemize}
+
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% To use the minted package, import the package:                    %
+% \usepackage{minted}                                               %
+% and compile with the shell escape                                 %
+% pdflatex -shell-escape main                                       %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+
+Use special environments for inline code, eg  \lstinline|int a;| (package \texttt{listings})% or  \mintinline{C++}|int a;| (package \texttt{minted})
+. Longer parts of code put in the figure environment, eg. code in Fig. \ref{fig:pseudocode:listings}% and Fig. \ref{fig:pseudocode:minted}
+. Very long listings–move to an appendix.
+
+
+\clearpage
+\begin{figure}
+\centering
+\begin{lstlisting}
+class test : public basic
+{
+    public:
+      test (int a);
+      friend std::ostream operator<<(std::ostream & s, 
+                                     const test & t);
+    protected:
+      int _a;  
+      
+};
+\end{lstlisting}
+\caption{Pseudocode in \texttt{listings}.}
+\label{fig:pseudocode:listings}
+\end{figure}
+
+%\begin{figure}
+%\centering
+%\begin{minted}[linenos,frame=lines]{c++}
+%class test : public basic
+%{
+%    public:
+%      test (int a);
+%      friend std::ostream operator<<(std::ostream & s, 
+%                                     const test & t);
+%    protected:
+%      int _a;  
+%      
+%};
+%\end{minted}
+%\caption{Pseudocode in \texttt{minted}.}
+%\label{fig:pseudocode:minted}
+%\end{figure}
+
+

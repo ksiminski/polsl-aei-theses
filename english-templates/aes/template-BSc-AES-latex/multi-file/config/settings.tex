@@ -1,0 +1,204 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+%   PLEASE DO NOT MODIFY THE SETTINGS BELOW!  %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\documentclass[a4paper,twoside,12pt]{book}
+\usepackage[utf8]{inputenc}                                      
+\usepackage[T1]{fontenc}  
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[polish,british]{babel} 
+\usepackage{indentfirst}
+\usepackage{xurl}
+\usepackage{xstring}
+\usepackage{ifthen}
+
+
+
+\usepackage{ifxetex}
+
+\ifxetex
+	\usepackage{fontspec}
+	\defaultfontfeatures{Mapping=tex—text} % to support TeX conventions like ``——-''
+	\usepackage{xunicode} % Unicode support for LaTeX character names (accents, European chars, etc)
+	\usepackage{xltxtra} % Extra customizations for XeLaTeX
+\else
+	\usepackage{lmodern}
+\fi
+
+
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{subcaption}   % subfigures
+\usepackage[page]{appendix} % toc,
+
+
+
+
+\usepackage{csquotes}
+\usepackage[natbib=true,backend=bibtex,maxbibnames=99]{biblatex}  % compilation of bibliography with BibTeX
+%\usepackage[natbib=true,backend=biber,maxbibnames=99]{biblatex}  % compilation of bibliography with Biber
+\bibliography{biblio/biblio}
+
+\usepackage{ifmtarg}   % empty commands  
+
+\usepackage{setspace}
+\onehalfspacing
+
+
+\frenchspacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% environments for definitios, examples, and theorems
+\usepackage{amsthm}
+
+\newtheorem{Definition}{Definition}
+\newtheorem{Example}{Example}
+\newtheorem{Theorem}{Theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% TODO LIST GENERATOR %%%%%%%%%
+
+\usepackage{color}
+\definecolor{brickred}      {cmyk}{0   , 0.89, 0.94, 0.28}
+
+\makeatletter \newcommand \kslistofremarks{\section*{Remarks} \@starttoc{rks}}
+  \newcommand\l@uwagas[2]
+    {\par\noindent \textbf{#2:} %\parbox{10cm}
+{#1}\par} \makeatother
+
+
+\newcommand{\ksremark}[1]{%
+{%\marginpar{\textdbend}
+{\color{brickred}{[#1]}}}%
+\addcontentsline{rks}{uwagas}{\protect{#1}}%
+}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%  
+
+\newcommand{\printCoauthor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALen]
+    \ifthenelse{\FNCoALen > 0}%
+    {%
+		{\large\bfseries\Coauthor\par}
+	
+		{\normalsize\bfseries \LeftId: \IdCoauthor\par}
+    }%
+    {}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\autor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALenXX]
+    \ifthenelse{\FNCoALenXX > 0}%
+    {\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}%
+	{\FirstNameAuthor\ \SurnameAuthor}%
+}
+%%%%%%%%%%%%%%%%%%%%%
+
+\StrLen{\FirstNameCoauthor}[\FNCoALen]
+\ifthenelse{\FNCoALen > 0}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}
+}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor}
+}%
+
+%%%%%%%%%%%% FANCY HEADERS %%%%%%%%%%%%%%%
+% no capitalisation of headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\nouppercase{\it\rightmark}}
+\fancyhead[RE]{\nouppercase{\it\leftmark}}
+\fancyhead[LE,RO]{\it\thepage}
+
+
+\fancypagestyle{onlyPageNumbers}{%
+   \fancyhf{} 
+   \fancyhead[LE,RO]{\it\thepage}
+}
+
+\fancypagestyle{noNumbers}{%
+   \fancyhf{} 
+   \fancyhead[LE,RO]{}
+}
+
+
+\fancypagestyle{PageNumbersChapterTitles}{%
+   \fancyhf{} 
+   \fancyhead[LE]{\nouppercase{\autor}}
+   \fancyhead[RO]{\nouppercase{\leftmark}} 
+   \fancyfoot[CE, CO]{\thepage}
+}
+ 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+\newcounter{pagesWithoutNumbers}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newcommand{\printOpiekun}[1]{%		
+
+    \StrLen{\Consultant}[\mystringlen]
+    \ifthenelse{\mystringlen > 0}%
+    {%
+       {\large{\bfseries CONSULTANT}\par}
+       
+       {\large{\bfseries \Consultant}\par}
+    }%
+    {}
+} 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+% Please do not modify the lines below!
+\newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
+\newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
+\newcommand{\Type}{FINAL PROJECT}
+\newcommand{\Faculty}{Faculty of Automatic Control, Electronics and Computer Science}
+\newcommand{\Polsl}{Silesian University of Technology}
+\newcommand{\Logo}{graf/politechnika_sl_logo_bw_pion_en.pdf}
+\newcommand{\LeftId}{Student identification number}
+\newcommand{\LeftProgram}{Programme}
+\newcommand{\LeftSpecialisation}{Specialisation}
+\newcommand{\LeftSUPERVISOR}{SUPERVISOR}
+\newcommand{\LeftDEPARTMENT}{DEPARTMENT}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% END OF SETTINGS                             %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
