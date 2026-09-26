@@ -6,7 +6,7 @@
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
-%  (c) Krzysztof Simiński, 2018-2023     %
+%  (c) Krzysztof Simiński, 2018-2026     %
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
@@ -91,9 +91,9 @@
 \newcommand{\Departament}{$\langle$wpisać właściwą$\rangle$}        % katedra promotora  (bez $\langle$ i $\rangle$)
 
 % Jeżeli został wyznaczony promotor pomocniczy lub opiekun, proszę go/ją wpisać ...
-\newcommand{\Consultant}{$\langle$stopień naukowy imię i nazwisko$\rangle$} % dane promotora pomocniczego, opiekuna (bez $\langle$ i $\rangle$)
+%\newcommand{\Consultant}{$\langle$stopień naukowy imię i nazwisko$\rangle$} % dane promotora pomocniczego, opiekuna (bez $\langle$ i $\rangle$)
 % ... w przeciwnym razie proszę zostawić puste miejsce jak poniżej:
-%\newcommand{\Consultant}{} % brak promotowa pomocniczego / opiekuna
+\newcommand{\Consultant}{} % brak promotowa pomocniczego / opiekuna
 
 % koniec fragmentu do modyfikacji
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -295,13 +295,13 @@
 \newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
 \newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
 \newcommand{\Type}{PRACA MAGISTERSKA}
-\newcommand{\Faculty}{Wydział Automatyki, Elektroniki i Informatyki} 
+\newcommand{\Faculty}{WYDZIAŁ AUTOMATYKI, ELEKTRONIKI I INFORMATYKI} 
 \newcommand{\Polsl}{Politechnika Śląska}
 \newcommand{\Logo}{politechnika_sl_logo_bw_pion_pl.pdf}
 \newcommand{\LeftId}{Nr albumu}
 \newcommand{\LeftProgram}{Kierunek}
 \newcommand{\LeftSpecialisation}{Specjalność}
-\newcommand{\LeftSUPERVISOR}{PROWADZĄCY PRACĘ}
+\newcommand{\LeftSUPERVISOR}{PROMOTOR}
 \newcommand{\LeftDEPARTMENT}{KATEDRA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -442,9 +442,9 @@ escapeinside={@*}{*@},%
 	
 	{\large{\bfseries \Supervisor}\par}
 				
-	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
-		
 	{\large{\bfseries \Faculty}\par}
+
+	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
 		
 	\vfill  \vfill  
 

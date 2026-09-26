@@ -6,7 +6,7 @@
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
-%  (c) Krzysztof Simiński, 2018-2023     %
+%  (c) Krzysztof Simiński, 2018-2026     %
 %                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
@@ -91,9 +91,9 @@
 \newcommand{\Departament}{$\langle$wpisać właściwą$\rangle$}        % katedra promotora  (bez $\langle$ i $\rangle$)
 
 % Jeżeli został wyznaczony promotor pomocniczy lub opiekun, proszę go/ją wpisać ...
-\newcommand{\Consultant}{$\langle$stopień naukowy imię i nazwisko$\rangle$} % dane promotora pomocniczego, opiekuna (bez $\langle$ i $\rangle$)
+%\newcommand{\Consultant}{$\langle$stopień naukowy imię i nazwisko$\rangle$} % dane promotora pomocniczego, opiekuna (bez $\langle$ i $\rangle$)
 % ... w przeciwnym razie proszę zostawić puste miejsce jak poniżej:
-%\newcommand{\Consultant}{} % brak promotowa pomocniczego / opiekuna
+\newcommand{\Consultant}{} % brak promotowa pomocniczego / opiekuna
 
 % koniec fragmentu do modyfikacji
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -295,12 +295,12 @@
 \newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
 \newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
 \newcommand{\Type}{PROJEKT INŻYNIERSKI}
-\newcommand{\Faculty}{Wydział Automatyki, Elektroniki i Informatyki} 
+\newcommand{\Faculty}{WYDZIAŁ AUTOMATYKI, ELEKTRONIKI I INFORMATYKI} 
 \newcommand{\Polsl}{Politechnika Śląska}
 \newcommand{\Logo}{politechnika_sl_logo_bw_pion_pl.pdf}
 \newcommand{\LeftId}{Nr albumu}
 \newcommand{\LeftProgram}{Kierunek}
-\newcommand{\LeftSpecialisation}{Specjalność}
+\newcommand{\LeftSpecialisation}{Ścieżka dyplomowania}
 \newcommand{\LeftSUPERVISOR}{PROWADZĄCY PRACĘ}
 \newcommand{\LeftDEPARTMENT}{KATEDRA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -442,9 +442,9 @@ escapeinside={@*}{*@},%
 	
 	{\large{\bfseries \Supervisor}\par}
 				
-	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
-		
 	{\large{\bfseries \Faculty}\par}
+
+	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
 		
 	\vfill  \vfill  
 
@@ -523,13 +523,13 @@ escapeinside={@*}{*@},%
 % TODO
 \chapter{Wstęp}
 \label{ch:wstep}
-
+Wstęp powinien zawierać następujące elementy
 \begin{itemize}
 \item wprowadzenie w problem/zagadnienie
 \item osadzenie problemu w dziedzinie
 \item cel pracy
 \item zakres pracy
-\item zwięzła charakterystyka rozdziałów
+\item zwięzłą charakterystykę rozdziałów
 \item jednoznaczne określenie wkładu autora, w przypadku prac wieloosobowych – tabela z autorstwem poszczególnych elementów pracy
 \end{itemize}
 
@@ -792,15 +792,16 @@ class test : public basic
 \end{itemize}
 
 
+
 \backmatter
-	
+
 \cleardoublepage
 \phantomsection
 %\bibliographystyle{plplain}  % bibtex
 %\bibliography{biblio} % bibtex
 \addcontentsline{toc}{chapter}{Bibliografia}
 \printbibliography           % biblatex
-	
+
 \begin{appendices}
 
 % TODO
